@@ -1,18 +1,26 @@
 [
     {
         "name": "hero1",
-        "hp": 180
+        "hp": 180,
+        "physDmg": 20,
+        "magDmg": 0
     },
     {
         "name": "hero2",
-        "hp": 120
+        "hp": 120,
+        "physDmg": 2,
+        "magDmg": 20
     },
     {
         "name": "hero3",
-        "hp": 140
+        "hp": 140,
+        "physDmg": 12,
+        "magDmg": 6
     },
     {
-        "name": "hero3",
-        "hp": 160
+        "name": "hero4",
+        "hp": 160,
+        "physDmg": 18,
+        "magDmg": 6
     }
 ]
