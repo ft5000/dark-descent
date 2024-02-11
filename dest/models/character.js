@@ -1,11 +1,15 @@
+import { DamageType } from "../enums/DamageType.js";
 export class Character {
-    constructor(data) {
+    constructor(data, traits) {
         this.name = data.name;
         this.hp = data.hp;
         this.hpMax = data.hp;
+        this.ap = data.ap;
+        this.apMax = data.ap;
         this.physDmg = data.physDmg;
         this.magDmg = data.magDmg;
         this.isDead = false;
+        this.trait = traits.find(x => x.name == data.trait);
     }
     heal(hp) {
         if (this.isDead) {
@@ -32,5 +36,23 @@ export class Character {
         if (this.isDead) {
             console.log(`${this.name} has perished.`);
         }
+    }
+    performAction() {
+        const skill = this.getRandomSkill();
+        if (skill == null) {
+            console.log(`${this.name} has insufficient action points.`);
+            return;
+        }
+        if (skill.damageType == DamageType.none) {
+            console.log(`${this.name} performed ${skill.name} healing for ${skill.heal}hp.`);
+        }
+    }
+    getRandomSkill() {
+        const skills = this.trait.getSkills().filter(x => x.cost <= this.ap);
+        if (skills.length == 0) {
+            return null;
+        }
+        const i = Math.floor(Math.random() * skills.length);
+        return skills[i];
     }
 }
