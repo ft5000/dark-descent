@@ -1,3 +1,4 @@
+import { GameRunner } from "../GameRunner.js";
 import { DamageType } from "../enums/DamageType.js";
 export class Character {
     constructor(data, traits) {
@@ -39,12 +40,23 @@ export class Character {
     }
     performAction() {
         const skill = this.getRandomSkill();
+        var targets = [];
         if (skill == null) {
             console.log(`${this.name} has insufficient action points.`);
             return;
         }
         if (skill.damageType == DamageType.none) {
             console.log(`${this.name} performed ${skill.name} healing for ${skill.heal}hp.`);
+        }
+        if (skill.damageType == DamageType.physical) {
+            targets.push(GameRunner.get().getRandomTarget());
+            if (targets.length == 0) {
+                return;
+            }
+            targets.forEach(target => {
+                target === null || target === void 0 ? void 0 : target.takeDamage(skill.damage);
+            });
+            console.log(`${this.name} performed ${skill.name} causing ${skill.damage} damage.`);
         }
     }
     getRandomSkill() {

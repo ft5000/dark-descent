@@ -5,11 +5,16 @@ import { Skill } from "./models/Skill.js";
 import skillsJson from '../data/skills.json' assert { type: 'json' };
 import traitsJson from '../data/traits.json' assert { type: 'json' };
 import heroesJson from '../data/heroes.json' assert { type: 'json' };
+import enemiesJson from '../data/enemies.json' assert { type: 'json' };
+import { Enemy } from "./models/Enemy.js";
+import { GameRunner } from "./GameRunner.js";
 
 export class DataService {
+    private static _instance: DataService;
     private skills: Skill[] = [];
     private traits: Trait[] = [];
     private heroes: Hero[] = [];
+    private enemies: Enemy[] = [];
 
     public loadJson() {
         skillsJson.forEach((data: any) => {
@@ -27,39 +32,45 @@ export class DataService {
             console.log("loading heroes...")
         });
 
-        console.log(this.skills, this.traits, this.heroes);
-
-        // this.heroes[0].changeName("Johnny The Barbarian")
-        // this.heroes[0].takeDamage(4);
-        // this.heroes[0].heal(2);
-        // this.heroes[0].takeDamage(200);
-        // this.heroes[0].heal(22);
-        // this.heroes[0].changeName("Johnny The Dead Barbarian")
+        enemiesJson.forEach((data: any) => {
+            this.enemies.push(new Enemy(data, this.traits))
+            console.log("loading enemies...")
+        });
 
         return false;
+    }
+
+    public getHeroes() {
+        return this.heroes;
+    }
+
+    public getEnemies() {
+        return this.enemies;
     }
 
     public getTrait(name: string) {
         return this.traits.find(x => x.name == name)
     }
+
+    static get() {
+        if (this._instance) {
+            return this._instance;
+        }
+
+        this._instance = new DataService();
+        return this._instance;
+    }
 }
 
 export class App {
-    public dataService: DataService;
     public app: App = this;
     public loading: boolean = false;
 
-    constructor() {
-        this.dataService = new DataService();
-    }
-
     public init() {
         this.loading = true;
-        this.loading = this.dataService.loadJson();
-    }
-
-    public getDataService() {
-        return this.dataService;
+        this.loading =  DataService.get().loadJson();
+        GameRunner.get().init();
+        GameRunner.get().newEncounter();
     }
 }
 

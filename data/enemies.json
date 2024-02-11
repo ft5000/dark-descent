@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Skeleton Archer",
+        "hp": 60,
+        "ap": 20,
+        "physDmg": 4,
+        "magDmg": 0,
+        "trait": "Archer"
+    }
+]

@@ -1,28 +1,32 @@
 [
     {
-        "name": "hero1",
+        "name": "Craig",
         "hp": 180,
+        "ap": 20,
         "physDmg": 20,
         "magDmg": 0,
         "trait": "Barbarian"
     },
     {
-        "name": "Mage",
+        "name": "Gorby",
         "hp": 120,
+        "ap": 20,
         "physDmg": 2,
         "magDmg": 20,
         "trait": "Wizard"
     },
     {
-        "name": "hero3",
+        "name": "Alejandro",
         "hp": 140,
+        "ap": 20,
         "physDmg": 12,
         "magDmg": 6,
         "trait": "Theif"
     },
     {
-        "name": "hero4",
+        "name": "Mary-Anne",
         "hp": 160,
+        "ap": 20,
         "physDmg": 18,
         "magDmg": 6,
         "trait": "Paladin"
