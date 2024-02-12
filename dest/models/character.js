@@ -1,5 +1,6 @@
 import { GameRunner } from "../GameRunner.js";
 import { DamageType } from "../enums/DamageType.js";
+import { GameUI } from "../GameUI.js";
 export class Character {
     constructor(data, traits) {
         this.isEnemy = false;
@@ -34,41 +35,41 @@ export class Character {
             }
             this.hp += healAmt;
         }
-        console.log(`${this.name} healed for ${healAmt}hp.`);
-        console.log(`${this.name} ${this.hp}hp`);
+        GameUI.get().drawString(`${this.name} healed for ${healAmt}hp.`);
+        GameUI.get().drawString(`${this.name} ${this.hp}hp`);
     }
     takeDamage(dmg) {
         this.hp -= dmg;
         this.isDead = this.hp > 0 ? false : true;
-        console.log(`${this.name} took ${dmg} damage. Current hp: ${this.hp}`);
+        GameUI.get().drawString(`${this.name} took ${dmg} damage. Current hp: ${this.hp}`);
         if (this.isDead) {
-            console.log(`${this.name} has perished.`);
+            GameUI.get().drawString(`${this.name} has perished.`);
         }
     }
     performAction() {
         const skill = this.getRandomSkill();
         var targets;
         if (skill == null) {
-            console.log(`${this.name} has insufficient action points.`);
+            GameUI.get().drawString(`${this.name} has insufficient action points.`);
             return;
         }
         if (skill.damageType == DamageType.none) {
             targets = GameRunner.get().party.filter(x => !x.isDead);
-            console.log(`${this.name} performed ${skill.name} healing for ${skill.heal}hp.`);
+            GameUI.get().drawString(`${this.name} performed ${skill.name} healing for ${skill.heal}hp.`);
             targets.forEach(target => {
                 target.heal(skill.heal);
             });
         }
         if (skill.damageType == DamageType.physical) {
             targets = this.getTarget(skill).filter(x => !x.isDead);
-            console.log(`${this.name} performed ${skill.name} causing ${skill.damage} damage... `);
+            GameUI.get().drawString(`${this.name} performed ${skill.name} causing ${skill.damage} damage... `);
             targets.forEach(target => {
                 target.takeDamage(skill.damage);
             });
         }
         if (skill.damageType == DamageType.magic) {
             targets = this.getTarget(skill).filter(x => !x.isDead);
-            console.log(`${this.name} performed ${skill.name} causing ${skill.damage} damage... `);
+            GameUI.get().drawString(`${this.name} performed ${skill.name} causing ${skill.damage} damage... `);
             targets.forEach(target => {
                 target.takeDamage(skill.damage);
             });

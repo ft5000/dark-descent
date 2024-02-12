@@ -59,5 +59,19 @@
                 "name": "Sharp Shot"
             }
         ]
+    },
+    {
+        "name": "Warlock",
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Boil Blood"
+            },
+            {
+                "name": "Curse"
+            }
+        ]
     }
 ]

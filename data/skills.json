@@ -62,5 +62,21 @@
         "cost": 2,
         "damageType": 1,
         "aoe": false
+    },
+    {
+        "name": "Boil Blood",
+        "damage": 14,
+        "heal": 0,
+        "cost": 2,
+        "damageType": 1,
+        "aoe": false
+    },
+        {
+        "name": "Curse",
+        "damage": 12,
+        "heal": 0,
+        "cost": 2,
+        "damageType": 1,
+        "aoe": false
     }
 ]

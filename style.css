@@ -1,0 +1,10 @@
+body {
+    background-color: black;
+}
+
+.console-mess {
+    font-family: monospace;
+    color: white;
+    font-size: 24px;
+    margin: 6px;
+}
