@@ -52,11 +52,22 @@ export class Character {
             console.log(`${this.name} has insufficient action points.`);
             return;
         }
-        targets = this.getTarget(skill);
         if (skill.damageType == DamageType.none) {
+            targets = GameRunner.get().party.filter(x => !x.isDead);
             console.log(`${this.name} performed ${skill.name} healing for ${skill.heal}hp.`);
+            targets.forEach(target => {
+                target.heal(skill.heal);
+            });
         }
         if (skill.damageType == DamageType.physical) {
+            targets = this.getTarget(skill).filter(x => !x.isDead);
+            console.log(`${this.name} performed ${skill.name} causing ${skill.damage} damage... `);
+            targets.forEach(target => {
+                target.takeDamage(skill.damage);
+            });
+        }
+        if (skill.damageType == DamageType.magic) {
+            targets = this.getTarget(skill).filter(x => !x.isDead);
             console.log(`${this.name} performed ${skill.name} causing ${skill.damage} damage... `);
             targets.forEach(target => {
                 target.takeDamage(skill.damage);
@@ -73,13 +84,13 @@ export class Character {
         }
         return targets;
     }
-    getTargetNames(targets) {
-        var names = "";
-        targets.forEach(target => {
-            names += ` ${target.getName()}`;
-        });
-        return names;
-    }
+    // private getTargetNames(targets: Character[]) {
+    //     var names = "";
+    //     targets.forEach(target => {
+    //         names += ` ${target.getName()}`;
+    //     })
+    //     return names;
+    // } 
     getRandomSkill() {
         const skills = this.trait.getSkills().filter(x => x.cost <= this.ap);
         if (skills.length == 0) {

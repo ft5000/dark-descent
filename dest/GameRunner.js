@@ -10,22 +10,25 @@ export class GameRunner {
     }
     newEncounter() {
         this.enemies = [];
-        this.enemies.push(DataService.get().getEnemies()[0]);
-        this.enemies.push(DataService.get().getEnemies()[0]);
-        this.enemies.push(DataService.get().getEnemies()[0]);
-        this.enemies.push(DataService.get().getEnemies()[0]);
-        this.enemies.push(DataService.get().getEnemies()[0]);
-        var i = 1;
-        this.enemies.forEach(enemy => {
-            enemy.numberEnemy(i);
-            i++;
-        });
+        for (var i = 0; i < 2; i++) {
+            var archer = DataService.get().getEnemies()[0];
+            var wizard = DataService.get().getEnemies()[1];
+            archer.numberEnemy(i + 1);
+            wizard.numberEnemy(i + 1);
+            this.enemies.push(archer);
+            this.enemies.push(wizard);
+        }
+        // this.enemies.forEach(enemy => {
+        //     var archers = this.enemies.filter(x => x.trait.name == "Archer");
+        //     enemy.numberEnemy(i)
+        //     i++;
+        // })
         this.runEncounter();
     }
     runEncounter() {
         var enemiesAreDead = this.enemiesAreDead();
         var partyIsDead = this.partyIsDead();
-        if (!partyIsDead) {
+        if (!partyIsDead && !enemiesAreDead) {
             console.log('Player turn.');
             this.party.forEach(hero => {
                 enemiesAreDead = this.enemiesAreDead();
@@ -36,10 +39,10 @@ export class GameRunner {
                 if (!enemiesAreDead) {
                     hero.performAction();
                 }
-                this.wait(60);
+                console.log('--------------------');
             });
         }
-        if (!enemiesAreDead) {
+        if (!enemiesAreDead && !partyIsDead) {
             console.log('Enemy turn.');
             this.enemies.forEach(enemy => {
                 partyIsDead = this.partyIsDead();
@@ -49,15 +52,18 @@ export class GameRunner {
                 if (!partyIsDead) {
                     enemy.performAction();
                 }
-                this.wait(60);
+                console.log('--------------------');
             });
         }
         if (!enemiesAreDead && !partyIsDead) {
             this.runEncounter();
         }
-        else if (enemiesAreDead && this.level < 6) {
+        else if (enemiesAreDead && this.level < 10) {
             console.log('level: ', this.level);
             this.newEncounter();
+        }
+        else {
+            console.log('Victory!');
         }
     }
     static get() {
