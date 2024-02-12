@@ -40,12 +40,20 @@ export class DataService {
         return false;
     }
 
-    public getHeroes() {
-        return this.heroes;
+    public getHeroes(): Hero[] {
+        var heroes: Hero[] = []
+        this.heroes.forEach(hero => {
+            heroes.push(new Hero(hero.data, this.traits))
+        })
+        return heroes;
     }
 
-    public getEnemies() {
-        return this.enemies;
+    public getEnemies(): Enemy[] {
+        var enemies: Enemy[] = []
+        this.enemies.forEach(enemy => {
+            enemies.push(new Enemy(enemy.data, this.traits))
+        })
+        return enemies;
     }
 
     public getTrait(name: string) {

@@ -34,10 +34,18 @@ export class DataService {
         return false;
     }
     getHeroes() {
-        return this.heroes;
+        var heroes = [];
+        this.heroes.forEach(hero => {
+            heroes.push(new Hero(hero.data, this.traits));
+        });
+        return heroes;
     }
     getEnemies() {
-        return this.enemies;
+        var enemies = [];
+        this.enemies.forEach(enemy => {
+            enemies.push(new Enemy(enemy.data, this.traits));
+        });
+        return enemies;
     }
     getTrait(name) {
         return this.traits.find(x => x.name == name);
