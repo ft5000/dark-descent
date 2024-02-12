@@ -63,16 +63,22 @@ export class Character {
         if (skill.damageType == DamageType.physical) {
             targets = this.getTarget(skill).filter(x => !x.isDead);
             GameUI.get().drawString(`${this.name} performed ${skill.name} causing ${skill.damage} damage... `);
-            targets.forEach(target => {
+            for (let target of targets) {
                 target.takeDamage(skill.damage);
-            });
+            }
+            // targets.forEach(target => {
+            //     target.takeDamage(skill.damage)
+            // })
         }
         if (skill.damageType == DamageType.magic) {
             targets = this.getTarget(skill).filter(x => !x.isDead);
             GameUI.get().drawString(`${this.name} performed ${skill.name} causing ${skill.damage} damage... `);
-            targets.forEach(target => {
+            for (let target of targets) {
                 target.takeDamage(skill.damage);
-            });
+            }
+            // targets.forEach(target => {
+            //     target.takeDamage(skill.damage)
+            // })
         }
     }
     getTarget(skill) {
