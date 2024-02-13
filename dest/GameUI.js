@@ -1,7 +1,17 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 export class GameUI {
     constructor() {
-        this.console = document.getElementById('console');
+        this.textbox = document.getElementById('console');
         this.messages = [];
+        this.messLog = [];
     }
     static get() {
         if (this._instance) {
@@ -10,22 +20,35 @@ export class GameUI {
         this._instance = new GameUI();
         return this._instance;
     }
-    drawString(mess) {
+    log(mess) {
+        this.messLog.push(mess);
+    }
+    printLog() {
+        return __awaiter(this, void 0, void 0, function* () {
+            for (let mess of this.messLog) {
+                yield this.sleep(60);
+                this.drawText(mess);
+            }
+            this.messLog = [];
+            return false;
+        });
+    }
+    drawText(mess) {
         const element = document.createElement('div');
         element.className = "console-mess";
         const content = document.createTextNode(mess);
         this.messages.push(element);
         element.appendChild(content);
         if (this.isOverflown()) {
-            this.console.removeChild(this.console.firstChild);
+            this.textbox.removeChild(this.textbox.firstChild);
         }
-        // if (this.console.childNodes?.length > 128) {
-        //     this.console.removeChild(this.console.firstChild);
-        // }
-        this.console.append(element);
-        this.console.scrollTo(0, this.console.scrollHeight);
+        this.textbox.append(element);
+        this.textbox.scrollTo(0, this.textbox.scrollHeight);
     }
     isOverflown() {
-        return this.console.scrollHeight > this.console.offsetHeight;
+        return this.textbox.scrollHeight > this.textbox.offsetHeight;
+    }
+    sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
     }
 }

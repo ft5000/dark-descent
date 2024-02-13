@@ -1,5 +1,5 @@
-import { Hero } from "./models/hero.js";
-import { Trait } from "./models/trait.js";
+import { Hero } from "./models/Hero.js";
+import { Trait } from "./models/Trait.js";
 import { Skill } from "./models/Skill.js";
 
 import skillsJson from '../data/skills.json' assert { type: 'json' };
@@ -78,7 +78,6 @@ export class App {
         this.loading = true;
         this.loading =  DataService.get().loadJson();
         GameRunner.get().init();
-        GameRunner.get().newEncounter();
     }
 }
 

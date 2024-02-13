@@ -1,4 +1,4 @@
-import { Character } from "./character.js";
+import { Character } from "./Character.js";
 export class Enemy extends Character {
     constructor() {
         super(...arguments);
