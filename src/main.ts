@@ -8,6 +8,7 @@ import heroesJson from '../data/heroes.json' assert { type: 'json' };
 import enemiesJson from '../data/enemies.json' assert { type: 'json' };
 import { Enemy } from "./models/Enemy.js";
 import { GameRunner } from "./GameRunner.js";
+import { GameInput } from "./GameInput.js";
 
 export class DataService {
     private static _instance: DataService;
@@ -77,6 +78,7 @@ export class App {
     public init() {
         this.loading = true;
         this.loading =  DataService.get().loadJson();
+        GameInput.get().init();
         GameRunner.get().init();
     }
 }

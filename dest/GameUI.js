@@ -10,7 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 export class GameUI {
     constructor() {
         this.textbox = document.getElementById('console');
-        this.messages = [];
         this.messLog = [];
     }
     static get() {
@@ -26,7 +25,7 @@ export class GameUI {
     printLog() {
         return __awaiter(this, void 0, void 0, function* () {
             for (let mess of this.messLog) {
-                yield this.sleep(60);
+                yield this.sleep(100);
                 this.drawText(mess);
             }
             this.messLog = [];
@@ -36,13 +35,11 @@ export class GameUI {
     drawText(mess) {
         const element = document.createElement('div');
         element.className = "console-mess";
-        const content = document.createTextNode(mess);
-        this.messages.push(element);
-        element.appendChild(content);
+        element.innerHTML = mess;
+        this.textbox.append(element);
         if (this.isOverflown()) {
             this.textbox.removeChild(this.textbox.firstChild);
         }
-        this.textbox.append(element);
         this.textbox.scrollTo(0, this.textbox.scrollHeight);
     }
     isOverflown() {

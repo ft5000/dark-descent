@@ -11,8 +11,6 @@ export class GameRunner {
     init() {
         this.party = DataService.get().getHeroes();
         this.newEncounter();
-        const func = this.play.bind(this);
-        document.addEventListener('click', func);
     }
     play() {
         if (this.checkIfEnemiesAreDead()) {
@@ -22,19 +20,13 @@ export class GameRunner {
     }
     newEncounter() {
         this.enemies = [];
-        for (var i = 0; i < 2; i++) {
-            var archer = DataService.get().getEnemies()[0];
-            var demon = DataService.get().getEnemies()[3];
-            var wizard = DataService.get().getEnemies()[2];
-            var rogue = DataService.get().getEnemies()[2];
-            archer.numberEnemy(i + 1);
-            wizard.numberEnemy(i + 1);
-            demon.numberEnemy(i + 1);
-            rogue.numberEnemy(i + 1);
-            this.enemies.push(archer);
-            this.enemies.push(demon);
-            this.enemies.push(wizard);
-            this.enemies.push(rogue);
+        this.randomEncounter();
+    }
+    randomEncounter() {
+        const enemies = DataService.get().getEnemies();
+        for (var n = 0; n < 4; n++) {
+            const i = this.getRandomIndex(enemies);
+            this.enemies.push(enemies[i]);
         }
         this.enemiesAreDead = false;
     }
@@ -63,7 +55,7 @@ export class GameRunner {
             this.party.filter(x => !x.isDead).forEach(x => {
                 x.heal(10);
             });
-            GameUI.get().log(`------  level:' ${this.level} '------`);
+            GameUI.get().log(`------ <b style="color: red">level:' ${this.level}</b> '------`);
             this.level++;
         }
         else if (!this.partyIsDead && this.level == 11) {
@@ -115,5 +107,8 @@ export class GameRunner {
     }
     checkIfPartyIsDead() {
         return this.partyIsDead = !this.party.some(x => !x.isDead);
+    }
+    getRandomIndex(items) {
+        return Math.floor(Math.random() * items.length);
     }
 }

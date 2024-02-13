@@ -35,15 +35,14 @@ export class Character {
             }
             this.hp += healAmt;
         }
-        GameUI.get().log(`${this.name} healed for ${healAmt}hp.`);
-        GameUI.get().log(`${this.name} ${this.hp}hp`);
+        GameUI.get().log(`<b style="color: skyblue">${this.name} healed for ${healAmt}hp.</b>`);
     }
     takeDamage(dmg) {
         this.hp -= dmg;
         this.isDead = this.hp > 0 ? false : true;
         GameUI.get().log(`${this.name} took ${dmg} damage. Current hp: ${this.hp}`);
         if (this.isDead) {
-            GameUI.get().log(`${this.name} has perished.`);
+            GameUI.get().log(`<b style="color: red">${this.name} has perished.</b`);
         }
     }
     performAction() {
@@ -55,14 +54,14 @@ export class Character {
         }
         if (skill.damageType == DamageType.none) {
             targets = GameRunner.get().party.filter(x => !x.isDead);
-            GameUI.get().log(`${this.name} performed ${skill.name} healing for ${skill.heal}hp.`);
+            GameUI.get().log(`<b style="color: skyblue">${this.name} performed ${skill.name} healing for ${skill.heal}hp.</b>`);
             targets.forEach(target => {
                 target.heal(skill.heal);
             });
         }
         if (skill.damageType == DamageType.physical) {
             targets = this.getTarget(skill).filter(x => !x.isDead);
-            GameUI.get().log(`${this.name} performed ${skill.name} causing ${skill.damage} damage... `);
+            GameUI.get().log(`<b style="color: red">${this.name} performed ${skill.name} causing ${skill.damage} damage.</b>`);
             for (let target of targets) {
                 target.takeDamage(skill.damage);
             }
@@ -72,7 +71,7 @@ export class Character {
         }
         if (skill.damageType == DamageType.magic) {
             targets = this.getTarget(skill).filter(x => !x.isDead);
-            GameUI.get().log(`${this.name} performed ${skill.name} causing ${skill.damage} damage... `);
+            GameUI.get().log(`<b style="color: red">${this.name} performed ${skill.name} causing ${skill.damage} damage.</b>`);
             for (let target of targets) {
                 target.takeDamage(skill.damage);
             }
@@ -80,6 +79,7 @@ export class Character {
             //     target.takeDamage(skill.damage)
             // })
         }
+        GameUI.get().log('&nbsp;');
     }
     getTarget(skill) {
         let targets = [];

@@ -1,19 +1,20 @@
 body {
     margin: 0;
-    background-color: black;
+    background-color: teal;
 }
 
 #console {
-    width: 50vw;
-    height: 80vh;
+    width: 60vw;
+    height: 50vh;
+    background-color: black;
     overflow: hidden;
     padding: 8px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 1px white dashed;
-    box-shadow: 4px 4px white;
+    border: 16px grey solid;
+    box-shadow: -2px -2px 0px 2px lightgrey, 2px 2px 0px 2px black;;
 }
 
 .console-mess {
