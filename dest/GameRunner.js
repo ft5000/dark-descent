@@ -10,6 +10,10 @@ export class GameRunner {
     }
     init() {
         this.party = DataService.get().getHeroes();
+        for (let hero of this.party) {
+            hero.setRandomName();
+            GameUI.get().setCharacterInfo(hero);
+        }
         this.newEncounter();
     }
     play() {
@@ -70,7 +74,7 @@ export class GameRunner {
             }
         }
         if (!this.enemiesAreDead && !this.partyIsDead) {
-            GameUI.get().log('<b style="color: red">Enemy turn.</b>');
+            GameUI.get().log('Enemy turn.', 'red');
             GameUI.get().log('&nbsp;');
             const enemies = this.enemies.filter(x => !x.isDead);
             for (let enemy of enemies) {
@@ -82,13 +86,15 @@ export class GameRunner {
         // }
         if (this.enemiesAreDead && this.level < 11) {
             GameUI.get().log('Having a break');
-            GameUI.get().log('.', 'white', 1);
-            GameUI.get().log('..', 'white', 1);
-            GameUI.get().log('...', 'white', 1);
+            GameUI.get().log('.', null, 1);
+            GameUI.get().log('..', null, 1);
+            GameUI.get().log('...', null, 1);
+            GameUI.get().log('&nbsp;', null, 1);
             this.party.filter(x => !x.isDead).forEach(x => {
                 x.heal(10);
             });
-            GameUI.get().log(`------ <b style="color: red">level:' ${this.level}</b> '------`);
+            GameUI.get().log('&nbsp;');
+            GameUI.get().log(`------ level: ${this.level} ------`);
             this.level++;
         }
         else if (!this.partyIsDead && this.level == 11) {
@@ -99,12 +105,12 @@ export class GameRunner {
         GameUI.get().printLog();
     }
     partyTurn(hero) {
-        GameUI.get().log(`------ ${hero.name} - HP: ${hero.hp} ------`, 'white', 1);
+        GameUI.get().log(`------ ${hero.name} - HP: ${hero.hp} ------`);
         hero.performAction();
     }
     enemyTurn(enemy) {
         if (this.checkIfPartyIsDead()) {
-            GameUI.get().log('Your party is dead.');
+            GameUI.get().log('Your party is dead.', 'darkgrey');
         }
         else {
             GameUI.get().log(`------ ${enemy.getNameAndNumber()} - HP: ${enemy.hp} ------`);

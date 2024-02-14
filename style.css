@@ -1,39 +1,53 @@
 body {
-    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
     background-color: black;
     color: white;
     font-family: monospace;
     overflow: hidden;
     word-wrap: break-word;
+    font-size: 18px;
 }
 
-body:before {
-    content: ' ';
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
+hr {
+    border-style: dashed !important;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+#characters {
+    width: 15%;
     height: 100%;
-    opacity: 0.5;
-    background-image: url("./data/img/dung.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    min-height: 100vh;
+    background-color: black;
+    border-right: 2px white solid;
+    padding: 14px;
+
+    p {
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
 }
 
 #console {
-    width: 60vw;
-    height: 50vh;
+    width: 100%;
+    height: 100vh;
     background-color: black;
-    overflow: auto;
+    overflow: hidden;
     padding: 8px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* border: 16px grey solid;
-    box-shadow: -2px -2px 0px 2px lightgrey, 2px 2px 0px 2px black;; */
+}
+
+#ascii {
+    position: fixed;
+    display: block;
+    right: 24px;
+    bottom: 0px;
+    z-index: 100;
+    width: fit-content;
 }
 
 .console-mess {
