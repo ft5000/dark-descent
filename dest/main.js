@@ -48,8 +48,19 @@ export class DataService {
         });
         return enemies;
     }
+    getEnemy(name) {
+        const enemy = this.enemies.find(x => x.name == name);
+        return new Enemy(enemy.data, this.traits);
+    }
     getTrait(name) {
         return this.traits.find(x => x.name == name);
+    }
+    getTraits() {
+        var traits = [];
+        this.traits.forEach(trait => {
+            traits.push(new Trait(trait.data, this.skills));
+        });
+        return traits;
     }
     static get() {
         if (this._instance) {

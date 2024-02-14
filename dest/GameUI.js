@@ -7,6 +7,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+export class LogItem {
+    constructor(mess, color, delay) {
+        this.mess = mess;
+        this.color = color ? color : 'white';
+        this.delay = delay ? delay * 1000 : 100;
+    }
+}
 export class GameUI {
     constructor() {
         this.textbox = document.getElementById('console');
@@ -19,31 +26,34 @@ export class GameUI {
         this._instance = new GameUI();
         return this._instance;
     }
-    log(mess) {
-        this.messLog.push(mess);
+    log(mess, color, seconds) {
+        this.messLog.push(new LogItem(mess, color, seconds));
     }
     printLog() {
         return __awaiter(this, void 0, void 0, function* () {
-            for (let mess of this.messLog) {
-                yield this.sleep(100);
-                this.drawText(mess);
+            for (let item of this.messLog) {
+                yield this.sleep(item.delay);
+                this.drawText(item);
             }
             this.messLog = [];
             return false;
         });
     }
-    drawText(mess) {
+    drawText(item) {
         const element = document.createElement('div');
         element.className = "console-mess";
-        element.innerHTML = mess;
+        element.innerHTML = `<b style="${item.color}">${item.mess}</b>`;
         this.textbox.append(element);
-        if (this.isOverflown()) {
-            this.textbox.removeChild(this.textbox.firstChild);
-        }
+        // if (this.isOverflown()) {
+        //     this.textbox.removeChild(this.textbox.firstChild);
+        // }
         this.textbox.scrollTo(0, this.textbox.scrollHeight);
     }
     isOverflown() {
         return this.textbox.scrollHeight > this.textbox.offsetHeight;
+    }
+    updateInput(text) {
+        document.getElementById('input').innerHTML = text;
     }
     sleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));

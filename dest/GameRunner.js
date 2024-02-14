@@ -26,22 +26,52 @@ export class GameRunner {
         const enemies = DataService.get().getEnemies();
         for (var n = 0; n < 4; n++) {
             const i = this.getRandomIndex(enemies);
-            this.enemies.push(enemies[i]);
+            const enemy = DataService.get().getEnemy(enemies[i].name);
+            enemy.setId(n);
+            this.enemies.push(enemy);
         }
+        // Number type enemies.
+        const enemyTypes = [];
+        for (let enemy of this.enemies) {
+            if (!enemyTypes.some(x => x == enemy.name)) {
+                console.log(enemy.name);
+                enemyTypes.push(enemy.name);
+            }
+        }
+        for (let type of enemyTypes) {
+            const enemiesOfType = this.enemies.filter(x => x.name == type);
+            // If then number enemies.
+            if (enemiesOfType.length > 1) {
+                let count = 1;
+                for (let enemy of enemiesOfType) {
+                    console.log(count);
+                    this.enemies.find(x => x.id == enemy.id).setNumber(count);
+                    count++;
+                }
+            }
+        }
+        console.log(this.enemies);
         this.enemiesAreDead = false;
     }
     runEncounter() {
         this.checkIfEnemiesAreDead();
         this.checkIfPartyIsDead();
         if (!this.partyIsDead && !this.enemiesAreDead) {
-            GameUI.get().log('Player turn.');
+            GameUI.get().log('Player turn.', 'limegreen');
+            GameUI.get().log('&nbsp;');
             const party = this.party.filter(x => !x.isDead);
             for (let hero of party) {
-                this.partyTurn(hero);
+                if (!this.checkIfEnemiesAreDead()) {
+                    this.partyTurn(hero);
+                }
+            }
+            if (this.checkIfEnemiesAreDead()) {
+                GameUI.get().log('Enemies have been defeated.');
             }
         }
         if (!this.enemiesAreDead && !this.partyIsDead) {
-            GameUI.get().log('Enemy turn.');
+            GameUI.get().log('<b style="color: red">Enemy turn.</b>');
+            GameUI.get().log('&nbsp;');
             const enemies = this.enemies.filter(x => !x.isDead);
             for (let enemy of enemies) {
                 this.enemyTurn(enemy);
@@ -51,7 +81,10 @@ export class GameRunner {
         //     this.runEncounter();
         // }
         if (this.enemiesAreDead && this.level < 11) {
-            GameUI.get().log('Having a break...');
+            GameUI.get().log('Having a break');
+            GameUI.get().log('.', 'white', 1);
+            GameUI.get().log('..', 'white', 1);
+            GameUI.get().log('...', 'white', 1);
             this.party.filter(x => !x.isDead).forEach(x => {
                 x.heal(10);
             });
@@ -61,26 +94,20 @@ export class GameRunner {
         else if (!this.partyIsDead && this.level == 11) {
             GameUI.get().log('Victory!');
         }
+        GameUI.get().log('------ End Turns ------');
+        GameUI.get().log('&nbsp;');
         GameUI.get().printLog();
     }
     partyTurn(hero) {
-        if (this.checkIfEnemiesAreDead()) {
-            GameUI.get().log('Enemies have been defeated.');
-        }
-        else {
-            GameUI.get().log(`------ ${hero.name} - HP: ${hero.hp} ------`);
-            hero.performAction();
-            if (this.enemiesAreDead) {
-                GameUI.get().log('Enemies have been defeated.');
-            }
-        }
+        GameUI.get().log(`------ ${hero.name} - HP: ${hero.hp} ------`, 'white', 1);
+        hero.performAction();
     }
     enemyTurn(enemy) {
         if (this.checkIfPartyIsDead()) {
             GameUI.get().log('Your party is dead.');
         }
         else {
-            GameUI.get().log(`------ ${enemy.name} - HP: ${enemy.hp} ------`);
+            GameUI.get().log(`------ ${enemy.getNameAndNumber()} - HP: ${enemy.hp} ------`);
             enemy.performAction();
         }
     }

@@ -57,8 +57,21 @@ export class DataService {
         return enemies;
     }
 
+    public getEnemy(name: string) {
+        const enemy = this.enemies.find(x => x.name == name)
+        return new Enemy(enemy.data, this.traits)
+    }
+
     public getTrait(name: string) {
         return this.traits.find(x => x.name == name)
+    }
+
+    public getTraits(): Trait[] {
+        var traits: Trait[] = []
+        this.traits.forEach(trait => {
+            traits.push(new Trait(trait.data, this.skills))
+        })
+        return traits;
     }
 
     static get() {

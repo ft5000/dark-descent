@@ -1,4 +1,5 @@
 import { GameRunner } from "./GameRunner.js";
+import { GameUI } from "./GameUI.js";
 export class GameInput {
     constructor() {
         this.input = "";
@@ -26,7 +27,7 @@ export class GameInput {
         if (event.key == "Backspace") {
             this.input = this.input.slice(0, -1);
         }
-        console.log(this.input);
+        GameUI.get().updateInput(this.input);
     }
     static get() {
         if (this._instance) {

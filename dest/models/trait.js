@@ -6,6 +6,7 @@ export class Trait {
         data.skills.forEach(skill => {
             this.skills.push(skills.find(x => x.name == skill.name));
         });
+        this.data = data;
     }
     getSkills() {
         return this.skills;

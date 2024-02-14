@@ -4,6 +4,7 @@ import { GameUI } from "../GameUI.js";
 export class Character {
     constructor(data, traits) {
         this.isEnemy = false;
+        this.number = null;
         this.data = data;
         this.name = data.name;
         this.hp = data.hp;
@@ -14,6 +15,16 @@ export class Character {
         this.magDmg = data.magDmg;
         this.isDead = false;
         this.trait = traits.find(x => x.name == data.trait);
+    }
+    setNumber(num) {
+        this.number = num;
+    }
+    getNameAndNumber() {
+        let name = this.name;
+        if (this.number) {
+            name += ` ${this.number}`;
+        }
+        return name;
     }
     getName() {
         return this.name;
@@ -35,49 +46,43 @@ export class Character {
             }
             this.hp += healAmt;
         }
-        GameUI.get().log(`<b style="color: skyblue">${this.name} healed for ${healAmt}hp.</b>`);
+        GameUI.get().log(`<b style="color: skyblue">${this.getNameAndNumber()} healed for ${healAmt}hp.</b>`);
     }
     takeDamage(dmg) {
         this.hp -= dmg;
         this.isDead = this.hp > 0 ? false : true;
-        GameUI.get().log(`${this.name} took ${dmg} damage. Current hp: ${this.hp}`);
+        GameUI.get().log(`${this.getNameAndNumber()} took ${dmg} damage. Current hp: ${this.hp}`);
         if (this.isDead) {
-            GameUI.get().log(`<b style="color: red">${this.name} has perished.</b`);
+            GameUI.get().log(`<b style="color: red">${this.getNameAndNumber()} has perished.</b`);
         }
     }
     performAction() {
         const skill = this.getRandomSkill();
         var targets;
         if (skill == null) {
-            GameUI.get().log(`${this.name} has insufficient action points.`);
+            GameUI.get().log(`${this.getNameAndNumber()} has insufficient action points.`);
             return;
         }
         if (skill.damageType == DamageType.none) {
             targets = GameRunner.get().party.filter(x => !x.isDead);
-            GameUI.get().log(`<b style="color: skyblue">${this.name} performed ${skill.name} healing for ${skill.heal}hp.</b>`);
+            GameUI.get().log(`<b style="color: skyblue">${this.getNameAndNumber()} performed ${skill.name} healing for ${skill.heal}hp.</b>`);
             targets.forEach(target => {
                 target.heal(skill.heal);
             });
         }
         if (skill.damageType == DamageType.physical) {
             targets = this.getTarget(skill).filter(x => !x.isDead);
-            GameUI.get().log(`<b style="color: red">${this.name} performed ${skill.name} causing ${skill.damage} damage.</b>`);
+            GameUI.get().log(`<b style="color: orange">${this.getNameAndNumber()} performed ${skill.name} causing ${skill.damage} damage.</b>`);
             for (let target of targets) {
                 target.takeDamage(skill.damage);
             }
-            // targets.forEach(target => {
-            //     target.takeDamage(skill.damage)
-            // })
         }
         if (skill.damageType == DamageType.magic) {
             targets = this.getTarget(skill).filter(x => !x.isDead);
-            GameUI.get().log(`<b style="color: red">${this.name} performed ${skill.name} causing ${skill.damage} damage.</b>`);
+            GameUI.get().log(`<b style="color: orange">${this.getNameAndNumber()} performed ${skill.name} causing ${skill.damage} damage.</b>`);
             for (let target of targets) {
                 target.takeDamage(skill.damage);
             }
-            // targets.forEach(target => {
-            //     target.takeDamage(skill.damage)
-            // })
         }
         GameUI.get().log('&nbsp;');
     }
@@ -91,13 +96,6 @@ export class Character {
         }
         return targets;
     }
-    // private getTargetNames(targets: Character[]) {
-    //     var names = "";
-    //     targets.forEach(target => {
-    //         names += ` ${target.getName()}`;
-    //     })
-    //     return names;
-    // } 
     getRandomSkill() {
         const skills = this.trait.getSkills().filter(x => x.cost <= this.ap);
         if (skills.length == 0) {

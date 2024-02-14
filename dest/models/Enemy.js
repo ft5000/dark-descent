@@ -3,8 +3,9 @@ export class Enemy extends Character {
     constructor() {
         super(...arguments);
         this.isEnemy = true;
+        this.id = null;
     }
-    numberEnemy(num) {
-        this.name += ` ${num}`;
+    setId(id) {
+        this.id = id;
     }
 }
