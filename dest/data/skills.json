@@ -1,0 +1,82 @@
+[
+    {
+        "name": "Basic Attack",
+        "damage": 6,
+        "heal": 0,
+        "cost": 0,
+        "damageType": 1,
+        "aoe": false
+    },
+    {
+        "name": "Whirlwind",
+        "damage": 12,
+        "heal": 0,
+        "cost": 6,
+        "damageType": 1,
+        "aoe": true
+    },
+    {
+        "name": "Sneak Attack",
+        "damage": 14,
+        "heal": 0,
+        "cost": 4,
+        "damageType": 1,
+        "aoe": false
+    },
+    {
+        "name": "Ice Bolt",
+        "damage": 20,
+        "heal": 0,
+        "cost": 6,
+        "damageType": 2,
+        "aoe": false
+    },
+    {
+        "name": "Fire Rain",
+        "damage": 14,
+        "heal": 0,
+        "cost": 8,
+        "damageType": 2,
+        "aoe": true
+    },
+    {
+        "name": "Basic Heal",
+        "damage": 0,
+        "heal": 8,
+        "cost": 4,
+        "damageType": 0,
+        "aoe": false
+    },
+    {
+        "name": "Great Heal",
+        "damage": 0,
+        "heal": 16,
+        "cost": 8,
+        "damageType": 0,
+        "aoe": true
+    },
+    {
+        "name": "Sharp Shot",
+        "damage": 8,
+        "heal": 0,
+        "cost": 2,
+        "damageType": 1,
+        "aoe": false
+    },
+    {
+        "name": "Boil Blood",
+        "damage": 14,
+        "heal": 0,
+        "cost": 2,
+        "damageType": 1,
+        "aoe": false
+    },
+    {
+        "name": "Curse",
+        "damage": 12,
+        "heal": 0,
+        "cost": 2,
+        "damageType": 1,
+        "aoe": false
+    }
+]

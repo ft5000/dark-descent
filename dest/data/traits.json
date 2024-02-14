@@ -1,0 +1,77 @@
+[
+    {
+        "name": "Barbarian",
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Whirlwind"
+            }
+        ]
+    },
+    {
+        "name": "Wizard",
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Ice Bolt"
+            },
+            {
+                "name": "Fire Rain"
+            }
+        ]
+    },
+    {
+        "name": "Theif",
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Sneak Attack"
+            }
+        ]
+    },
+    {
+        "name": "Paladin",
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Basic Heal"
+            },
+            {
+                "name": "Great Heal"
+            }
+        ]
+    },
+    {
+        "name": "Archer",
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Sharp Shot"
+            }
+        ]
+    },
+    {
+        "name": "Warlock",
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Boil Blood"
+            },
+            {
+                "name": "Curse"
+            }
+        ]
+    }
+]

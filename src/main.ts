@@ -2,12 +2,12 @@ import { Hero } from "./models/Hero.js";
 import { Trait } from "./models/Trait.js";
 import { Skill } from "./models/Skill.js";
 
-import namesJson from '../data/names.json' assert { type: 'json' };
-import racesJson from '../data/races.json' assert { type: 'json' };
-import skillsJson from '../data/skills.json' assert { type: 'json' };
-import traitsJson from '../data/traits.json' assert { type: 'json' };
-import heroesJson from '../data/heroes.json' assert { type: 'json' };
-import enemiesJson from '../data/enemies.json' assert { type: 'json' };
+import namesJson from '../data/names.json';
+import racesJson from '../data/races.json';
+import skillsJson from '../data/skills.json';
+import traitsJson from '../data/traits.json';
+import heroesJson from '../data/heroes.json';
+import enemiesJson from '../data/enemies.json';
 
 import { Enemy } from "./models/Enemy.js";
 import { GameRunner } from "./GameRunner.js";

@@ -1,4 +1,5 @@
 import { GameUI } from "./GameUI.js";
+import { Color } from "./enums/Color.js";
 import { DataService } from "./main.js";
 export class GameRunner {
     constructor() {
@@ -65,7 +66,7 @@ export class GameRunner {
         this.checkIfEnemiesAreDead();
         this.checkIfPartyIsDead();
         if (!this.partyIsDead && !this.enemiesAreDead) {
-            GameUI.get().log('Player turn.', 'limegreen');
+            GameUI.get().log('Party turn.', Color.green);
             GameUI.get().log('&nbsp;');
             const party = this.party.filter(x => !x.isDead);
             for (let hero of party) {
@@ -80,7 +81,7 @@ export class GameRunner {
             }
         }
         if (!this.enemiesAreDead && !this.partyIsDead) {
-            GameUI.get().log('Enemy turn.', 'red');
+            GameUI.get().log('Enemy turn.', Color.red);
             GameUI.get().log('&nbsp;');
             const enemies = this.enemies.filter(x => !x.isDead);
             for (let enemy of enemies) {
@@ -102,7 +103,7 @@ export class GameRunner {
             GameUI.get().log('Victory!');
         }
         if (!this.isNewLevel()) {
-            GameUI.get().log('------ End Turns ------');
+            GameUI.get().log('------ End of Turns ------');
         }
         GameUI.get().log('&nbsp;');
         GameUI.get().printLog();

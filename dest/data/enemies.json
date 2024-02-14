@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Skeleton Archer",
+        "hp": 60,
+        "ap": 20,
+        "physDmg": 4,
+        "magDmg": 0,
+        "trait": "Archer"
+    },
+    {
+        "name": "Skeleton Wizard",
+        "hp": 20,
+        "ap": 20,
+        "physDmg": 4,
+        "magDmg": 0,
+        "trait": "Wizard"
+    },
+    {
+        "name": "Skeleton Rogue",
+        "hp": 40,
+        "ap": 20,
+        "physDmg": 4,
+        "magDmg": 0,
+        "trait": "Theif"
+    },
+    {
+        "name": "Demonic Ooze",
+        "hp": 20,
+        "ap": 20,
+        "physDmg": 4,
+        "magDmg": 0,
+        "trait": "Warlock"
+    }
+]
