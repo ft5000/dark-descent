@@ -4,7 +4,8 @@ export class GameRunner {
     constructor() {
         this.party = [];
         this.enemies = [];
-        this.level = 0;
+        this.prevLevel = 0;
+        this.currentLevel = 1;
         this.partyIsDead = false;
         this.enemiesAreDead = true;
     }
@@ -58,6 +59,9 @@ export class GameRunner {
         this.enemiesAreDead = false;
     }
     runEncounter() {
+        if (this.isNewLevel()) {
+            this.newLevel();
+        }
         this.checkIfEnemiesAreDead();
         this.checkIfPartyIsDead();
         if (!this.partyIsDead && !this.enemiesAreDead) {
@@ -71,6 +75,8 @@ export class GameRunner {
             }
             if (this.checkIfEnemiesAreDead()) {
                 GameUI.get().log('Enemies have been defeated.');
+                GameUI.get().log('&nbsp;');
+                this.currentLevel++;
             }
         }
         if (!this.enemiesAreDead && !this.partyIsDead) {
@@ -81,10 +87,7 @@ export class GameRunner {
                 this.enemyTurn(enemy);
             }
         }
-        // if (!this.enemiesAreDead && !this.partyIsDead) {
-        //     this.runEncounter();
-        // }
-        if (this.enemiesAreDead && this.level < 11) {
+        if (this.enemiesAreDead && this.currentLevel < 11) {
             GameUI.get().log('Having a break');
             GameUI.get().log('.', null, 1);
             GameUI.get().log('..', null, 1);
@@ -94,15 +97,23 @@ export class GameRunner {
                 x.heal(10);
             });
             GameUI.get().log('&nbsp;');
-            GameUI.get().log(`------ level: ${this.level} ------`);
-            this.level++;
         }
-        else if (!this.partyIsDead && this.level == 11) {
+        else if (!this.partyIsDead && this.currentLevel == 11) {
             GameUI.get().log('Victory!');
         }
-        GameUI.get().log('------ End Turns ------');
+        if (!this.isNewLevel()) {
+            GameUI.get().log('------ End Turns ------');
+        }
         GameUI.get().log('&nbsp;');
         GameUI.get().printLog();
+    }
+    newLevel() {
+        GameUI.get().log(`------ level: ${this.currentLevel} ------`);
+        GameUI.get().log('&nbsp;');
+        this.prevLevel = this.currentLevel;
+    }
+    isNewLevel() {
+        return this.currentLevel > this.prevLevel;
     }
     partyTurn(hero) {
         GameUI.get().log(`------ ${hero.name} - HP: ${hero.hp} ------`);
