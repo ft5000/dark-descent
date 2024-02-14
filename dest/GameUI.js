@@ -19,6 +19,7 @@ export class GameUI {
     constructor() {
         this.textbox = document.getElementById('console');
         this.messLog = [];
+        this._isPrinting = false;
     }
     static get() {
         if (this._instance) {
@@ -27,17 +28,22 @@ export class GameUI {
         this._instance = new GameUI();
         return this._instance;
     }
+    isPrinting() {
+        return this._isPrinting;
+    }
     log(mess, color, seconds) {
         this.messLog.push(new LogItem(mess, color, seconds));
     }
     printLog() {
         return __awaiter(this, void 0, void 0, function* () {
+            this._isPrinting = true;
             for (let item of this.messLog) {
                 this.drawText(item);
                 yield this.sleep(item.delay);
             }
             this.messLog = [];
             this.updateCharacterInfo();
+            this._isPrinting = false;
             return false;
         });
     }

@@ -12,7 +12,7 @@ export class GameInput {
         });
         const run = GameRunner.get().play.bind(GameRunner.get());
         document.addEventListener('keyup', function (event) {
-            if (event.key == "Enter") {
+            if (event.key == "Enter" && !GameUI.get().isPrinting()) {
                 run();
             }
         });
