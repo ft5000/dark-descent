@@ -5,6 +5,7 @@ import { Skill } from "./Skill.js";
 import { GameUI } from "../GameUI.js";
 import { Trait } from "./Trait.js";
 import { DataService } from "../main.js";
+import { Color } from "../enums/Color.js";
 
 export class Character implements ICharacter {
     name: string;
@@ -69,7 +70,16 @@ export class Character implements ICharacter {
             }
             this.hp += healAmt;
         }
-        GameUI.get().log(`${this.getNameAndNumber()} healed for ${healAmt}hp.`, 'skyblue')
+        GameUI.get().log(`${this.getNameAndNumber()} healed for ${healAmt}hp.`, Color.green)
+    }
+
+    public useAp(amount: number) {
+        this.ap = (this.ap - amount) > 0 ? (this.ap - amount) : 0;
+    }
+
+    public replenishAp(amount: number) {
+        this.ap = (this.ap + amount) < this.apMax ? (this.ap + amount) : this.apMax;
+        GameUI.get().log(`${this.getNameAndNumber()} replenished ${amount}ap.`, Color.green)
     }
 
     public takeDamage(dmg: number) {
@@ -92,7 +102,7 @@ export class Character implements ICharacter {
 
         if (skill.damageType == DamageType.none) {
             targets = GameRunner.get().party.filter(x => !x.isDead)
-            GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} healing for ${skill.heal}hp.`, 'limegreen')
+            GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} healing for ${skill.heal}hp.`, Color.green)
             targets.forEach(target => {
                 target.heal(skill.heal)
             })
@@ -100,7 +110,7 @@ export class Character implements ICharacter {
 
         if (skill.damageType == DamageType.physical) {
             targets = this.getTarget(skill).filter(x => !x.isDead)
-            GameUI.get().log(`<b style="color: orange">${this.getNameAndNumber()} performed ${skill.name} causing ${skill.damage} damage.`)
+            GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} causing ${skill.damage} damage.`, Color.orange)
             for (let target of targets) {
                 target.takeDamage(skill.damage)
             }
@@ -108,11 +118,12 @@ export class Character implements ICharacter {
 
         if (skill.damageType == DamageType.magic) {
             targets = this.getTarget(skill).filter(x => !x.isDead)
-            GameUI.get().log(`<b style="color: orange">${this.getNameAndNumber()} performed ${skill.name} causing ${skill.damage} damage.`)
+            GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} causing ${skill.damage} damage.`, Color.orange)
             for (let target of targets) {
                 target.takeDamage(skill.damage)
             }
         }
+        this.useAp(skill.cost)
         GameUI.get().log('&nbsp;', null, 1)
     }
 
@@ -132,6 +143,7 @@ export class Character implements ICharacter {
         if (skills.length == 0) {
             return null;
         }
+        console.log(skills)
         const i = Math.floor(Math.random() * skills.length);
         return skills[i];
     }

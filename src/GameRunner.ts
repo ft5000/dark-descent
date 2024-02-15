@@ -52,7 +52,6 @@ export class GameRunner {
         const enemyTypes: string[] = [];
         for (let enemy of this.enemies) {
             if (!enemyTypes.some(x => x == enemy.name)) {
-                console.log(enemy.name)
                 enemyTypes.push(enemy.name)
             }
         }
@@ -62,14 +61,12 @@ export class GameRunner {
             if (enemiesOfType.length > 1) {
                 let count = 1;
                 for (let enemy of enemiesOfType) {
-                    console.log(count)
                     this.enemies.find(x => x.id == enemy.id).setNumber(count)
                     count++;
                 }
             }
         }
 
-        console.log(this.enemies)
         this.enemiesAreDead = false;
     }
 
@@ -113,6 +110,7 @@ export class GameRunner {
             GameUI.get().log('&nbsp;', null, 1);
             this.party.filter(x => !x.isDead).forEach(x => {
                 x.heal(10)
+                x.replenishAp(16);
             })
             GameUI.get().log('&nbsp;');
 
