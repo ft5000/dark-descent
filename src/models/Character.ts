@@ -70,7 +70,7 @@ export class Character implements ICharacter {
             }
             this.hp += healAmt;
         }
-        GameUI.get().log(`${this.getNameAndNumber()} healed for ${healAmt}hp.`, Color.green)
+        GameUI.get().log(`✚ ${this.getNameAndNumber()} healed for ${healAmt}hp.`, Color.green)
     }
 
     public deductAp(amount: number) {
@@ -85,16 +85,16 @@ export class Character implements ICharacter {
         this.ap = (this.ap + amount) < this.apMax ? (this.ap + amount) : this.apMax;
         const diff = Math.abs(prevAp - this.ap)
         if (diff > 0) {
-            GameUI.get().log(`${this.getNameAndNumber()} replenished ${diff}ap.`, Color.blue)
+            GameUI.get().log(`🗲 ${this.getNameAndNumber()} replenished ${diff}ap.`, Color.blue)
         }
     }
 
     public takeDamage(dmg: number) {
         this.hp = (this.hp - dmg) > 0 ? (this.hp - dmg) : 0;
         this.isDead = this.hp > 0 ? false : true;
-        GameUI.get().log(`${this.getNameAndNumber()} took ${dmg} damage and now have ${this.hp}hp.`)
+        GameUI.get().log(`⚔ ${this.getNameAndNumber()} took ${dmg} damage and now have ${this.hp}hp.`)
         if(this.isDead) {
-            GameUI.get().log(`${this.getNameAndNumber()} has perished.`, 'red')
+            GameUI.get().log(`🕱 ${this.getNameAndNumber()} has perished.`, 'red')
         }
     }
 

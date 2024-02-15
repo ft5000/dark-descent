@@ -49,7 +49,7 @@ export class Character {
             }
             this.hp += healAmt;
         }
-        GameUI.get().log(`${this.getNameAndNumber()} healed for ${healAmt}hp.`, Color.green);
+        GameUI.get().log(`✚ ${this.getNameAndNumber()} healed for ${healAmt}hp.`, Color.green);
     }
     deductAp(amount) {
         this.ap = (this.ap - amount) > 0 ? (this.ap - amount) : 0;
@@ -62,15 +62,15 @@ export class Character {
         this.ap = (this.ap + amount) < this.apMax ? (this.ap + amount) : this.apMax;
         const diff = Math.abs(prevAp - this.ap);
         if (diff > 0) {
-            GameUI.get().log(`${this.getNameAndNumber()} replenished ${diff}ap.`, Color.blue);
+            GameUI.get().log(`🗲 ${this.getNameAndNumber()} replenished ${diff}ap.`, Color.blue);
         }
     }
     takeDamage(dmg) {
         this.hp = (this.hp - dmg) > 0 ? (this.hp - dmg) : 0;
         this.isDead = this.hp > 0 ? false : true;
-        GameUI.get().log(`${this.getNameAndNumber()} took ${dmg} damage and now have ${this.hp}hp.`);
+        GameUI.get().log(`⚔ ${this.getNameAndNumber()} took ${dmg} damage and now have ${this.hp}hp.`);
         if (this.isDead) {
-            GameUI.get().log(`${this.getNameAndNumber()} has perished.`, 'red');
+            GameUI.get().log(`🕱 ${this.getNameAndNumber()} has perished.`, 'red');
         }
     }
     performAction() {
