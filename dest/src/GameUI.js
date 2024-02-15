@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { GameInput } from "./GameInput.js";
 import { GameRunner } from "./GameRunner.js";
+import { AppInfo } from "./enums/AppInfo.js";
 import { Color } from "./enums/Color.js";
 export class LogItem {
     constructor(mess, color, delay) {
@@ -68,6 +69,14 @@ export class GameUI {
         this.log("List of commands: ", null, 0.1);
         this.log("'play' - Run next encounter", null, 0.1);
         this.log("'help' - List valid commands", null, 0.1);
+        this.log("'about' - App information", null, 0.1);
+        this.log("&nbsp;", null, 0);
+        this.printLog();
+    }
+    about() {
+        this.log("Dark Descent", null, 0.1);
+        this.log(`Version ${AppInfo.version}`, null, 0.1);
+        this.log("Made By Fabian Tjernström", null, 0.1);
         this.log("&nbsp;", null, 0);
         this.printLog();
     }

@@ -85,6 +85,10 @@ export class GameInput {
             GameRunner.get().play()
             valid = true;
         }
+        if (this.input == Command.about) {
+            GameUI.get().about();
+            valid = true;
+        }
         if (this.input == Command.help) {
             GameUI.get().listCommands();
             valid = true;
