@@ -53,6 +53,7 @@ hr {
     bottom: 0px;
     z-index: 100;
     width: fit-content;
+    font-size: 14px;
 }
 
 .console-mess {

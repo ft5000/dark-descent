@@ -15,7 +15,6 @@ export class GameInput {
         const readInput = this.readInputCommand.bind(this);
         document.addEventListener('keyup', function(event: KeyboardEvent) { 
             if (event.key == "Enter" && !GameUI.get().isPrinting()) {
-                console.log('read')
                 readInput();
             }
         })
@@ -92,6 +91,11 @@ export class GameInput {
 
         if (valid) {
             this.removeInputField();
+        }
+        else {
+            GameUI.get().log('Invalid command.', null, 0.1);
+            this.removeInputField();
+            GameUI.get().printLog();
         }
     }
 
