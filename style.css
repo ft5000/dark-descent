@@ -10,6 +10,8 @@ body {
 }
 
 hr {
+    margin-top: 12px;
+    margin-bottom: 12px;
     border-style: dashed !important;
 }
 
@@ -28,7 +30,7 @@ hr {
     height: 100%;
     background-color: black;
     border-right: 2px white solid;
-    padding: 14px;
+    padding: 18px;
 
     p {
         margin-top: 2px;
