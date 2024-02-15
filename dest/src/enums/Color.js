@@ -6,4 +6,5 @@ export var Color;
     Color["blue"] = "skyblue";
     Color["red"] = "red";
     Color["orange"] = "orange";
+    Color["gray"] = "dimgray";
 })(Color || (Color = {}));

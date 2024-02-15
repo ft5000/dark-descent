@@ -109,7 +109,7 @@ export class GameRunner {
             GameUI.get().log('...', null, 1);
             GameUI.get().log('&nbsp;', null, 1);
             this.party.filter(x => !x.isDead).forEach(x => {
-                x.heal(10)
+                x.heal(8)
                 x.replenishAp(16);
             })
             GameUI.get().log('&nbsp;');

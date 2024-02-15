@@ -5,4 +5,5 @@ export enum Color {
     blue = 'skyblue',
     red = 'red',
     orange = 'orange',
+    gray = 'dimgray'
 }

@@ -115,12 +115,25 @@ export class GameUI {
         for (let hero of party) {
             const element = document.getElementById(hero.name);
             
-            const hp = element.children.namedItem('hp') as HTMLElement;
-            hp.style.color = hero.hp > hero.hpMax / 2 ? Color.green : Color.red;
-            hp.innerHTML = `Health:&nbsp;${hero.hp}/${hero.hpMax}hp`
+            if (!hero.isDead) {
+                const hp = element.children.namedItem('hp') as HTMLElement;
+                hp.style.color = hero.hp > (hero.hpMax / 2) ? Color.green : Color.red;
+                if (hero.hp > (hero.hpMax / 2) && hero.hp < (hero.hpMax / 1.5)) {
+                    hp.style.color = Color.orange;
+                }
+                hp.innerHTML = `Health:&nbsp;${hero.hp}/${hero.hpMax}hp`
 
-            const ap = element.children.namedItem('ap') as HTMLElement;
-            ap.innerHTML = `Action Points:&nbsp;${hero.ap}/${hero.apMax}`
+                const ap = element.children.namedItem('ap') as HTMLElement;
+                ap.innerHTML = `Action Points:&nbsp;${hero.ap}/${hero.apMax}`
+            }
+            else {
+                for (let child of element.children) {
+                    if (child.id) {
+                        const stat = element.children.namedItem(child.id) as HTMLElement;
+                        stat.style.color = Color.gray;
+                    }
+                }
+            }
         }
     }
 

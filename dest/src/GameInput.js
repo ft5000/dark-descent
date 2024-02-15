@@ -1,5 +1,6 @@
 import { GameRunner } from "./GameRunner.js";
 import { GameUI } from "./GameUI.js";
+import { Color } from "./enums/Color.js";
 import { Command } from "./enums/Command.js";
 export class GameInput {
     constructor() {
@@ -33,7 +34,7 @@ export class GameInput {
         textbox.append(inputField);
         const infoText = document.createElement('b');
         infoText.innerHTML = "Type 'help' for commands";
-        infoText.style.opacity = '0.5';
+        infoText.style.color = Color.gray;
         infoText.style.userSelect = 'none';
         this.infoText = infoText;
         textbox.append(infoText);
