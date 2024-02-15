@@ -95,9 +95,8 @@ export class GameRunner {
             GameUI.get().log('&nbsp;', null, 1);
             this.party.filter(x => !x.isDead).forEach(x => {
                 x.heal(8);
-                x.replenishAp(16);
+                x.replenishAp(12);
             });
-            GameUI.get().log('&nbsp;');
         }
         else if (!this.partyIsDead && this.currentLevel == 11) {
             GameUI.get().log('Victory!');
