@@ -98,7 +98,7 @@ export class GameUI {
         const hp = document.createElement('p');
         hp.id = 'hp';
         hp.style.color = Color.green;
-        hp.innerHTML = `Health:&nbsp;${hero.hp}/${hero.hpMax}hp`;
+        hp.innerHTML = `Health:&nbsp;${hero.hp}/${hero.hpMax}`;
         const ap = document.createElement('p');
         ap.id = 'ap';
         ap.style.color = Color.blue;
@@ -117,7 +117,7 @@ export class GameUI {
                 if (hero.hp > (hero.hpMax / 2) && hero.hp < (hero.hpMax / 1.5)) {
                     hp.style.color = Color.orange;
                 }
-                hp.innerHTML = `Health:&nbsp;${hero.hp}/${hero.hpMax}hp`;
+                hp.innerHTML = `Health:&nbsp;${hero.hp}/${hero.hpMax}`;
                 const ap = element.children.namedItem('ap');
                 ap.innerHTML = `Action Points:&nbsp;${hero.ap}/${hero.apMax}`;
             }
