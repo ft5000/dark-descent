@@ -88,11 +88,8 @@ export class GameRunner {
             }
         }
         if (this.enemiesAreDead && this.currentLevel < 11) {
-            GameUI.get().log('Having a break');
-            GameUI.get().log('.', null, 1);
-            GameUI.get().log('..', null, 1);
-            GameUI.get().log('...', null, 1);
-            GameUI.get().log('&nbsp;', null, 1);
+            GameUI.get().log('Party is resting...', null, 3);
+            GameUI.get().log('&nbsp;', null, 0);
             this.party.filter(x => !x.isDead).forEach(x => {
                 x.heal(8);
                 x.replenishAp(12);
