@@ -73,7 +73,7 @@ export class Character implements ICharacter {
         GameUI.get().log(`${this.getNameAndNumber()} healed for ${healAmt}hp.`, Color.green)
     }
 
-    public useAp(amount: number) {
+    public deductAp(amount: number) {
         this.ap = (this.ap - amount) > 0 ? (this.ap - amount) : 0;
     }
 
@@ -90,9 +90,9 @@ export class Character implements ICharacter {
     }
 
     public takeDamage(dmg: number) {
-        this.hp -= dmg;
+        this.hp = (this.hp - dmg) > 0 ? (this.hp - dmg) : 0;
         this.isDead = this.hp > 0 ? false : true;
-        GameUI.get().log(`${this.getNameAndNumber()} took ${dmg} damage. Current hp: ${this.hp}`)
+        GameUI.get().log(`${this.getNameAndNumber()} took ${dmg} damage and now have ${this.hp}hp.`)
         if(this.isDead) {
             GameUI.get().log(`${this.getNameAndNumber()} has perished.`, 'red')
         }
@@ -130,7 +130,7 @@ export class Character implements ICharacter {
                 target.takeDamage(skill.damage)
             }
         }
-        this.useAp(skill.cost)
+        this.deductAp(skill.cost)
         GameUI.get().log('&nbsp;', null, 1)
     }
 

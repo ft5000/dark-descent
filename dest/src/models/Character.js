@@ -51,7 +51,7 @@ export class Character {
         }
         GameUI.get().log(`${this.getNameAndNumber()} healed for ${healAmt}hp.`, Color.green);
     }
-    useAp(amount) {
+    deductAp(amount) {
         this.ap = (this.ap - amount) > 0 ? (this.ap - amount) : 0;
     }
     replenishAp(amount) {
@@ -66,9 +66,9 @@ export class Character {
         }
     }
     takeDamage(dmg) {
-        this.hp -= dmg;
+        this.hp = (this.hp - dmg) > 0 ? (this.hp - dmg) : 0;
         this.isDead = this.hp > 0 ? false : true;
-        GameUI.get().log(`${this.getNameAndNumber()} took ${dmg} damage. Current hp: ${this.hp}`);
+        GameUI.get().log(`${this.getNameAndNumber()} took ${dmg} damage and now have ${this.hp}hp.`);
         if (this.isDead) {
             GameUI.get().log(`${this.getNameAndNumber()} has perished.`, 'red');
         }
@@ -101,7 +101,7 @@ export class Character {
                 target.takeDamage(skill.damage);
             }
         }
-        this.useAp(skill.cost);
+        this.deductAp(skill.cost);
         GameUI.get().log('&nbsp;', null, 1);
     }
     getTarget(skill) {
