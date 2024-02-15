@@ -1,3 +1,4 @@
+import { GameInput } from "./GameInput.js";
 import { GameRunner } from "./GameRunner.js";
 import { Color } from "./enums/Color.js";
 import { Hero } from "./models/Hero.js";
@@ -10,7 +11,7 @@ export class LogItem {
     constructor(mess: string, color?: string, delay?: number) {
         this.mess = mess; 
         this.color = color ? color : Color.white; 
-        this.delay = delay ? delay * 1000 : 100;
+        this.delay = delay ? delay * 1000 : 60;
     }
 }
 
@@ -46,6 +47,7 @@ export class GameUI {
         this.messLog = [];
         this.updateCharacterInfo();
         this._isPrinting = false;
+        GameInput.get().appendInputField();
         return false;
     }
 
@@ -58,7 +60,19 @@ export class GameUI {
         if (this.isOverflown()) {
             this.textbox.removeChild(this.textbox.firstChild);
         }
+        this.scrollToBottom();
+    }
+
+    public scrollToBottom() {
         this.textbox.scrollTo(0, this.textbox.scrollHeight);
+    }
+
+    public listCommands() {
+        this.log("List of commands: ", null, 0.1);
+        this.log("'play' - Run next encounter", null, 0.1);
+        this.log("'help' - List valid commands", null, 0.1);
+        this.log("&nbsp;", null, 0);
+        this.printLog();
     }
 
     public setCharacterInfo(hero: Hero)  {
@@ -112,10 +126,6 @@ export class GameUI {
 
     private isOverflown() {
         return this.textbox.scrollHeight > this.textbox.offsetHeight;
-    }
-
-    public updateInput(text: string) {
-        document.getElementById('input').innerHTML = text;
     }
 
     public sleep(ms: number) {

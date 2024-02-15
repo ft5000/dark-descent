@@ -7,13 +7,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { GameInput } from "./GameInput.js";
 import { GameRunner } from "./GameRunner.js";
 import { Color } from "./enums/Color.js";
 export class LogItem {
     constructor(mess, color, delay) {
         this.mess = mess;
         this.color = color ? color : Color.white;
-        this.delay = delay ? delay * 1000 : 100;
+        this.delay = delay ? delay * 1000 : 60;
     }
 }
 export class GameUI {
@@ -45,6 +46,7 @@ export class GameUI {
             this.messLog = [];
             this.updateCharacterInfo();
             this._isPrinting = false;
+            GameInput.get().appendInputField();
             return false;
         });
     }
@@ -57,7 +59,17 @@ export class GameUI {
         if (this.isOverflown()) {
             this.textbox.removeChild(this.textbox.firstChild);
         }
+        this.scrollToBottom();
+    }
+    scrollToBottom() {
         this.textbox.scrollTo(0, this.textbox.scrollHeight);
+    }
+    listCommands() {
+        this.log("List of commands: ", null, 0.1);
+        this.log("'play' - Run next encounter", null, 0.1);
+        this.log("'help' - List valid commands", null, 0.1);
+        this.log("&nbsp;", null, 0);
+        this.printLog();
     }
     setCharacterInfo(hero) {
         const element = document.createElement('div');
@@ -99,9 +111,6 @@ export class GameUI {
     }
     isOverflown() {
         return this.textbox.scrollHeight > this.textbox.offsetHeight;
-    }
-    updateInput(text) {
-        document.getElementById('input').innerHTML = text;
     }
     sleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));

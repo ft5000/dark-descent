@@ -1,3 +1,4 @@
+import { GameInput } from "./GameInput.js";
 import { GameUI } from "./GameUI.js";
 import { Color } from "./enums/Color.js";
 import { DataService } from "./main.js";
@@ -23,6 +24,7 @@ export class GameRunner {
             GameUI.get().setCharacterInfo(hero)
         }
         this.newEncounter();
+        GameInput.get().appendInputField();
     }
 
     public play() {
