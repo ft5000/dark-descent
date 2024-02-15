@@ -7,6 +7,7 @@ export class GameInput {
     public input: string = "";
     private inputField: HTMLElement;
     private onKeydownHandler: Function;
+    private infoText: HTMLElement;
 
     public init() {
         this.input = "";
@@ -21,8 +22,8 @@ export class GameInput {
     }
 
     public appendInputField() {
-        const element = document.createElement('b');
-        element.id = 'input-field';
+        const inputField = document.createElement('b');
+        inputField.id = 'input-field';
         const textbox: HTMLElement = document.getElementById('console');
 
         // Check if event listener is added.
@@ -37,8 +38,16 @@ export class GameInput {
             this.onKeydownHandler = func;
         }
 
-        this.inputField = element;
-        textbox.append(element);
+        this.inputField = inputField;
+        textbox.append(inputField);
+
+        const infoText = document.createElement('b');
+        infoText.innerHTML = "Type 'help' for commands";
+        infoText.style.opacity = '0.5';
+        infoText.style.userSelect = 'none';
+        this.infoText = infoText;
+        textbox.append(infoText);
+
         GameUI.get().scrollToBottom();
     }
 
@@ -46,6 +55,9 @@ export class GameInput {
         this.inputField.remove();
         this.inputField = null;
         this.input = "";
+
+        this.infoText.remove();
+        this.infoText = null;
     }
 
     private updateInput() {

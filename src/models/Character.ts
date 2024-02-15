@@ -78,8 +78,15 @@ export class Character implements ICharacter {
     }
 
     public replenishAp(amount: number) {
+        if (this.isDead) {
+            return;
+        }
+        const prevAp = this.ap;
         this.ap = (this.ap + amount) < this.apMax ? (this.ap + amount) : this.apMax;
-        GameUI.get().log(`${this.getNameAndNumber()} replenished ${amount}ap.`, Color.green)
+        const diff = Math.abs(prevAp - this.ap)
+        if (diff > 0) {
+            GameUI.get().log(`${this.getNameAndNumber()} replenished ${diff}ap.`, Color.blue)
+        }
     }
 
     public takeDamage(dmg: number) {
@@ -102,7 +109,7 @@ export class Character implements ICharacter {
 
         if (skill.damageType == DamageType.none) {
             targets = GameRunner.get().party.filter(x => !x.isDead)
-            GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} healing for ${skill.heal}hp.`, Color.green)
+            GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} healing for ${skill.heal}hp.`, Color.orange)
             targets.forEach(target => {
                 target.heal(skill.heal)
             })
@@ -143,7 +150,6 @@ export class Character implements ICharacter {
         if (skills.length == 0) {
             return null;
         }
-        console.log(skills)
         const i = Math.floor(Math.random() * skills.length);
         return skills[i];
     }

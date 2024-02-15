@@ -16,8 +16,8 @@ export class GameInput {
         });
     }
     appendInputField() {
-        const element = document.createElement('b');
-        element.id = 'input-field';
+        const inputField = document.createElement('b');
+        inputField.id = 'input-field';
         const textbox = document.getElementById('console');
         // Check if event listener is added.
         if (!this.onKeydownHandler) {
@@ -30,14 +30,22 @@ export class GameInput {
             document.addEventListener('keydown', func);
             this.onKeydownHandler = func;
         }
-        this.inputField = element;
-        textbox.append(element);
+        this.inputField = inputField;
+        textbox.append(inputField);
+        const infoText = document.createElement('b');
+        infoText.innerHTML = "Type 'help' for commands";
+        infoText.style.opacity = '0.5';
+        infoText.style.userSelect = 'none';
+        this.infoText = infoText;
+        textbox.append(infoText);
         GameUI.get().scrollToBottom();
     }
     removeInputField() {
         this.inputField.remove();
         this.inputField = null;
         this.input = "";
+        this.infoText.remove();
+        this.infoText = null;
     }
     updateInput() {
         if (this.inputField) {
