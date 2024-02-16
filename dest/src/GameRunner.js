@@ -119,7 +119,6 @@ export class GameRunner {
         else if (!this.partyIsDead && this.currentLevel == 11) {
             GameUI.get().log('Victory!');
         }
-        console.log(this.prevLevel, this.currentLevel);
         if (!this.checkIfEnemiesAreDead()) {
             GameUI.get().log('------ End of Turns ------');
         }
