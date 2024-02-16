@@ -10,7 +10,7 @@ export class GameRunner {
     private static _instance: GameRunner;
     party: Hero[] = [];
     enemies: Enemy[] = []
-    prevLevel: number = 1;
+    prevLevel: number = 0;
     currentLevel: number = 1;
     partyIsDead: boolean = false;
     enemiesAreDead: boolean = true;
@@ -51,9 +51,6 @@ export class GameRunner {
         const i = this.currentLevel - 1;
         this.level = this.levels[i];
         this.enemies = this.level.getCurrentEnemies();
-        this.level.getEncounterText().forEach(x => {
-            GameUI.get().log(x, null, 1);
-        })
         GameUI.get().log('&nbsp');
     }
 
@@ -89,11 +86,17 @@ export class GameRunner {
     }
 
     public runEncounter() {
-        this.isNewEncounter = false;
-
         if (this.isNewLevel()) {
             this.newLevel();
         }
+
+        if (this.isNewEncounter) {
+            this.level.getEncounterText().forEach(x => {
+                GameUI.get().log(x, null, 1);
+            })
+            this.isNewEncounter = false;
+        }
+
         this.checkIfEnemiesAreDead();
         this.checkIfPartyIsDead();
 
@@ -135,7 +138,8 @@ export class GameRunner {
         else if (!this.partyIsDead && this.currentLevel == 11) {
             GameUI.get().log('Victory!')
         }
-        if (!this.isNewLevel() ) {
+        console.log(this.prevLevel, this.currentLevel)
+        if (!this.checkIfEnemiesAreDead()) {
             GameUI.get().log('------ End of Turns ------')
         }
         GameUI.get().log('&nbsp;')

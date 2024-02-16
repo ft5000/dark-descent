@@ -96,7 +96,7 @@ export class Character implements ICharacter {
     public takeDamage(dmg: number) {
         this.hp = (this.hp - dmg) > 0 ? (this.hp - dmg) : 0;
         this.isDead = this.hp > 0 ? false : true;
-        GameUI.get().log(`⚔ ${this.getNameAndNumber()} took ${dmg} damage and now have ${this.hp}hp.`)
+        GameUI.get().log(`⚔ ${this.getNameAndNumber()} recieved ${dmg} damage and now has ${this.hp}hp remaining.`)
         if(this.isDead) {
             GameUI.get().log(`🕱 ${this.getNameAndNumber()} has perished.`, 'red')
         }
@@ -126,7 +126,7 @@ export class Character implements ICharacter {
             const isCritical = this.isCriticalHit();
             damage = isCritical ? Math.round(damage * this.critDmg) : damage;
 
-            GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} causing ${damage} damage.`, Color.orange)
+            GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} dealing ${damage} damage.`, Color.orange)
             if (isCritical) {
                 GameUI.get().log('It was a critical hit!', Color.blue, 1);
             }
@@ -143,11 +143,11 @@ export class Character implements ICharacter {
             const isCritical = this.isCriticalHit();
             damage = isCritical ? Math.round(damage * this.critDmg) : damage;
 
-            GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} causing ${damage} damage.`, Color.orange)
+            GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} dealing ${damage} damage.`, Color.orange)
             if (isCritical) {
                 GameUI.get().log('It was a critical hit!', Color.blue, 1);
             }
-            
+
             for (let target of targets) {
                 target.takeDamage(damage)
             }

@@ -68,12 +68,20 @@
         "damage": 14,
         "heal": 0,
         "cost": 2,
-        "damageType": 1,
+        "damageType": 2,
         "aoe": false
     },
     {
         "name": "Curse",
         "damage": 12,
+        "heal": 0,
+        "cost": 2,
+        "damageType": 2,
+        "aoe": false
+    },
+    {
+        "name": "Bite",
+        "damage": 6,
         "heal": 0,
         "cost": 2,
         "damageType": 1,

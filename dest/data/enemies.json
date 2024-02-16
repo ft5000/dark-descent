@@ -38,5 +38,15 @@
         "critDmg": 1.2,
         "critChance": 10,
         "trait": "Warlock"
+    },
+    {
+        "name": "Giant Rat",
+        "hp": 60,
+        "ap": 20,
+        "physDmg": 10,
+        "magDmg": 0,
+        "critDmg": 1.6,
+        "critChance": 10,
+        "trait": "Rat"
     }
 ]
