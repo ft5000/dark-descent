@@ -2,6 +2,7 @@ import { GameInput } from "./GameInput.js";
 import { GameUI } from "./GameUI.js";
 import { Color } from "./enums/Color.js";
 import { DataService } from "./main.js";
+import { Level } from "./models/Level.js";
 export class GameRunner {
     constructor() {
         this.party = [];
@@ -17,6 +18,8 @@ export class GameRunner {
             hero.setRandomName();
             GameUI.get().setCharacterInfo(hero);
         }
+        const level = new Level(1);
+        console.log(level);
         this.newEncounter();
         GameInput.get().appendInputField();
     }

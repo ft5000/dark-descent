@@ -25,6 +25,8 @@ export class GameRunner {
             hero.setRandomName();
             GameUI.get().setCharacterInfo(hero)
         }
+        const level = new Level(1);
+        console.log(level)
         this.newEncounter();
         GameInput.get().appendInputField();
     }

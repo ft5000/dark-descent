@@ -8,10 +8,12 @@ import skillsJson from '../data/skills.json' assert { type: 'json' };
 import traitsJson from '../data/traits.json' assert { type: 'json' };
 import heroesJson from '../data/heroes.json' assert { type: 'json' };
 import enemiesJson from '../data/enemies.json' assert { type: 'json' };
+import encountersJson from '../data/encounters.json' assert { type: 'json' };
 
 import { Enemy } from "./models/Enemy.js";
 import { GameRunner } from "./GameRunner.js";
 import { GameInput } from "./GameInput.js";
+import { Encounter } from "./models/Encounter.js";
 
 export class DataService {
     private static _instance: DataService;
@@ -21,6 +23,7 @@ export class DataService {
     private traits: Trait[] = [];
     private heroes: Hero[] = [];
     private enemies: Enemy[] = [];
+    private encounters: Encounter[] = [];
 
     public loadJson() {
         namesJson.forEach((data: string) => {
@@ -53,6 +56,15 @@ export class DataService {
             console.log("loading enemies...")
         });
 
+        encountersJson.forEach((data: any) => {
+            const level = data.level;
+            data.encounters.forEach((encounter: any) => {
+                this.encounters.push(new Encounter(encounter,level))
+            })
+
+            console.log("loading encounters...")
+        });
+
         return false;
     }
 
@@ -83,6 +95,10 @@ export class DataService {
     public getEnemy(name: string) {
         const enemy = this.enemies.find(x => x.name == name)
         return new Enemy(enemy.data)
+    }
+
+    public getEncountersByLevel(level: number) {
+        return this.encounters.filter(x => x.level == level);
     }
 
     public getTrait(name: string) {
