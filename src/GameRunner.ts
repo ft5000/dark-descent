@@ -108,7 +108,7 @@ export class GameRunner {
             GameUI.get().log('Party is resting...', null, 3);
             GameUI.get().log('&nbsp;', null, 0);
             this.party.filter(x => !x.isDead).forEach(x => {
-                x.heal(8)
+                x.heal(16)
                 x.replenishAp(12);
             })
         }
