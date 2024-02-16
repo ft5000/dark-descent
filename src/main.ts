@@ -114,6 +114,10 @@ export class App {
     public init() {
         this.loading = true;
         this.loading =  DataService.get().loadJson();
+        addEventListener("resize", (event) => {
+            var console = document.getElementById('console');
+            console.scrollTo(0, console.scrollHeight);
+        });
         GameInput.get().init();
         GameRunner.get().init();
     }

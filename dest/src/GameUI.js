@@ -83,6 +83,7 @@ export class GameUI {
     setCharacterInfo(hero) {
         const element = document.createElement('div');
         element.id = `${hero.name}`;
+        element.className = 'char-info';
         const name = document.createElement('p');
         name.id = 'name';
         name.style.color = Color.white;
@@ -103,8 +104,7 @@ export class GameUI {
         ap.id = 'ap';
         ap.style.color = Color.blue;
         ap.innerHTML = `Action Points:&nbsp;${hero.ap}/${hero.apMax}`;
-        const hr = document.createElement('hr');
-        element.append(name, race, trait, hp, ap, hr);
+        element.append(name, race, trait, hp, ap);
         document.getElementById('characters').append(element);
     }
     updateCharacterInfo() {
