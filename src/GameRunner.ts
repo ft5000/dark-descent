@@ -10,11 +10,13 @@ export class GameRunner {
     private static _instance: GameRunner;
     party: Hero[] = [];
     enemies: Enemy[] = []
-    prevLevel: number = 0;
+    prevLevel: number = 1;
     currentLevel: number = 1;
     partyIsDead: boolean = false;
     enemiesAreDead: boolean = true;
-    levels: Level[];
+    levels: Level[] = [];
+    level: Level;
+    isNewEncounter: boolean = true;
 
     constructor() {
     }
@@ -25,10 +27,15 @@ export class GameRunner {
             hero.setRandomName();
             GameUI.get().setCharacterInfo(hero)
         }
-        const level = new Level(1);
-        console.log(level)
+        this.initLevels();
         this.newEncounter();
         GameInput.get().appendInputField();
+    }
+
+    public initLevels() {
+        for (var i = 0; i < 10; i++) {
+            this.levels.push(new Level(i+1));
+        }
     }
 
     public play() {
@@ -39,8 +46,15 @@ export class GameRunner {
     }
 
     public newEncounter() {
+        this.isNewEncounter = true;
         this.enemies = [];
-        this.randomEncounter()
+        const i = this.currentLevel - 1;
+        this.level = this.levels[i];
+        this.enemies = this.level.getCurrentEnemies();
+        this.level.getEncounterText().forEach(x => {
+            GameUI.get().log(x, null, 1);
+        })
+        GameUI.get().log('&nbsp');
     }
 
     public randomEncounter() {
@@ -75,6 +89,8 @@ export class GameRunner {
     }
 
     public runEncounter() {
+        this.isNewEncounter = false;
+
         if (this.isNewLevel()) {
             this.newLevel();
         }
@@ -93,7 +109,9 @@ export class GameRunner {
             if (this.checkIfEnemiesAreDead()) {
                 GameUI.get().log('Enemies have been defeated.')
                 GameUI.get().log('&nbsp;')
-                this.currentLevel++;
+                if (!this.level.nextEncounter()) {
+                    this.currentLevel++;
+                }
             }
         }
 
@@ -106,7 +124,7 @@ export class GameRunner {
             }
         }
 
-        if (this.enemiesAreDead && this.currentLevel < 11) {
+        if (this.enemiesAreDead && this.currentLevel <= 10) {
             GameUI.get().log('Party is resting...', null, 3);
             GameUI.get().log('&nbsp;', null, 0);
             this.party.filter(x => !x.isDead).forEach(x => {
@@ -117,7 +135,7 @@ export class GameRunner {
         else if (!this.partyIsDead && this.currentLevel == 11) {
             GameUI.get().log('Victory!')
         }
-        if (!this.isNewLevel()) {
+        if (!this.isNewLevel() ) {
             GameUI.get().log('------ End of Turns ------')
         }
         GameUI.get().log('&nbsp;')

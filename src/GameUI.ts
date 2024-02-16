@@ -43,6 +43,7 @@ export class GameUI {
         this._isPrinting = true;
         for (let item of this.messLog) {
             this.drawText(item);
+            // item.delay
             await this.sleep(item.delay);
         }
         this.messLog = [];

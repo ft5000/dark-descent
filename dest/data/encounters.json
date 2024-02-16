@@ -40,5 +40,173 @@
                 "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
             }
         ]
+    },
+    {
+        "level": 3,
+        "encounters": [
+            {
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
+                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+            }
+        ]
+    },
+    {
+        "level": 4,
+        "encounters": [
+            {
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
+                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+            }
+        ]
+    },
+    {
+        "level": 5,
+        "encounters": [
+            {
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
+                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+            }
+        ]
+    },
+    {
+        "level": 6,
+        "encounters": [
+            {
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
+                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+            }
+        ]
+    },
+    {
+        "level": 7,
+        "encounters": [
+            {
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
+                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+            }
+        ]
+    },
+    {
+        "level": 8,
+        "encounters": [
+            {
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
+                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+            }
+        ]
+    },
+    {
+        "level": 9,
+        "encounters": [
+            {
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
+                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+            }
+        ]
+    },
+    {
+        "level": 10,
+        "encounters": [
+            {
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+            },
+            {
+                "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
+                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+            }
+        ]
     }
 ]
