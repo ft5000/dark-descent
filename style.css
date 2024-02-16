@@ -39,7 +39,7 @@ hr {
     width: 100%;
     height: fit-content;
     background-color: black;
-    border-top: 2px white solid;
+    border-top: 2px white dashed;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -60,7 +60,7 @@ hr {
     height: 100%;
     background-color: black;
     overflow: hidden;
-    padding: 8px;
+    padding: 9px;
     padding-bottom: 0;
     overflow-wrap: anywhere;
     margin-bottom: 18px;
