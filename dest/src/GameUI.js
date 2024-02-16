@@ -54,7 +54,7 @@ export class GameUI {
     drawText(item) {
         const element = document.createElement('div');
         element.className = "console-mess";
-        element.innerHTML = `<b>${item.mess}</b>`;
+        element.innerHTML = `<span>${item.mess}</span>`;
         element.style.color = item.color;
         this.textbox.append(element);
         if (this.isOverflown()) {

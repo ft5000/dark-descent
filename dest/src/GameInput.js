@@ -16,7 +16,7 @@ export class GameInput {
         });
     }
     appendInputField() {
-        const inputField = document.createElement('b');
+        const inputField = document.createElement('span');
         inputField.id = 'input-field';
         const textbox = document.getElementById('console');
         // Check if event listener is added.
@@ -32,7 +32,7 @@ export class GameInput {
         }
         this.inputField = inputField;
         textbox.append(inputField);
-        const infoText = document.createElement('b');
+        const infoText = document.createElement('span');
         infoText.innerHTML = "Type 'help' for commands";
         infoText.style.color = Color.gray;
         infoText.style.userSelect = 'none';

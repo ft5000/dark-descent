@@ -1,13 +1,19 @@
+.vt323-regular {
+    font-family: "VT323", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
 body {
     margin-left: 0;
     margin-right: 0;
     background-color: black;
     color: white;
-    font-family: monospace;
+    font-family: "VT323";
     overflow: hidden;
     word-wrap: break-word;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 24px;
+    /* font-weight: bold; */
 }
 
 hr {
@@ -67,7 +73,6 @@ hr {
 }
 
 .console-mess {
-    font-size: 18px;
     height: fit-content;
 }
 
