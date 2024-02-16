@@ -5,6 +5,8 @@
         "ap": 20,
         "physDmg": 12,
         "magDmg": 0,
+        "critDmg": 1.2,
+        "critChance": 10,
         "trait": "Archer"
     },
     {
@@ -13,6 +15,8 @@
         "ap": 20,
         "physDmg": 6,
         "magDmg": 12,
+        "critDmg": 1.2,
+        "critChance": 10,
         "trait": "Wizard"
     },
     {
@@ -21,6 +25,8 @@
         "ap": 20,
         "physDmg": 14,
         "magDmg": 0,
+        "critDmg": 1.2,
+        "critChance": 10,
         "trait": "Theif"
     },
     {
@@ -29,6 +35,8 @@
         "ap": 20,
         "physDmg": 10,
         "magDmg": 0,
+        "critDmg": 1.2,
+        "critChance": 10,
         "trait": "Warlock"
     }
 ]

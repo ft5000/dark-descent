@@ -15,6 +15,8 @@ export class Character implements ICharacter {
     apMax: number;
     physDmg: number;
     magDmg: number;
+    critDmg: number;
+    critChance: number
     isDead: boolean;
     trait: Trait;
     isEnemy: boolean = false;
@@ -32,6 +34,8 @@ export class Character implements ICharacter {
         this.apMax = data.ap;
         this.physDmg = data.physDmg;
         this.magDmg = data.magDmg
+        this.critDmg = data.critDmg;
+        this.critChance = data.critChance;
         this.isDead = false;
         this.trait = DataService.get().getTraits().find(x => x.name == data.trait) as Trait;
     }
@@ -117,8 +121,16 @@ export class Character implements ICharacter {
 
         if (skill.damageType == DamageType.physical) {
             targets = this.getTarget(skill).filter(x => !x.isDead)
-            const damage = this.calculateDamage(skill.damage, DamageType.physical)
+
+            var damage = this.calculateDamage(skill.damage, DamageType.physical)
+            const isCritical = this.isCriticalHit();
+            damage = isCritical ? Math.round(damage * this.critDmg) : damage;
+
             GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} causing ${damage} damage.`, Color.orange)
+            if (isCritical) {
+                GameUI.get().log('It was a critical hit!', Color.blue, 1);
+            }
+
             for (let target of targets) {
                 target.takeDamage(damage)
             }
@@ -126,8 +138,16 @@ export class Character implements ICharacter {
 
         if (skill.damageType == DamageType.magic) {
             targets = this.getTarget(skill).filter(x => !x.isDead)
-            const damage = this.calculateDamage(skill.damage, DamageType.magic)
+
+            var damage = this.calculateDamage(skill.damage, DamageType.magic)
+            const isCritical = this.isCriticalHit();
+            damage = isCritical ? Math.round(damage * this.critDmg) : damage;
+
             GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} causing ${damage} damage.`, Color.orange)
+            if (isCritical) {
+                GameUI.get().log('It was a critical hit!', Color.blue, 1);
+            }
+            
             for (let target of targets) {
                 target.takeDamage(damage)
             }
@@ -138,8 +158,12 @@ export class Character implements ICharacter {
 
     private calculateDamage(skillDamage: number, type: DamageType): number {
         const damageOutput = type == DamageType.physical ? skillDamage * (this.physDmg * 0.1) : skillDamage * (this.magDmg * 0.1);
-        // test
-        return Math.round(damageOutput)
+        return Math.round(damageOutput);
+    }
+
+    private isCriticalHit(): boolean {
+        const roll = Math.random() * 100;
+        return roll <= this.critChance ? true : false;
     }
 
     public getTarget(skill: Skill) {
