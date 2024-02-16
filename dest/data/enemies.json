@@ -1,33 +1,33 @@
 [
     {
         "name": "Skeleton Archer",
-        "hp": 60,
+        "hp": 80,
         "ap": 20,
-        "physDmg": 4,
+        "physDmg": 12,
         "magDmg": 0,
         "trait": "Archer"
     },
     {
         "name": "Skeleton Wizard",
-        "hp": 20,
+        "hp": 60,
         "ap": 20,
-        "physDmg": 4,
-        "magDmg": 0,
+        "physDmg": 6,
+        "magDmg": 12,
         "trait": "Wizard"
     },
     {
         "name": "Skeleton Rogue",
-        "hp": 40,
+        "hp": 80,
         "ap": 20,
-        "physDmg": 4,
+        "physDmg": 14,
         "magDmg": 0,
         "trait": "Theif"
     },
     {
         "name": "Demonic Ooze",
-        "hp": 20,
+        "hp": 80,
         "ap": 20,
-        "physDmg": 4,
+        "physDmg": 10,
         "magDmg": 0,
         "trait": "Warlock"
     }

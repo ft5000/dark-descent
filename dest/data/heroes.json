@@ -3,23 +3,23 @@
         "name": "Tai the Tenacious",
         "hp": 180,
         "ap": 20,
-        "physDmg": 20,
-        "magDmg": 0,
+        "physDmg": 16,
+        "magDmg": 2,
         "trait": "Barbarian"
     },
     {
         "name": "Gorby",
         "hp": 120,
         "ap": 20,
-        "physDmg": 2,
-        "magDmg": 20,
+        "physDmg": 6,
+        "magDmg": 18,
         "trait": "Wizard"
     },
     {
         "name": "Alejandro",
         "hp": 140,
         "ap": 20,
-        "physDmg": 12,
+        "physDmg": 20,
         "magDmg": 6,
         "trait": "Theif"
     },
@@ -27,8 +27,8 @@
         "name": "Mary-Anne",
         "hp": 160,
         "ap": 20,
-        "physDmg": 18,
-        "magDmg": 6,
+        "physDmg": 14,
+        "magDmg": 9,
         "trait": "Paladin"
     }
 ]

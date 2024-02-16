@@ -117,21 +117,28 @@ export class Character implements ICharacter {
 
         if (skill.damageType == DamageType.physical) {
             targets = this.getTarget(skill).filter(x => !x.isDead)
-            GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} causing ${skill.damage} damage.`, Color.orange)
+            const damage = this.calculateDamage(skill.damage, DamageType.physical)
+            GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} causing ${damage} damage.`, Color.orange)
             for (let target of targets) {
-                target.takeDamage(skill.damage)
+                target.takeDamage(damage)
             }
         }
 
         if (skill.damageType == DamageType.magic) {
             targets = this.getTarget(skill).filter(x => !x.isDead)
-            GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} causing ${skill.damage} damage.`, Color.orange)
+            const damage = this.calculateDamage(skill.damage, DamageType.magic)
+            GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} causing ${damage} damage.`, Color.orange)
             for (let target of targets) {
-                target.takeDamage(skill.damage)
+                target.takeDamage(damage)
             }
         }
         this.deductAp(skill.cost)
         GameUI.get().log('&nbsp;', null, 1)
+    }
+
+    private calculateDamage(skillDamage: number, type: DamageType): number {
+        const damageOutput = type == DamageType.physical ? skillDamage * (this.physDmg * 0.1) : skillDamage * (this.magDmg * 0.1);
+        return Math.round(damageOutput)
     }
 
     public getTarget(skill: Skill) {

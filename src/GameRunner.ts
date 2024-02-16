@@ -4,6 +4,7 @@ import { Color } from "./enums/Color.js";
 import { DataService } from "./main.js";
 import { Enemy } from "./models/Enemy.js";
 import { Hero } from "./models/Hero.js";
+import { Level } from "./models/Level.js";
 
 export class GameRunner {
     private static _instance: GameRunner;
@@ -13,6 +14,7 @@ export class GameRunner {
     currentLevel: number = 1;
     partyIsDead: boolean = false;
     enemiesAreDead: boolean = true;
+    levels: Level[];
 
     constructor() {
     }
