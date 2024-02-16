@@ -108,6 +108,7 @@ export class Character {
     }
     calculateDamage(skillDamage, type) {
         const damageOutput = type == DamageType.physical ? skillDamage * (this.physDmg * 0.1) : skillDamage * (this.magDmg * 0.1);
+        console.log(Math.round(damageOutput));
         return Math.round(damageOutput);
     }
     getTarget(skill) {
