@@ -27,42 +27,50 @@
     {
         "level": 2,
         "encounters": [
-                {
-                    "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
-                    "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
-                },
-                {
-                    "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
-                    "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
-                },
-                {
-                    "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
-                    "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
-                },
-                {
-                    "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
-                    "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
-                }
-            ]
+            {
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
+            },
+            {
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+            },
+            {
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
+            },
+            {
+                "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
+                "text": ["An ominous presence materializes.", "You encounter a skeleton wizard and his minions."]
+            }
+        ]
     },
     {
         "level": 3,
         "encounters": [
             {
-                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
                 "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
-                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+                "text": ["An ominous presence materializes.", "You encounter a skeleton wizard and his minions."]
             }
         ]
     },
@@ -70,20 +78,24 @@
         "level": 4,
         "encounters": [
             {
-                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
                 "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
-                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+                "text": ["An ominous presence materializes.", "You encounter a skeleton wizard and his minions."]
             }
         ]
     },
@@ -91,20 +103,24 @@
         "level": 5,
         "encounters": [
             {
-                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
                 "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
-                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+                "text": ["An ominous presence materializes.", "You encounter a skeleton wizard and his minions."]
             }
         ]
     },
@@ -112,20 +128,24 @@
         "level": 6,
         "encounters": [
             {
-                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
                 "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
-                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+                "text": ["An ominous presence materializes.", "You encounter a skeleton wizard and his minions."]
             }
         ]
     },
@@ -133,20 +153,24 @@
         "level": 7,
         "encounters": [
             {
-                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
                 "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
-                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+                "text": ["An ominous presence materializes.", "You encounter a skeleton wizard and his minions."]
             }
         ]
     },
@@ -154,20 +178,24 @@
         "level": 8,
         "encounters": [
             {
-                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
                 "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
-                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+                "text": ["An ominous presence materializes.", "You encounter a skeleton wizard and his minions."]
             }
         ]
     },
@@ -175,20 +203,24 @@
         "level": 9,
         "encounters": [
             {
-                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
                 "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
-                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+                "text": ["An ominous presence materializes.", "You encounter a skeleton wizard and his minions."]
             }
         ]
     },
@@ -196,20 +228,24 @@
         "level": 10,
         "encounters": [
             {
-                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Wizard"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Wizard", "Skeleton Archer"],
-                "text": ["You can hear the sound of rattling bones.", "You encounter a pack of skeletons."]
+                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat", "Giant Rat"],
+                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+            },
+            {
+                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Archer"],
+                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
                 "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
-                "text": ["You get a sinister feeling.", "You encounter a wizard and his minions."]
+                "text": ["An ominous presence materializes.", "You encounter a skeleton wizard and his minions."]
             }
         ]
     }
