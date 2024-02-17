@@ -79,6 +79,7 @@ export class GameRunner {
             this.level.getEncounterText().forEach(x => {
                 GameUI.get().log(x, null, 1);
             });
+            GameUI.get().log('&nbsp;');
             this.isNewEncounter = false;
         }
         this.checkIfEnemiesAreDead();

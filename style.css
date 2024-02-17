@@ -67,8 +67,12 @@ hr {
 }
 
 #ascii {
+    position: fixed;
+    right: 0;
+    top: 0;
     display: block;
-    font-size: 9px;
+    font-size: 14px;
+    z-index: 10;
     display: none;
 }
 
