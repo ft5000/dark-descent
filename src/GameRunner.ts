@@ -16,7 +16,7 @@ export class GameRunner {
     enemiesAreDead: boolean = true;
     levels: Level[] = [];
     level: Level;
-    isNewEncounter: boolean = true;
+    isnextEncounter: boolean = true;
 
     constructor() {
     }
@@ -28,7 +28,7 @@ export class GameRunner {
             GameUI.get().setCharacterInfo(hero)
         }
         this.initLevels();
-        this.newEncounter();
+        this.nextEncounter();
         GameInput.get().appendInputField();
     }
 
@@ -40,13 +40,13 @@ export class GameRunner {
 
     public play() {
         if (this.checkIfEnemiesAreDead()) {
-            this.newEncounter();
+            this.nextEncounter();
         }
         this.runEncounter();
     }
 
-    public newEncounter() {
-        this.isNewEncounter = true;
+    public nextEncounter() {
+        this.isnextEncounter = true;
         this.enemies = [];
         const i = this.currentLevel - 1;
         this.level = this.levels[i];
@@ -54,48 +54,17 @@ export class GameRunner {
         GameUI.get().log('&nbsp');
     }
 
-    public randomEncounter() {
-        const enemies = DataService.get().getEnemies();
-        for (var n = 0; n < 4; n++) {
-            const i = this.getRandomIndex(enemies);
-            const enemy = DataService.get().getEnemy(enemies[i].name);
-            enemy.setId(n);
-            this.enemies.push(enemy);
-        }
-
-        // Number type enemies.
-        const enemyTypes: string[] = [];
-        for (let enemy of this.enemies) {
-            if (!enemyTypes.some(x => x == enemy.name)) {
-                enemyTypes.push(enemy.name)
-            }
-        }
-        for (let type of enemyTypes) {
-            const enemiesOfType = this.enemies.filter(x => x.name == type);
-            // If then number enemies.
-            if (enemiesOfType.length > 1) {
-                let count = 1;
-                for (let enemy of enemiesOfType) {
-                    this.enemies.find(x => x.id == enemy.id).setNumber(count)
-                    count++;
-                }
-            }
-        }
-
-        this.enemiesAreDead = false;
-    }
-
     public runEncounter() {
         if (this.isNewLevel()) {
             this.newLevel();
         }
 
-        if (this.isNewEncounter) {
+        if (this.isnextEncounter) {
             this.level.getEncounterText().forEach(x => {
                 GameUI.get().log(x, null, 1);
             })
             GameUI.get().log('&nbsp;')
-            this.isNewEncounter = false;
+            this.isnextEncounter = false;
         }
         this.checkIfEnemiesAreDead();
         this.checkIfPartyIsDead();
