@@ -23,7 +23,6 @@ export class DataService {
     private skills: Skill[] = [];
     private enemyTraits: Trait[] = [];
     private heroTraits: Trait[] = [];
-    private enemies: Enemy[] = [];
     private encounters: Encounter[] = [];
 
     public loadJson() {
@@ -49,9 +48,8 @@ export class DataService {
 
         enemyTraitsJson.forEach((data: any) => {
             this.enemyTraits.push(new Trait(data, this.skills))
+            console.log("loading enemy traits...")
         })
-
-        console.log(this.enemies)
 
         encountersJson.forEach((data: any) => {
             const level = data.level;
@@ -72,22 +70,6 @@ export class DataService {
     public getNames(): string[] {
         return this.names;
     }
-
-    // public getHeroes(): Hero[] {
-    //     var heroes: Hero[] = []
-    //     this.heroes.forEach(hero => {
-    //         heroes.push(new Hero(hero.data))
-    //     })
-    //     return heroes;
-    // }
-
-    // public getEnemies(): Enemy[] {
-    //     var enemies: Enemy[] = []
-    //     this.enemies.forEach(enemy => {
-    //         enemies.push(new Enemy(enemy.data))
-    //     })
-    //     return enemies;
-    // }
 
     public getHero(type: HeroType) {
         const heroes = this.heroTraits.filter(x => x.type == type)

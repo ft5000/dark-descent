@@ -18,7 +18,6 @@ export class DataService {
         this.skills = [];
         this.enemyTraits = [];
         this.heroTraits = [];
-        this.enemies = [];
         this.encounters = [];
     }
     loadJson() {
@@ -40,8 +39,8 @@ export class DataService {
         });
         enemyTraitsJson.forEach((data) => {
             this.enemyTraits.push(new Trait(data, this.skills));
+            console.log("loading enemy traits...");
         });
-        console.log(this.enemies);
         encountersJson.forEach((data) => {
             const level = data.level;
             data.encounters.forEach((encounter) => {
@@ -57,20 +56,6 @@ export class DataService {
     getNames() {
         return this.names;
     }
-    // public getHeroes(): Hero[] {
-    //     var heroes: Hero[] = []
-    //     this.heroes.forEach(hero => {
-    //         heroes.push(new Hero(hero.data))
-    //     })
-    //     return heroes;
-    // }
-    // public getEnemies(): Enemy[] {
-    //     var enemies: Enemy[] = []
-    //     this.enemies.forEach(enemy => {
-    //         enemies.push(new Enemy(enemy.data))
-    //     })
-    //     return enemies;
-    // }
     getHero(type) {
         const heroes = this.heroTraits.filter(x => x.type == type);
         const i = GameRunner.get().getRandomIndex(heroes);

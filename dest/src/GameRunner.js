@@ -35,11 +35,6 @@ export class GameRunner {
         this.party.push(DataService.get().getHero(HeroType.dps));
         this.party.push(DataService.get().getHero(HeroType.dps));
         this.party.push(DataService.get().getHero(HeroType.support));
-        console.log(this.party);
-        // this.party.push(new Hero(tankTypes[this.getRandomIndex(tankTypes)]))
-        // this.party.push(new Hero(dpsTypes[this.getRandomIndex(dpsTypes)]))
-        // this.party.push(new Hero(dpsTypes[this.getRandomIndex(dpsTypes)]))
-        // this.party.push(new Hero(supportTypes[this.getRandomIndex(supportTypes)]))
         for (let hero of this.party) {
             hero.setRandomName();
             GameUI.get().setCharacterInfo(hero);
