@@ -16,6 +16,14 @@
         "aoe": true
     },
     {
+        "name": "Heavy Blow",
+        "damage": 12,
+        "heal": 0,
+        "cost": 8,
+        "damageType": 1,
+        "aoe": false
+    },
+    {
         "name": "Sneak Attack",
         "damage": 14,
         "heal": 0,
@@ -50,9 +58,25 @@
     {
         "name": "Great Heal",
         "damage": 0,
+        "heal": 12,
+        "cost": 8,
+        "damageType": 0,
+        "aoe": true
+    },
+    {
+        "name": "Song of Healing",
+        "damage": 0,
         "heal": 16,
         "cost": 8,
         "damageType": 0,
+        "aoe": true
+    },
+    {
+        "name": "Scream",
+        "damage": 12,
+        "heal": 0,
+        "cost": 4,
+        "damageType": 2,
         "aoe": true
     },
     {

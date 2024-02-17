@@ -1,6 +1,7 @@
 import { GameInput } from "./GameInput.js";
 import { GameUI } from "./GameUI.js";
 import { Color } from "./enums/Color.js";
+import { HeroType } from "./enums/HeroType.js";
 import { DataService } from "./main.js";
 import { Level } from "./models/Level.js";
 export class GameRunner {
@@ -15,14 +16,34 @@ export class GameRunner {
         this.isnextEncounter = true;
     }
     init() {
-        this.party = DataService.get().getHeroes();
+        // this.party = DataService.get().getHeroes();
+        // for (let hero of this.party) {
+        //     hero.setRandomName();
+        //     GameUI.get().setCharacterInfo(hero)
+        // }
+        this.newParty();
+        this.initLevels();
+        this.nextEncounter();
+        GameInput.get().appendInputField();
+    }
+    newParty() {
+        this.party = [];
+        const tankTypes = DataService.get().getHeroTraits(HeroType.tank);
+        const dpsTypes = DataService.get().getHeroTraits(HeroType.dps);
+        const supportTypes = DataService.get().getHeroTraits(HeroType.support);
+        this.party.push(DataService.get().getHero(HeroType.tank));
+        this.party.push(DataService.get().getHero(HeroType.dps));
+        this.party.push(DataService.get().getHero(HeroType.dps));
+        this.party.push(DataService.get().getHero(HeroType.support));
+        console.log(this.party);
+        // this.party.push(new Hero(tankTypes[this.getRandomIndex(tankTypes)]))
+        // this.party.push(new Hero(dpsTypes[this.getRandomIndex(dpsTypes)]))
+        // this.party.push(new Hero(dpsTypes[this.getRandomIndex(dpsTypes)]))
+        // this.party.push(new Hero(supportTypes[this.getRandomIndex(supportTypes)]))
         for (let hero of this.party) {
             hero.setRandomName();
             GameUI.get().setCharacterInfo(hero);
         }
-        this.initLevels();
-        this.nextEncounter();
-        GameInput.get().appendInputField();
     }
     initLevels() {
         for (var i = 0; i < 10; i++) {

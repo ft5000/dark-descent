@@ -1,27 +1,28 @@
-import { Hero } from "./models/Hero.js";
 import { Trait } from "./models/Trait.js";
 import { Skill } from "./models/Skill.js";
+import { Character } from "./models/Character.js";
 
 import namesJson from '../data/names.json' assert { type: 'json' };
 import racesJson from '../data/races.json' assert { type: 'json' };
 import skillsJson from '../data/skills.json' assert { type: 'json' };
-import traitsJson from '../data/traits.json' assert { type: 'json' };
-import heroesJson from '../data/heroes.json' assert { type: 'json' };
-import enemiesJson from '../data/enemies.json' assert { type: 'json' };
+import enemyTraitsJson from '../data/enemyTraits.json' assert { type: 'json' };
+import heroTraitsJson from '../data/heroTraits.json' assert { type: 'json' };
 import encountersJson from '../data/encounters.json' assert { type: 'json' };
 
 import { Enemy } from "./models/Enemy.js";
 import { GameRunner } from "./GameRunner.js";
 import { GameInput } from "./GameInput.js";
 import { Encounter } from "./models/Encounter.js";
+import { Hero } from "./models/Hero.js";
+import { HeroType } from "./enums/HeroType.js";
 
 export class DataService {
     private static _instance: DataService;
     private names: string[] = []
     private races: string[] = [];
     private skills: Skill[] = [];
-    private traits: Trait[] = [];
-    private heroes: Hero[] = [];
+    private enemyTraits: Trait[] = [];
+    private heroTraits: Trait[] = [];
     private enemies: Enemy[] = [];
     private encounters: Encounter[] = [];
 
@@ -41,25 +42,21 @@ export class DataService {
             console.log("loading skills...")
         });
 
-        traitsJson.forEach((data: any) => {
-            this.traits.push(new Trait(data, this.skills))
-            console.log("loading traits...")
-        });
-        
-        heroesJson.forEach((data: any) => {
-            this.heroes.push(new Hero(data))
-            console.log("loading heroes...")
+        heroTraitsJson.forEach((data: any) => {
+            this.heroTraits.push(new Trait(data, this.skills))
+            console.log("loading hero traits...")
         });
 
-        enemiesJson.forEach((data: any) => {
-            this.enemies.push(new Enemy(data))
-            console.log("loading enemies...")
-        });
+        enemyTraitsJson.forEach((data: any) => {
+            this.enemyTraits.push(new Trait(data, this.skills))
+        })
+
+        console.log(this.enemies)
 
         encountersJson.forEach((data: any) => {
             const level = data.level;
             data.encounters.forEach((encounter: any) => {
-                this.encounters.push(new Encounter(encounter,level))
+                this.encounters.push(new Encounter(encounter, level))
             })
 
             console.log("loading encounters...")
@@ -76,24 +73,30 @@ export class DataService {
         return this.names;
     }
 
-    public getHeroes(): Hero[] {
-        var heroes: Hero[] = []
-        this.heroes.forEach(hero => {
-            heroes.push(new Hero(hero.data))
-        })
-        return heroes;
-    }
+    // public getHeroes(): Hero[] {
+    //     var heroes: Hero[] = []
+    //     this.heroes.forEach(hero => {
+    //         heroes.push(new Hero(hero.data))
+    //     })
+    //     return heroes;
+    // }
 
-    public getEnemies(): Enemy[] {
-        var enemies: Enemy[] = []
-        this.enemies.forEach(enemy => {
-            enemies.push(new Enemy(enemy.data))
-        })
-        return enemies;
+    // public getEnemies(): Enemy[] {
+    //     var enemies: Enemy[] = []
+    //     this.enemies.forEach(enemy => {
+    //         enemies.push(new Enemy(enemy.data))
+    //     })
+    //     return enemies;
+    // }
+
+    public getHero(type: HeroType) {
+        const heroes = this.heroTraits.filter(x => x.type == type)
+        const i = GameRunner.get().getRandomIndex(heroes);
+        return new Hero(heroes[i].data)
     }
 
     public getEnemy(name: string) {
-        const enemy = this.enemies.find(x => x.name == name)
+        const enemy = this.enemyTraits.find(x => x.name == name)
         return new Enemy(enemy.data)
     }
 
@@ -101,17 +104,33 @@ export class DataService {
         return this.encounters.filter(x => x.level == level);
     }
 
-    public getTrait(name: string) {
-        return this.traits.find(x => x.name == name)
+    public getEnemyTrait(name: string) {
+        return this.enemyTraits.find(x => x.name == name)
     }
 
-    public getTraits(): Trait[] {
+    public getHeroTrait(name: string) {
+        return this.heroTraits.find(x => x.name == name)
+    }
+
+    public getHeroTraits(type: number) {
+        return this.heroTraits.filter(x => x.type == type)
+    }
+
+    public getTraits(isEnemy: boolean): Trait[] {
         var traits: Trait[] = []
-        this.traits.forEach(trait => {
-            traits.push(new Trait(trait.data, this.skills))
-        })
+        if (isEnemy) {
+            this.enemyTraits.forEach(trait => {
+                traits.push(new Trait(trait.data, this.skills))
+            })
+        }
+        else {
+            this.heroTraits.forEach(trait => {
+                traits.push(new Trait(trait.data, this.skills))
+            })
+        }
         return traits;
     }
+    
 
     static get() {
         if (this._instance) {

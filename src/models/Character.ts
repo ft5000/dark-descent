@@ -19,25 +19,27 @@ export class Character implements ICharacter {
     critChance: number
     isDead: boolean;
     trait: Trait;
-    isEnemy: boolean = false;
+    isEnemy: boolean;
     number: number = null;
-    data: any;
     race: string = "Undefined";
+    data: any;
 
     constructor(data: any) {
         this.data = data;
 
+        this.trait = DataService.get().getTraits(data.isEnemy).find(x => x.name == data.name)
         this.name = data.name;
         this.hp = data.hp;
         this.hpMax = data.hp;
-        this.ap = data.ap;
-        this.apMax = data.ap;
+        this.ap = 20;
+        this.apMax = 20;
         this.physDmg = data.physDmg;
-        this.magDmg = data.magDmg
+        this.magDmg = data.magDmg;
         this.critDmg = data.critDmg;
         this.critChance = data.critChance;
+        this.isEnemy = data.isEnemy;
         this.isDead = false;
-        this.trait = DataService.get().getTraits().find(x => x.name == data.trait) as Trait;
+
     }
 
     public setNumber(num: number) {

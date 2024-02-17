@@ -1,0 +1,158 @@
+[
+    {
+        "name": "Barbarian",
+        "hp": 160,
+        "physDmg": 16,
+        "magDmg": 0,
+        "critDmg": 2,
+        "critChance": 10,
+        "isEnemy": false,
+        "type": 0,
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Whirlwind"
+            }
+        ]
+    },
+    {
+        "name": "Knight",
+        "hp": 180,
+        "physDmg": 16,
+        "magDmg": 0,
+        "critDmg": 1.5,
+        "critChance": 10,
+        "isEnemy": false,
+        "type": 0,
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Heavy Blow"
+            }
+        ]
+    },
+    {
+        "name": "Wizard",
+        "hp": 120,
+        "physDmg": 10,
+        "magDmg": 16,
+        "critDmg": 1.5,
+        "critChance": 10,
+        "isEnemy": false,
+        "type": 1,
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Ice Bolt"
+            },
+            {
+                "name": "Fire Rain"
+            }
+        ]
+    },
+    {
+        "name": "Theif",
+        "hp": 160,
+        "physDmg": 14,
+        "magDmg": 0,
+        "critDmg": 1.5,
+        "critChance": 15,
+        "isEnemy": false,
+        "type": 1,
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Sneak Attack"
+            }
+        ]
+    },
+    {
+        "name": "Paladin",
+        "hp": 160,
+        "physDmg": 12,
+        "magDmg": 10,
+        "critDmg": 1.5,
+        "critChance": 10,
+        "isEnemy": false,
+        "type": 2,
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Basic Heal"
+            },
+            {
+                "name": "Great Heal"
+            }
+        ]
+    },
+    {
+        "name": "Bard",
+        "hp": 120,
+        "physDmg": 10,
+        "magDmg": 16,
+        "critDmg": 2,
+        "critChance": 10,
+        "isEnemy": false,
+        "type": 2,
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Scream"
+            },
+            {
+                "name": "Song of Healing"
+            }
+        ]
+    },
+    {
+        "name": "Archer",
+        "hp": 140,
+        "physDmg": 14,
+        "magDmg": 0,
+        "critDmg": 2,
+        "critChance": 10,
+        "isEnemy": false,
+        "type": 1,
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Sharp Shot"
+            }
+        ]
+    },
+    {
+        "name": "Warlock",
+        "hp": 160,
+        "physDmg": 12,
+        "magDmg": 16,
+        "critDmg": 1.5,
+        "critChance": 10,
+        "isEnemy": false,
+        "type": 1,
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Boil Blood"
+            },
+            {
+                "name": "Curse"
+            }
+        ]
+    }
+]

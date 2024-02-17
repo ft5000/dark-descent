@@ -5,21 +5,21 @@ import { DataService } from "../main.js";
 import { Color } from "../enums/Color.js";
 export class Character {
     constructor(data) {
-        this.isEnemy = false;
         this.number = null;
         this.race = "Undefined";
         this.data = data;
+        this.trait = DataService.get().getTraits(data.isEnemy).find(x => x.name == data.name);
         this.name = data.name;
         this.hp = data.hp;
         this.hpMax = data.hp;
-        this.ap = data.ap;
-        this.apMax = data.ap;
+        this.ap = 20;
+        this.apMax = 20;
         this.physDmg = data.physDmg;
         this.magDmg = data.magDmg;
         this.critDmg = data.critDmg;
         this.critChance = data.critChance;
+        this.isEnemy = data.isEnemy;
         this.isDead = false;
-        this.trait = DataService.get().getTraits().find(x => x.name == data.trait);
     }
     setNumber(num) {
         this.number = num;
