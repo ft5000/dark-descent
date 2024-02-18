@@ -11,8 +11,8 @@ export class GameRunner {
     private static _instance: GameRunner;
     party: Hero[] = [];
     enemies: Enemy[] = []
-    prevLevel: number = 9;
-    currentLevel: number = 10;
+    prevLevel: number = 0;
+    currentLevel: number = 1;
     partyIsDead: boolean = false;
     enemiesAreDead: boolean = true;
     levels: Level[] = [];
@@ -24,9 +24,6 @@ export class GameRunner {
     }
 
     public init() {
-        // this.newParty();
-        // this.initLevels();
-        // this.nextEncounter();
         GameInput.get().appendInputField();
     }
 

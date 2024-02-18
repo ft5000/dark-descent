@@ -42,10 +42,10 @@ hr {
     left: 0;
     width: 100%;
     height: fit-content;
-    min-height: 140px;
     background-color: black;
     border-top: 2px white dashed;
-    display: flex;
+    /* display: flex; */
+    display: none;
     flex-direction: row;
     flex-wrap: wrap;
 
@@ -72,12 +72,11 @@ hr {
 }
 
 #ascii {
-    position: fixed;
-    right: 0;
-    top: 0;
     display: block;
-    font-size: 14px;
-    z-index: 10;
+    font-size: 7px;
+    margin: 0;
+    position: absolute;
+    top: 18px;
     display: none;
 }
 
@@ -108,4 +107,9 @@ hr {
     to {
       visibility: hidden;
     }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }

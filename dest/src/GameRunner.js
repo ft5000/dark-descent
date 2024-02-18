@@ -8,8 +8,8 @@ export class GameRunner {
     constructor() {
         this.party = [];
         this.enemies = [];
-        this.prevLevel = 9;
-        this.currentLevel = 10;
+        this.prevLevel = 0;
+        this.currentLevel = 1;
         this.partyIsDead = false;
         this.enemiesAreDead = true;
         this.levels = [];
@@ -17,9 +17,6 @@ export class GameRunner {
         this.gameOver = true;
     }
     init() {
-        // this.newParty();
-        // this.initLevels();
-        // this.nextEncounter();
         GameInput.get().appendInputField();
     }
     newGame() {

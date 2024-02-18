@@ -44,7 +44,7 @@ export class GameUI {
         for (let item of this.messLog) {
             this.drawText(item);
             // item.delay
-            await this.sleep(AppInfo.delay);
+            await this.sleep(item.delay);
         }
         this.messLog = [];
         this.updateCharacterInfo();
@@ -88,6 +88,8 @@ export class GameUI {
     }
 
     public setCharacterInfo(hero: Hero)  {
+        document.getElementById('characters').style.display = 'flex'
+
         const element = document.createElement('div');
         element.id = `${hero.name}`
         element.className = 'char-info';
@@ -122,7 +124,8 @@ export class GameUI {
     }
 
     public removeCharacterInfo() {
-        document.getElementById('characters').innerHTML = "";
+        const charInfo = document.getElementById('characters');
+        charInfo.innerHTML = "";
     }
 
     public updateCharacterInfo() {
