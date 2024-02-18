@@ -8,23 +8,34 @@ export class GameRunner {
     constructor() {
         this.party = [];
         this.enemies = [];
+        this.prevLevel = 9;
+        this.currentLevel = 10;
+        this.partyIsDead = false;
+        this.enemiesAreDead = true;
+        this.levels = [];
+        this.isnextEncounter = true;
+        this.gameOver = true;
+    }
+    init() {
+        // this.newParty();
+        // this.initLevels();
+        // this.nextEncounter();
+        GameInput.get().appendInputField();
+    }
+    newGame() {
+        this.party = [];
+        this.enemies = [];
         this.prevLevel = 0;
         this.currentLevel = 1;
         this.partyIsDead = false;
         this.enemiesAreDead = true;
         this.levels = [];
+        this.level = null;
         this.isnextEncounter = true;
-    }
-    init() {
-        // this.party = DataService.get().getHeroes();
-        // for (let hero of this.party) {
-        //     hero.setRandomName();
-        //     GameUI.get().setCharacterInfo(hero)
-        // }
+        GameUI.get().removeCharacterInfo();
         this.newParty();
         this.initLevels();
         this.nextEncounter();
-        GameInput.get().appendInputField();
     }
     newParty() {
         this.party = [];
@@ -46,6 +57,7 @@ export class GameRunner {
         }
     }
     play() {
+        this.gameOver = false;
         if (this.checkIfEnemiesAreDead()) {
             this.nextEncounter();
         }
@@ -107,6 +119,7 @@ export class GameRunner {
         }
         else if (!this.partyIsDead && this.currentLevel == 11) {
             GameUI.get().log('Victory!');
+            this.gameOver = true;
         }
         if (!this.checkIfEnemiesAreDead()) {
             GameUI.get().log('------ End of Turns ------');
@@ -158,6 +171,9 @@ export class GameRunner {
     }
     checkIfPartyIsDead() {
         return this.partyIsDead = !this.party.some(x => !x.isDead);
+    }
+    isGameOver() {
+        return this.gameOver;
     }
     getRandomIndex(items) {
         return Math.floor(Math.random() * items.length);

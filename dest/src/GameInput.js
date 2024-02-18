@@ -66,9 +66,19 @@ export class GameInput {
     }
     readInputCommand() {
         var valid = false;
-        if (this.input == Command.play) {
+        if (this.input == Command.newGame) {
+            GameRunner.get().newGame();
             GameRunner.get().play();
             valid = true;
+        }
+        if (this.input == Command.play) {
+            if (!GameRunner.get().isGameOver()) {
+                GameRunner.get().play();
+                valid = true;
+            }
+            else {
+                GameUI.get().log("Please Input 'new game' to start a new game.", null, 0.1);
+            }
         }
         if (this.input == Command.about) {
             GameUI.get().about();

@@ -42,6 +42,7 @@ hr {
     left: 0;
     width: 100%;
     height: fit-content;
+    min-height: 140px;
     background-color: black;
     border-top: 2px white dashed;
     display: flex;

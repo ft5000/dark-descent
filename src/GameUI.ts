@@ -44,7 +44,7 @@ export class GameUI {
         for (let item of this.messLog) {
             this.drawText(item);
             // item.delay
-            await this.sleep(item.delay);
+            await this.sleep(AppInfo.delay);
         }
         this.messLog = [];
         this.updateCharacterInfo();
@@ -71,6 +71,7 @@ export class GameUI {
 
     public listCommands() {
         this.log("List of commands: ", null, 0.1);
+        this.log("'new game' - Start new game or reset previous", null, 0.1);
         this.log("'play' - Run next encounter", null, 0.1);
         this.log("'help' - List valid commands", null, 0.1);
         this.log("'about' - App information", null, 0.1);
@@ -118,6 +119,10 @@ export class GameUI {
 
         element.append(name, race, trait, hp, ap)
         document.getElementById('characters').append(element);
+    }
+
+    public removeCharacterInfo() {
+        document.getElementById('characters').innerHTML = "";
     }
 
     public updateCharacterInfo() {

@@ -11,27 +11,39 @@ export class GameRunner {
     private static _instance: GameRunner;
     party: Hero[] = [];
     enemies: Enemy[] = []
-    prevLevel: number = 0;
-    currentLevel: number = 1;
+    prevLevel: number = 9;
+    currentLevel: number = 10;
     partyIsDead: boolean = false;
     enemiesAreDead: boolean = true;
     levels: Level[] = [];
     level: Level;
     isnextEncounter: boolean = true;
+    gameOver: boolean = true;
 
     constructor() {
     }
 
     public init() {
-        // this.party = DataService.get().getHeroes();
-        // for (let hero of this.party) {
-        //     hero.setRandomName();
-        //     GameUI.get().setCharacterInfo(hero)
-        // }
+        // this.newParty();
+        // this.initLevels();
+        // this.nextEncounter();
+        GameInput.get().appendInputField();
+    }
+
+    public newGame() {
+        this.party = [];
+        this.enemies = []
+        this.prevLevel = 0;
+        this.currentLevel = 1;
+        this.partyIsDead = false;
+        this.enemiesAreDead = true;
+        this.levels = [];
+        this.level = null;
+        this.isnextEncounter = true;
+        GameUI.get().removeCharacterInfo();
         this.newParty();
         this.initLevels();
         this.nextEncounter();
-        GameInput.get().appendInputField();
     }
 
     public newParty() {
@@ -59,6 +71,7 @@ export class GameRunner {
     }
 
     public play() {
+        this.gameOver = false;
         if (this.checkIfEnemiesAreDead()) {
             this.nextEncounter();
         }
@@ -126,6 +139,7 @@ export class GameRunner {
         }
         else if (!this.partyIsDead && this.currentLevel == 11) {
             GameUI.get().log('Victory!')
+            this.gameOver = true;
         }
         if (!this.checkIfEnemiesAreDead()) {
             GameUI.get().log('------ End of Turns ------')
@@ -187,6 +201,10 @@ export class GameRunner {
 
     public checkIfPartyIsDead() {
         return this.partyIsDead = !this.party.some(x => !x.isDead);
+    }
+
+    public isGameOver() {
+        return this.gameOver;
     }
 
     public getRandomIndex(items: any[]): number {
