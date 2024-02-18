@@ -120,7 +120,6 @@ export class GameRunner {
             this.gameOver = true;
         }
         if (!this.checkIfEnemiesAreDead()) {
-            console.log(this.gameOver);
             if (this.checkIfPartyIsDead() && !this.gameOver) {
                 this.gameIsOver();
             }
