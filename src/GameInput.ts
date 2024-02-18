@@ -83,6 +83,8 @@ export class GameInput {
         var valid = false;
         if (this.input == Command.newGame) {
             GameRunner.get().newGame()
+            GameUI.get().intro();
+            GameUI.get().title();
             GameRunner.get().play()
             valid = true;
         }
