@@ -153,7 +153,16 @@ export class Character {
         return targets;
     }
     getRandomSkill() {
-        const skills = this.trait.getSkills().filter(x => x.cost <= this.ap);
+        const allies = GameRunner.get().getTargets(!this.isEnemy);
+        var skills;
+        // Filter out healing spells of allies are at full health.
+        if (!allies.some(x => x.hp != x.hpMax)) {
+            skills = this.trait.getSkills().filter(x => x.cost <= this.ap && x.heal == 0);
+            console.log(skills);
+        }
+        else {
+            skills = this.trait.getSkills().filter(x => x.cost <= this.ap);
+        }
         if (skills.length == 0) {
             return null;
         }
