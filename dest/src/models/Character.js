@@ -158,7 +158,6 @@ export class Character {
         // Filter out healing spells of allies are at full health.
         if (!allies.some(x => x.hp != x.hpMax)) {
             skills = this.trait.getSkills().filter(x => x.cost <= this.ap && x.heal == 0);
-            console.log(skills);
         }
         else {
             skills = this.trait.getSkills().filter(x => x.cost <= this.ap);
