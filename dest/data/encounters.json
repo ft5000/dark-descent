@@ -7,8 +7,8 @@
                 "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
-                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat"],
-                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+                "enemies": ["Bloated Corpse", "Bloated Corpse", "Giant Rat"],
+                "text": ["The air is thick with the sickly sweet odor of decomposition.", "A nauseating presence lingers."]
             },
             {
                 "enemies": ["Giant Rat", "Giant Rat", "Giant Rat", "Giant Rat"],
@@ -32,8 +32,8 @@
                 "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
             },
             {
-                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat"],
-                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+                "enemies": ["Bloated Corpse", "Bloated Corpse", "Bloated Corpse", "Giant Rat"],
+                "text": ["The air is thick with the sickly sweet odor of decomposition.", "A nauseating presence lingers."]
             },
             {
                 "enemies": ["Giant Rat", "Giant Rat", "Giant Rat", "Giant Rat"],
