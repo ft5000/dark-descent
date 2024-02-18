@@ -94,12 +94,18 @@ export class Character {
             var damage = this.calculateDamage(skill.damage, DamageType.physical);
             const isCritical = this.isCriticalHit();
             damage = isCritical ? Math.round(damage * this.critDmg) : damage;
+            const isMiss = this.isMiss();
             GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} dealing ${damage} damage.`, Color.orange);
-            if (isCritical) {
-                GameUI.get().log('It was a critical hit!', Color.blue, 1);
+            if (!isMiss) {
+                if (isCritical) {
+                    GameUI.get().log('It was a critical hit!', Color.blue, 1);
+                }
+                for (let target of targets) {
+                    target.takeDamage(damage);
+                }
             }
-            for (let target of targets) {
-                target.takeDamage(damage);
+            else {
+                GameUI.get().log('But it missed.', Color.gray);
             }
         }
         if (skill.damageType == DamageType.magic) {
@@ -107,12 +113,18 @@ export class Character {
             var damage = this.calculateDamage(skill.damage, DamageType.magic);
             const isCritical = this.isCriticalHit();
             damage = isCritical ? Math.round(damage * this.critDmg) : damage;
+            const isMiss = this.isMiss();
             GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} dealing ${damage} damage.`, Color.orange);
-            if (isCritical) {
-                GameUI.get().log('It was a critical hit!', Color.blue, 1);
+            if (!isMiss) {
+                if (isCritical) {
+                    GameUI.get().log('It was a critical hit!', Color.blue, 1);
+                }
+                for (let target of targets) {
+                    target.takeDamage(damage);
+                }
             }
-            for (let target of targets) {
-                target.takeDamage(damage);
+            else {
+                GameUI.get().log('But it missed.', Color.gray, 1);
             }
         }
         this.deductAp(skill.cost);
@@ -125,6 +137,10 @@ export class Character {
     isCriticalHit() {
         const roll = Math.random() * 100;
         return roll <= this.critChance ? true : false;
+    }
+    isMiss() {
+        const roll = Math.random() * 100;
+        return roll <= this.critChance / 2 ? true : false;
     }
     getTarget(skill) {
         let targets = [];
