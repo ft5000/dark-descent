@@ -110,5 +110,21 @@
         "cost": 2,
         "damageType": 1,
         "aoe": false
+    },
+    {
+        "name": "Bash",
+        "damage": 16,
+        "heal": 0,
+        "cost": 4,
+        "damageType": 1,
+        "aoe": false
+    },
+    {
+        "name": "Smash",
+        "damage": 12,
+        "heal": 0,
+        "cost": 2,
+        "damageType": 1,
+        "aoe": true
     }
 ]

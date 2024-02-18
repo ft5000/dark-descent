@@ -91,5 +91,23 @@
                 "name": "Bite"
             }
         ]
+    },
+    {
+        "name": "Troll",
+        "hp": 160,
+        "physDmg": 18,
+        "magDmg": 0,
+        "critDmg": 2,
+        "critChance": 0.5,
+        "isEnemy": true,
+        "type": 1,
+        "skills": [
+            {
+                "name": "Bash"
+            },
+            {
+                "name": "Smash"
+            }
+        ]
     }
 ]

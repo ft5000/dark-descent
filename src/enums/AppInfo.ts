@@ -1,4 +1,5 @@
 export enum AppInfo {
     version = "1.0",
-    delay = 60,
+    startingLevel = 1,
+    numOfLevels = 5,
 }

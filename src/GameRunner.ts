@@ -1,5 +1,6 @@
 import { GameInput } from "./GameInput.js";
 import { GameUI } from "./GameUI.js";
+import { AppInfo } from "./enums/AppInfo.js";
 import { Color } from "./enums/Color.js";
 import { HeroType } from "./enums/HeroType.js";
 import { DataService } from "./main.js";
@@ -11,8 +12,8 @@ export class GameRunner {
     private static _instance: GameRunner;
     party: Hero[] = [];
     enemies: Enemy[] = []
-    prevLevel: number = 0;
-    currentLevel: number = 1;
+    prevLevel: number = AppInfo.startingLevel - 1;
+    currentLevel: number = AppInfo.startingLevel;
     partyIsDead: boolean = false;
     enemiesAreDead: boolean = true;
     levels: Level[] = [];
@@ -30,8 +31,8 @@ export class GameRunner {
     public newGame() {
         this.party = [];
         this.enemies = []
-        this.prevLevel = 0;
-        this.currentLevel = 1;
+        this.prevLevel = AppInfo.startingLevel - 1;
+        this.currentLevel = AppInfo.startingLevel;
         this.partyIsDead = false;
         this.enemiesAreDead = true;
         this.levels = [];
@@ -62,7 +63,7 @@ export class GameRunner {
     }
 
     public initLevels() {
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < AppInfo.numOfLevels; i++) {
             this.levels.push(new Level(i+1));
         }
     }
@@ -126,7 +127,7 @@ export class GameRunner {
             }
         }
 
-        if (this.enemiesAreDead && this.currentLevel <= 10) {
+        if (this.enemiesAreDead && this.currentLevel <= AppInfo.numOfLevels) {
             GameUI.get().log('Party is resting...', null, 3);
             GameUI.get().log('&nbsp;', null, 0);
             this.party.filter(x => !x.isDead).forEach(x => {
@@ -134,12 +135,18 @@ export class GameRunner {
                 x.replenishAp(12);
             })
         }
-        else if (!this.partyIsDead && this.currentLevel == 11) {
+        else if (!this.partyIsDead && this.currentLevel == AppInfo.numOfLevels + 1) {
             GameUI.get().log('Victory!')
             this.gameOver = true;
         }
         if (!this.checkIfEnemiesAreDead()) {
-            GameUI.get().log('------ End of Turns ------')
+            console.log(this.gameOver)
+            if (this.checkIfPartyIsDead() && !this.gameOver) {
+                this.gameIsOver();
+            }
+            else if (!this.gameOver) {
+                GameUI.get().log('------ End of Turns ------')
+            }
         }
         GameUI.get().log('&nbsp;')
         GameUI.get().printLog();
@@ -155,6 +162,11 @@ export class GameRunner {
         return this.currentLevel > this.prevLevel;
     }
 
+    private gameIsOver() {
+        GameUI.get().log('Your party is dead.', 'darkgrey')
+        this.gameOver = true;
+    }
+
     private partyTurn(hero: Hero) {
         GameUI.get().log(`------ ${hero.name} - HP: ${hero.hp} ------`)
         hero.performAction();
@@ -162,7 +174,9 @@ export class GameRunner {
 
     private enemyTurn(enemy: Enemy) {
         if (this.checkIfPartyIsDead()) {
-            GameUI.get().log('Your party is dead.', 'darkgrey')
+            if (!this.gameOver) {
+                this.gameIsOver();
+            }
         }
         else {
             GameUI.get().log(`------ ${enemy.getNameAndNumber()} - HP: ${enemy.hp} ------`)
