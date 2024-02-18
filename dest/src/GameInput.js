@@ -77,7 +77,7 @@ export class GameInput {
                 valid = true;
             }
             else {
-                GameUI.get().log("Please Input 'new game' to start a new game.", null, 0.1);
+                GameUI.get().log("Please input 'new game' to start a new game.", null, 0.1);
             }
         }
         if (this.input == Command.about) {
