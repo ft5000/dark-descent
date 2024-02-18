@@ -90,7 +90,7 @@ export class GameUI {
     public intro() {
         GameUI.get().log("The dungeon door groans open, revealing an abyss of oppressive darkness.", null, 3)
         GameUI.get().log("A stale, damp odor hangs in the air, a foreboding reminder of the many who have met their doom within these lightless catacombs.", null, 3)
-        GameUI.get().log("As you cross the threshold, an oppressive gloom wraps around your senses.", null, 3)
+        GameUI.get().log("As you breach the threshold, a weighty shadow encases your senses, wrapping you in a stifling embrace.", null, 3)
         GameUI.get().log("You begin your descent into the darkness.", null, 3)
         GameUI.get().log("&nbsp;")
     }
