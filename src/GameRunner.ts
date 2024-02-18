@@ -62,7 +62,7 @@ export class GameRunner {
     }
 
     public initLevels() {
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < 5; i++) {
             this.levels.push(new Level(i+1));
         }
     }
