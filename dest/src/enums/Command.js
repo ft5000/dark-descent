@@ -5,5 +5,6 @@ export var Command;
     Command["about"] = "about";
     Command["lightTheme"] = "theme light";
     Command["darkTheme"] = "theme dark";
+    Command["clear"] = "clear";
     Command["help"] = "help";
 })(Command || (Command = {}));

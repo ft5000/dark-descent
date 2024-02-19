@@ -72,6 +72,7 @@ export class GameUI {
         this.log("play - Run next encounter.", null, 0.1);
         this.log("help - List valid commands.", null, 0.1);
         this.log("theme 'theme' - Set color palette. Available themes: 'dark', 'light'.", null, 0.1);
+        this.log("clear - Clear all log items.", null, 0.1);
         this.log("about - App information.", null, 0.1);
         this.log("&nbsp;", null, 0);
         this.printLog();
@@ -141,6 +142,15 @@ export class GameUI {
         root.style.setProperty('--white', 'white');
         this.log("Setting dark theme.", null, 0);
         this.printLog();
+    }
+    clearLog() {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.log("Clearing log...", null, 0);
+            this.printLog();
+            yield this.sleep(1000);
+            this.textbox.innerHTML = "";
+            GameInput.get().appendInputField();
+        });
     }
     removeCharacterInfo() {
         const charInfo = document.getElementById('characters');

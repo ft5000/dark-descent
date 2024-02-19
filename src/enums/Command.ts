@@ -4,5 +4,6 @@ export enum Command {
     about = "about",
     lightTheme = "theme light",
     darkTheme = "theme dark",
+    clear = "clear",
     help = "help",
 }

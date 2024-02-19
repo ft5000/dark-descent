@@ -90,6 +90,10 @@ export class GameInput {
             GameUI.get().setDarkTheme();
             valid = true;
         }
+        if (this.input == Command.clear) {
+            GameUI.get().clearLog();
+            valid = true;
+        }
         if (this.input == Command.about) {
             GameUI.get().about();
             valid = true;
