@@ -39,7 +39,7 @@ export class GameUI {
         this.messLog.push(new LogItem(mess, color, seconds))
     }
 
-    public async printLog() {
+    public async printLog(helpText?: string) {
         this._isPrinting = true;
         for (let item of this.messLog) {
             this.drawText(item);
@@ -49,7 +49,12 @@ export class GameUI {
         this.messLog = [];
         this.updateCharacterInfo();
         this._isPrinting = false;
-        GameInput.get().appendInputField();
+        if (helpText != null) {
+            GameInput.get().appendInputField(helpText);
+        }
+        else {
+            GameInput.get().appendInputField();
+        }
         return false;
     }
 

@@ -1,10 +1,12 @@
 import { GameRunner } from "./GameRunner.js";
 import { GameUI } from "./GameUI.js";
+import { AppInfo } from "./enums/AppInfo.js";
 import { Color } from "./enums/Color.js";
 import { Command } from "./enums/Command.js";
 export class GameInput {
     constructor() {
         this.input = "";
+        this.confirmMode = false;
     }
     init() {
         this.input = "";
@@ -15,7 +17,7 @@ export class GameInput {
             }
         });
     }
-    appendInputField() {
+    appendInputField(text) {
         const inputField = document.createElement('span');
         inputField.id = 'input-field';
         const textbox = document.getElementById('console');
@@ -33,7 +35,12 @@ export class GameInput {
         this.inputField = inputField;
         textbox.append(inputField);
         const infoText = document.createElement('span');
-        infoText.innerHTML = "Type 'help' for commands";
+        if (text != null) {
+            infoText.innerHTML = text;
+        }
+        else {
+            infoText.innerHTML = "Type 'help' for commands";
+        }
         infoText.style.color = Color.gray;
         infoText.style.userSelect = 'none';
         this.infoText = infoText;
@@ -66,46 +73,73 @@ export class GameInput {
     }
     readInputCommand() {
         var valid = false;
-        if (this.input == Command.newGame) {
-            GameRunner.get().newGame();
-            GameUI.get().intro();
-            GameUI.get().title();
-            GameRunner.get().play();
-            valid = true;
-        }
-        if (this.input == Command.play) {
-            if (!GameRunner.get().isGameOver()) {
-                GameRunner.get().play();
+        if (this.confirmMode) {
+            if ((this.input == "yes" || this.input == "y") && this.onConfirm != null) {
+                GameUI.get().log(this.input);
+                this.onConfirm();
+                this.onConfirm = null;
+                this.confirmMode = false;
                 valid = true;
             }
-            else {
-                GameUI.get().log("Please input 'new game' to start a new game.", null, 0.1);
+            if ((this.input == "no" || this.input == "n") && this.onConfirm != null) {
+                GameUI.get().log(this.input);
+                GameUI.get().printLog();
+                this.onConfirm = null;
+                this.confirmMode = false;
+                valid = true;
             }
         }
-        if (this.input == Command.lightTheme) {
-            GameUI.get().setLightTheme();
-            valid = true;
-        }
-        if (this.input == Command.darkTheme) {
-            GameUI.get().setDarkTheme();
-            valid = true;
-        }
-        if (this.input == Command.clear) {
-            GameUI.get().clearLog();
-            valid = true;
-        }
-        if (this.input == Command.about) {
-            GameUI.get().about();
-            valid = true;
-        }
-        if (this.input == Command.help) {
-            GameUI.get().listCommands();
-            valid = true;
+        else {
+            if (this.input == Command.newGame) {
+                GameUI.get().log("Are you sure?");
+                GameUI.get().printLog("Please confirm: y/n");
+                var onConfirm = function onConfirm() {
+                    GameRunner.get().newGame();
+                    if (AppInfo.skipIntro != 1) {
+                        GameUI.get().intro();
+                        GameUI.get().title();
+                    }
+                    GameRunner.get().play();
+                };
+                this.onConfirm = onConfirm.bind(this);
+                this.confirmMode = true;
+                valid = true;
+            }
+            if (this.input == Command.play) {
+                if (!GameRunner.get().isGameOver()) {
+                    GameRunner.get().play();
+                    valid = true;
+                }
+                else {
+                    GameUI.get().log("Please input 'new game' to start a new game.", null, 0.1);
+                }
+            }
+            if (this.input == Command.lightTheme) {
+                GameUI.get().setLightTheme();
+                valid = true;
+            }
+            if (this.input == Command.darkTheme) {
+                GameUI.get().setDarkTheme();
+                valid = true;
+            }
+            if (this.input == Command.clear) {
+                GameUI.get().clearLog();
+                valid = true;
+            }
+            if (this.input == Command.about) {
+                GameUI.get().about();
+                valid = true;
+            }
+            if (this.input == Command.help) {
+                GameUI.get().listCommands();
+                valid = true;
+            }
         }
         if (valid) {
             this.removeInputField();
         }
         else {
+            GameUI.get().log(this.input, null, 0.1);
             GameUI.get().log('Invalid command.', null, 0.1);
             this.removeInputField();
             GameUI.get().printLog();
