@@ -82,7 +82,7 @@ export class GameUI {
         this.log("theme 'theme' - Set color palette.", null, 0.1);
         this.log("&nbsp;&nbsp;Available themes:", null, 0);
         this.log("&nbsp;&nbsp;• dark", null, 0);
-        this.log("&nbsp;&nbsp;• light", null, 0);
+        this.log("&nbsp;&nbsp;• msdos", null, 0);
         this.log("clear - Clear all log items.", null, 0.1);
         this.log("about - App information.", null, 0.1);
         this.log("&nbsp;", null, 0);
@@ -154,7 +154,7 @@ export class GameUI {
 
     public setLightTheme() {
         const root = document.documentElement;
-        root.style.setProperty('--black', 'lightgray');
+        root.style.setProperty('--black', 'blue');
         root.style.setProperty('--white', 'white');
 
         this.log("Setting light theme.", null, 0);

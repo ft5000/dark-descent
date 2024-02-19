@@ -2,7 +2,7 @@ export enum Command {
     newGame = "new game",
     play = "play",
     about = "about",
-    lightTheme = "theme light",
+    dosTheme = "theme msdos",
     darkTheme = "theme dark",
     clear = "clear",
     help = "help",

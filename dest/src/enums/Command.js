@@ -3,7 +3,7 @@ export var Command;
     Command["newGame"] = "new game";
     Command["play"] = "play";
     Command["about"] = "about";
-    Command["lightTheme"] = "theme light";
+    Command["dosTheme"] = "theme msdos";
     Command["darkTheme"] = "theme dark";
     Command["clear"] = "clear";
     Command["help"] = "help";

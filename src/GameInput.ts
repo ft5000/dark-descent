@@ -12,6 +12,7 @@ export class GameInput {
     private infoText: HTMLElement;
     private confirmMode: boolean = false;
     private onConfirm: Function;
+    private helpText: string;
 
     public init() {
         this.input = "";
@@ -95,6 +96,7 @@ export class GameInput {
                 GameUI.get().log(this.input)
                 this.onConfirm();
                 this.onConfirm = null;
+                this.helpText = null;
                 this.confirmMode = false;
                 valid = true;
             }
@@ -102,14 +104,16 @@ export class GameInput {
                 GameUI.get().log(this.input)
                 GameUI.get().printLog();
                 this.onConfirm = null;
+                this.helpText = null;
                 this.confirmMode = false;
                 valid = true;
             }
         }
         else {
             if (this.input == Command.newGame) {
+                this.helpText = "Please confirm: y/n"
                 GameUI.get().log("Are you sure?");
-                GameUI.get().printLog("Please confirm: y/n");
+                GameUI.get().printLog(this.helpText);
 
                 var onConfirm = function onConfirm() {
                     GameRunner.get().newGame()
@@ -133,7 +137,7 @@ export class GameInput {
                     GameUI.get().log("Please input 'new game' to start a new game.", null, 0.1);
                 }
             }
-            if (this.input == Command.lightTheme) {
+            if (this.input == Command.dosTheme) {
                 GameUI.get().setLightTheme();
                 valid = true;
             }
@@ -162,7 +166,7 @@ export class GameInput {
             GameUI.get().log(this.input, null, 0.1);
             GameUI.get().log('Invalid command.', null, 0.1);
             this.removeInputField();
-            GameUI.get().printLog();
+            GameUI.get().printLog(this.helpText);
         }
     }
 
