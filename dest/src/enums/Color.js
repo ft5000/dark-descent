@@ -1,10 +1,10 @@
 export var Color;
 (function (Color) {
     Color["none"] = "";
-    Color["white"] = "white";
-    Color["green"] = "limegreen";
-    Color["blue"] = "skyblue";
-    Color["red"] = "red";
-    Color["orange"] = "orange";
-    Color["gray"] = "dimgray";
+    Color["white"] = "var(--white)";
+    Color["green"] = "var(--green)";
+    Color["blue"] = "var(--blue)";
+    Color["red"] = "var(--red)";
+    Color["orange"] = "var(--orange)";
+    Color["gray"] = "var(--gray)";
 })(Color || (Color = {}));

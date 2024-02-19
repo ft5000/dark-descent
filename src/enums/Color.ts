@@ -1,9 +1,9 @@
 export enum Color {
     none = '',
-    white = 'white',
-    green = 'limegreen',
-    blue = 'skyblue',
-    red = 'red',
-    orange = 'orange',
-    gray = 'dimgray'
+    white = 'var(--white)',
+    green = 'var(--green)',
+    blue = 'var(--blue)',
+    red = 'var(--red)',
+    orange = 'var(--orange)',
+    gray = 'var(--gray)',
 }

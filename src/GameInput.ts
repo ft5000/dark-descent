@@ -97,6 +97,14 @@ export class GameInput {
                 GameUI.get().log("Please input 'new game' to start a new game.", null, 0.1);
             }
         }
+        if (this.input == Command.lightTheme) {
+            GameUI.get().setLightTheme();
+            valid = true;
+        }
+        if (this.input == Command.darkTheme) {
+            GameUI.get().setDarkTheme();
+            valid = true;
+        }
         if (this.input == Command.about) {
             GameUI.get().about();
             valid = true;
