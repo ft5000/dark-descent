@@ -72,16 +72,18 @@ export class GameUI {
         this.textbox.scrollTo(0, this.textbox.scrollHeight);
     }
     listCommands() {
-        this.log("List of commands: ", null, 0.1);
-        this.log("new game - Start new game or reset previous.", null, 0.1);
-        this.log("play - Run next encounter.", null, 0.1);
-        this.log("help - List valid commands.", null, 0.1);
-        this.log("theme 'theme' - Set color palette.", null, 0.1);
-        this.log("&nbsp;&nbsp;Available themes:", null, 0);
-        this.log("&nbsp;&nbsp;• dark", null, 0);
-        this.log("&nbsp;&nbsp;• msdos", null, 0);
-        this.log("clear - Clear all log items.", null, 0.1);
-        this.log("about - App information.", null, 0.1);
+        this.log("List of commands: ", null, 0);
+        this.log("• new game - Start new game or reset previous.", null, 0);
+        this.log("• play - Run next encounter.", null, 0);
+        this.log("• party stats - View stats and skills of your party.", null, 0);
+        this.log("• enemy stats - View stats and skills of your enemies.", null, 0);
+        this.log("• theme 'theme' - Set color palette.", null, 0);
+        this.log("&nbsp;&nbsp;&nbsp;Available themes:", null, 0);
+        this.log("&nbsp;&nbsp;&nbsp;• dark", null, 0);
+        this.log("&nbsp;&nbsp;&nbsp;• msdos", null, 0);
+        this.log("• clear - Clear all log items.", null, 0);
+        this.log("• help - List valid commands.", null, 0);
+        this.log("• about - App information.", null, 0);
         this.log("&nbsp;", null, 0);
         this.printLog();
     }
@@ -136,6 +138,31 @@ export class GameUI {
         ap.innerHTML = `Action Points:&nbsp;${hero.ap}/${hero.apMax}`;
         element.append(name, race, trait, hp, ap);
         document.getElementById('characters').append(element);
+    }
+    stats(party) {
+        const characters = party ? GameRunner.get().party.filter(x => x) : GameRunner.get().enemies.filter(x => x);
+        if (!characters.some(x => !x.isDead)) {
+            if (party) {
+                this.log("Your party is dead.");
+            }
+            else {
+                this.log("All enemies are dead.");
+            }
+        }
+        else {
+            for (let character of characters) {
+                this.log(`${character.getNameAndNumber()}`);
+                this.log(`Health: ${character.hp}/${character.hpMax}`);
+                this.log(`Action Ponts: ${character.ap}/${character.apMax}`);
+                this.log("Skills:");
+                const trait = character.trait;
+                trait.skills.forEach(skill => {
+                    this.log(`&nbsp;• ${skill.name}`);
+                });
+                this.log("&nbsp;");
+            }
+        }
+        this.printLog();
     }
     setMSDosTheme() {
         const root = document.documentElement;

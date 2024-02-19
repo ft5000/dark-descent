@@ -137,6 +137,14 @@ export class GameInput {
                     GameUI.get().log("Please input 'new game' to start a new game.", null, 0.1);
                 }
             }
+            if (this.input == Command.enemyStats) {
+                GameUI.get().stats(false);
+                valid = true;
+            }
+            if (this.input == Command.partyStats) {
+                GameUI.get().stats(true);
+                valid = true;
+            }
             if (this.input == Command.dosTheme) {
                 GameUI.get().setMSDosTheme();
                 valid = true;
