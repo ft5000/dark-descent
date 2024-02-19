@@ -137,11 +137,11 @@ export class GameUI {
         element.append(name, race, trait, hp, ap);
         document.getElementById('characters').append(element);
     }
-    setLightTheme() {
+    setMSDosTheme() {
         const root = document.documentElement;
         root.style.setProperty('--black', 'blue');
         root.style.setProperty('--white', 'white');
-        this.log("Setting light theme.", null, 0);
+        this.log("Setting msdos theme.", null, 0);
         this.printLog();
     }
     setDarkTheme() {

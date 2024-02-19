@@ -152,12 +152,12 @@ export class GameUI {
         document.getElementById('characters').append(element);
     }
 
-    public setLightTheme() {
+    public setMSDosTheme() {
         const root = document.documentElement;
         root.style.setProperty('--black', 'blue');
         root.style.setProperty('--white', 'white');
 
-        this.log("Setting light theme.", null, 0);
+        this.log("Setting msdos theme.", null, 0);
         this.printLog();
     }
 

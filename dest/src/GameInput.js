@@ -118,7 +118,7 @@ export class GameInput {
                 }
             }
             if (this.input == Command.dosTheme) {
-                GameUI.get().setLightTheme();
+                GameUI.get().setMSDosTheme();
                 valid = true;
             }
             if (this.input == Command.darkTheme) {
