@@ -63,7 +63,10 @@ export class GameUI {
         element.innerHTML = `<span>${item.mess}</span>`;
         element.style.color = item.color;
         this.textbox.append(element);
-        if (this.isOverflown()) {
+        // if (this.isOverflown()) {
+        //     this.textbox.removeChild(this.textbox.firstChild);
+        // }
+        if (this.textbox.childElementCount > 100) {
             this.textbox.removeChild(this.textbox.firstChild);
         }
         this.scrollToBottom();
