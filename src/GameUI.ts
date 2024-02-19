@@ -74,7 +74,10 @@ export class GameUI {
         this.log("new game - Start new game or reset previous.", null, 0.1);
         this.log("play - Run next encounter.", null, 0.1);
         this.log("help - List valid commands.", null, 0.1);
-        this.log("theme 'theme' - Set color palette. Available themes: 'dark', 'light'.", null, 0.1);
+        this.log("theme 'theme' - Set color palette.", null, 0.1);
+        this.log("&nbsp;&nbsp;Available themes:", null, 0);
+        this.log("&nbsp;&nbsp;• dark", null, 0);
+        this.log("&nbsp;&nbsp;• light", null, 0);
         this.log("clear - Clear all log items.", null, 0.1);
         this.log("about - App information.", null, 0.1);
         this.log("&nbsp;", null, 0);
