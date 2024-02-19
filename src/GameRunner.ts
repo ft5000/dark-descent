@@ -20,6 +20,7 @@ export class GameRunner {
     level: Level;
     isnextEncounter: boolean = true;
     gameOver: boolean = true;
+    newInstance: boolean = true;
 
     constructor() {
     }
@@ -29,6 +30,7 @@ export class GameRunner {
     }
 
     public newGame() {
+        this.newInstance = false;
         this.party = [];
         this.enemies = []
         this.prevLevel = AppInfo.startingLevel - 1;

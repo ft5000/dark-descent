@@ -16,11 +16,13 @@ export class GameRunner {
         this.levels = [];
         this.isnextEncounter = true;
         this.gameOver = true;
+        this.newInstance = true;
     }
     init() {
         GameInput.get().appendInputField();
     }
     newGame() {
+        this.newInstance = false;
         this.party = [];
         this.enemies = [];
         this.prevLevel = AppInfo.startingLevel - 1;

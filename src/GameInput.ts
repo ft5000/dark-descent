@@ -110,11 +110,19 @@ export class GameInput {
             }
         }
         else {
-            if (this.input == Command.newGame) {
+            if (this.input == Command.newGame && GameRunner.get().newInstance) {
+                GameRunner.get().newGame()
+                if (AppInfo.skipIntro != 1) {
+                    GameUI.get().intro();
+                    GameUI.get().title();
+                }
+                GameRunner.get().play()
+                valid = true;
+            }
+            else if (this.input == Command.newGame && !GameRunner.get().newInstance) {
                 this.helpText = "Please confirm: y/n"
                 GameUI.get().log("Are you sure?");
                 GameUI.get().printLog(this.helpText);
-
                 var onConfirm = function onConfirm() {
                     GameRunner.get().newGame()
                     if (AppInfo.skipIntro != 1) {
@@ -123,7 +131,6 @@ export class GameInput {
                     }
                     GameRunner.get().play()
                 }
-
                 this.onConfirm = onConfirm.bind(this)
                 this.confirmMode = true;
                 valid = true;
