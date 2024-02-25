@@ -171,6 +171,7 @@ export class GameRunner {
     private partyTurn(hero: Hero) {
         GameUI.get().log(`------ ${hero.name} - HP: ${hero.hp} ------`)
         hero.performAction();
+        hero.checkStatusEffects();
     }
 
     private enemyTurn(enemy: Enemy) {
@@ -182,6 +183,7 @@ export class GameRunner {
         else {
             GameUI.get().log(`------ ${enemy.getNameAndNumber()} - HP: ${enemy.hp} ------`)
             enemy.performAction();
+            enemy.checkStatusEffects();
         }
     }
 

@@ -147,6 +147,7 @@ export class GameRunner {
     partyTurn(hero) {
         GameUI.get().log(`------ ${hero.name} - HP: ${hero.hp} ------`);
         hero.performAction();
+        hero.checkStatusEffects();
     }
     enemyTurn(enemy) {
         if (this.checkIfPartyIsDead()) {
@@ -157,6 +158,7 @@ export class GameRunner {
         else {
             GameUI.get().log(`------ ${enemy.getNameAndNumber()} - HP: ${enemy.hp} ------`);
             enemy.performAction();
+            enemy.checkStatusEffects();
         }
     }
     static get() {

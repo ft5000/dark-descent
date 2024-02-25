@@ -29,7 +29,12 @@
         "heal": 0,
         "cost": 4,
         "damageType": 1,
-        "aoe": false
+        "aoe": false,
+        "statusEffect": {
+            "name": "Bleed",
+            "amount": 8,
+            "turns": 5
+        }
     },
     {
         "name": "Ice Bolt",
@@ -69,7 +74,12 @@
         "heal": 16,
         "cost": 8,
         "damageType": 0,
-        "aoe": true
+        "aoe": true,
+        "statusEffect": {
+            "name": "Blessing",
+            "amount": 8,
+            "turns": 5
+        }
     },
     {
         "name": "Scream",
@@ -97,11 +107,16 @@
     },
     {
         "name": "Curse",
-        "damage": 12,
+        "damage": 6,
         "heal": 0,
         "cost": 2,
         "damageType": 2,
-        "aoe": false
+        "aoe": false,
+        "statusEffect": {
+            "name": "Curse",
+            "amount": 8,
+            "turns": 5
+        }
     },
     {
         "name": "Bite",

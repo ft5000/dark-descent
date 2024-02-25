@@ -2,6 +2,7 @@ import { Trait } from "./models/Trait.js";
 import { Skill } from "./models/Skill.js";
 import namesJson from '../data/names.json' assert { type: 'json' };
 import racesJson from '../data/races.json' assert { type: 'json' };
+import statusEffects from '../data/statusEffects.json' assert { type: 'json' };
 import skillsJson from '../data/skills.json' assert { type: 'json' };
 import enemyTraitsJson from '../data/enemyTraits.json' assert { type: 'json' };
 import heroTraitsJson from '../data/heroTraits.json' assert { type: 'json' };
@@ -11,10 +12,12 @@ import { GameRunner } from "./GameRunner.js";
 import { GameInput } from "./GameInput.js";
 import { Encounter } from "./models/Encounter.js";
 import { Hero } from "./models/Hero.js";
+import { StatusEffect } from "./models/StatusEffect.js";
 export class DataService {
     constructor() {
         this.names = [];
         this.races = [];
+        this.statusEffects = [];
         this.skills = [];
         this.enemyTraits = [];
         this.heroTraits = [];
@@ -28,6 +31,10 @@ export class DataService {
         racesJson.forEach((data) => {
             this.races.push(data);
             console.log("loading races...");
+        });
+        statusEffects.forEach((data) => {
+            this.statusEffects.push(new StatusEffect(data));
+            console.log("loading status effects...");
         });
         skillsJson.forEach((data) => {
             this.skills.push(new Skill(data));
@@ -55,6 +62,11 @@ export class DataService {
     }
     getNames() {
         return this.names;
+    }
+    getStatusEffect(name, amount, turns) {
+        var effect = new StatusEffect(this.statusEffects.find(x => x.name == name));
+        effect.setSpecifics(amount, turns);
+        return effect;
     }
     getHero(type) {
         const heroes = this.heroTraits.filter(x => x.type == type);

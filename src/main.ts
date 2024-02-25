@@ -1,9 +1,9 @@
 import { Trait } from "./models/Trait.js";
 import { Skill } from "./models/Skill.js";
-import { Character } from "./models/Character.js";
 
 import namesJson from '../data/names.json' assert { type: 'json' };
 import racesJson from '../data/races.json' assert { type: 'json' };
+import statusEffects from '../data/statusEffects.json' assert { type: 'json' };
 import skillsJson from '../data/skills.json' assert { type: 'json' };
 import enemyTraitsJson from '../data/enemyTraits.json' assert { type: 'json' };
 import heroTraitsJson from '../data/heroTraits.json' assert { type: 'json' };
@@ -15,11 +15,13 @@ import { GameInput } from "./GameInput.js";
 import { Encounter } from "./models/Encounter.js";
 import { Hero } from "./models/Hero.js";
 import { HeroType } from "./enums/HeroType.js";
+import { StatusEffect } from "./models/StatusEffect.js";
 
 export class DataService {
     private static _instance: DataService;
     private names: string[] = []
     private races: string[] = [];
+    private statusEffects: StatusEffect[] = [];
     private skills: Skill[] = [];
     private enemyTraits: Trait[] = [];
     private heroTraits: Trait[] = [];
@@ -34,6 +36,11 @@ export class DataService {
         racesJson.forEach((data: string) => {
             this.races.push(data)
             console.log("loading races...")
+        });
+
+        statusEffects.forEach((data: any) => {
+            this.statusEffects.push(new StatusEffect(data))
+            console.log("loading status effects...")
         });
 
         skillsJson.forEach((data: any) => {
@@ -69,6 +76,12 @@ export class DataService {
 
     public getNames(): string[] {
         return this.names;
+    }
+
+    public getStatusEffect(name: string, amount: number, turns: number) {
+        var effect = new StatusEffect(this.statusEffects.find(x => x.name == name))
+        effect.setSpecifics(amount, turns)
+        return effect;
     }
 
     public getHero(type: HeroType) {

@@ -7,6 +7,7 @@ export class Character {
     constructor(data) {
         this.number = null;
         this.race = "Undefined";
+        this.statusEffects = [];
         this.data = data;
         this.trait = DataService.get().getTraits(data.isEnemy).find(x => x.name == data.name);
         this.name = data.name;
@@ -84,6 +85,9 @@ export class Character {
         }
         if (skill.damageType == DamageType.none) {
             targets = GameRunner.get().party.filter(x => !x.isDead);
+            if (skill.statusEffectData) {
+                this.applyStatusEffect(skill, targets);
+            }
             GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} healing for ${skill.heal}hp.`, Color.orange);
             targets.forEach(target => {
                 target.heal(skill.heal);
@@ -97,6 +101,9 @@ export class Character {
             const isMiss = this.isMiss();
             GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} dealing ${damage} damage.`, Color.orange);
             if (!isMiss) {
+                if (skill.statusEffectData) {
+                    this.applyStatusEffect(skill, targets);
+                }
                 if (isCritical) {
                     GameUI.get().log('It was a critical hit!', Color.blue, 1);
                 }
@@ -116,6 +123,9 @@ export class Character {
             const isMiss = this.isMiss();
             GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} dealing ${damage} damage.`, Color.orange);
             if (!isMiss) {
+                if (skill.statusEffectData) {
+                    this.applyStatusEffect(skill, targets);
+                }
                 if (isCritical) {
                     GameUI.get().log('It was a critical hit!', Color.blue, 1);
                 }
@@ -129,6 +139,43 @@ export class Character {
         }
         this.deductAp(skill.cost);
         GameUI.get().log('&nbsp;', null, 1);
+    }
+    applyStatusEffect(skill, targets) {
+        const data = skill.statusEffectData;
+        const effect = DataService.get().getStatusEffect(data.name, data.amount, data.turns);
+        for (let target of targets) {
+            if (!target.statusEffects.some(x => x.name == effect.name)) {
+                target.statusEffects.push(effect);
+            }
+        }
+    }
+    checkStatusEffects() {
+        const buffs = this.statusEffects.filter(x => x.isBuff);
+        const debuffs = this.statusEffects.filter(x => !x.isBuff);
+        if (buffs.length > 0) {
+            for (let buff of buffs) {
+                GameUI.get().log(buff.getText(this), Color.blue);
+                this.heal(buff.amount);
+                const isDepleted = buff.decreaseTurns();
+                if (isDepleted && !this.isDead) {
+                    this.statusEffects = this.statusEffects.filter(x => x.name == buff.name);
+                    GameUI.get().log(`The effects of ${buff.name} has worn off.`, Color.gray, 1);
+                }
+            }
+            GameUI.get().log('&nbsp;', null, 1);
+        }
+        if (debuffs.length > 0) {
+            for (let debuff of debuffs) {
+                GameUI.get().log(debuff.getText(this), Color.red);
+                this.takeDamage(debuff.amount);
+                const isDepleted = debuff.decreaseTurns();
+                if (isDepleted && !this.isDead) {
+                    this.statusEffects = this.statusEffects.filter(x => x.name == debuff.name);
+                    GameUI.get().log(`${this.getNameAndNumber()} is no longer effected by ${debuff.name}.`, Color.gray, 1);
+                }
+            }
+            GameUI.get().log('&nbsp;', null, 1);
+        }
     }
     calculateDamage(skillDamage, type) {
         const damageOutput = type == DamageType.physical ? skillDamage * (this.physDmg * 0.1) : skillDamage * (this.magDmg * 0.1);

@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Bleed",
+        "isBuff": false
+    },
+    {
+        "name": "Curse",
+        "isBuff": false
+    },
+    {
+        "name": "Blessing",
+        "isBuff": true
+    }
+]

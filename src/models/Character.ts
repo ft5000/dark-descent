@@ -6,6 +6,7 @@ import { GameUI } from "../GameUI.js";
 import { Trait } from "./Trait.js";
 import { DataService } from "../main.js";
 import { Color } from "../enums/Color.js";
+import { StatusEffect } from "./StatusEffect.js";
 
 export class Character implements ICharacter {
     name: string;
@@ -22,6 +23,7 @@ export class Character implements ICharacter {
     isEnemy: boolean;
     number: number = null;
     race: string = "Undefined";
+    statusEffects: StatusEffect[] = [];
     data: any;
 
     constructor(data: any) {
@@ -115,6 +117,9 @@ export class Character implements ICharacter {
 
         if (skill.damageType == DamageType.none) {
             targets = GameRunner.get().party.filter(x => !x.isDead)
+            if (skill.statusEffectData) {
+                this.applyStatusEffect(skill, targets);
+            }
             GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} healing for ${skill.heal}hp.`, Color.orange)
             targets.forEach(target => {
                 target.heal(skill.heal)
@@ -131,6 +136,10 @@ export class Character implements ICharacter {
 
             GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} dealing ${damage} damage.`, Color.orange)
             if (!isMiss) {
+                if (skill.statusEffectData) {
+                    this.applyStatusEffect(skill, targets);
+                }
+
                 if (isCritical) {
                     GameUI.get().log('It was a critical hit!', Color.blue, 1);
                 }
@@ -154,6 +163,10 @@ export class Character implements ICharacter {
 
             GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} dealing ${damage} damage.`, Color.orange)
             if (!isMiss) {
+                if (skill.statusEffectData) {
+                    this.applyStatusEffect(skill, targets);
+                }
+
                 if (isCritical) {
                     GameUI.get().log('It was a critical hit!', Color.blue, 1);
                 }
@@ -168,6 +181,47 @@ export class Character implements ICharacter {
         }
         this.deductAp(skill.cost)
         GameUI.get().log('&nbsp;', null, 1)
+    }
+
+    private applyStatusEffect(skill: Skill, targets: Character[]) {
+        const data = skill.statusEffectData;
+        const effect = DataService.get().getStatusEffect(data.name, data.amount, data.turns);
+        for (let target of targets) {
+            if (!target.statusEffects.some(x => x.name == effect.name)) {
+                target.statusEffects.push(effect);
+            }
+        }
+    }
+
+    public checkStatusEffects() {
+        const buffs: StatusEffect[] = this.statusEffects.filter(x => x.isBuff)
+        const debuffs: StatusEffect[] = this.statusEffects.filter(x => !x.isBuff)
+
+        if (buffs.length > 0) {
+            for (let buff of buffs) {
+                GameUI.get().log(buff.getText(this), Color.blue)
+                this.heal(buff.amount);
+                const isDepleted = buff.decreaseTurns();
+                if (isDepleted && !this.isDead) {
+                    this.statusEffects = this.statusEffects.filter(x => x.name == buff.name);
+                    GameUI.get().log(`The effects of ${buff.name} has worn off.`, Color.gray, 1);
+                }
+            }
+            GameUI.get().log('&nbsp;', null, 1);
+        }
+
+        if (debuffs.length > 0) {
+            for (let debuff of debuffs) {
+                GameUI.get().log(debuff.getText(this), Color.red)
+                this.takeDamage(debuff.amount);
+                const isDepleted = debuff.decreaseTurns();
+                if (isDepleted && !this.isDead) {
+                    this.statusEffects = this.statusEffects.filter(x => x.name == debuff.name);
+                    GameUI.get().log(`${this.getNameAndNumber()} is no longer effected by ${debuff.name}.`, Color.gray, 1);
+                }
+            }
+            GameUI.get().log('&nbsp;', null, 1);
+        }
     }
 
     private calculateDamage(skillDamage: number, type: DamageType): number {
