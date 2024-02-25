@@ -85,12 +85,12 @@ export class Character {
         }
         if (skill.damageType == DamageType.none) {
             targets = GameRunner.get().party.filter(x => !x.isDead);
-            if (skill.statusEffectData) {
-                this.applyStatusEffect(skill, targets);
-            }
             GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} healing for ${skill.heal}hp.`, Color.orange);
             targets.forEach(target => {
                 target.heal(skill.heal);
+                if (skill.statusEffectData) {
+                    this.applyStatusEffect(skill, target);
+                }
             });
         }
         if (skill.damageType == DamageType.physical) {
@@ -101,14 +101,14 @@ export class Character {
             const isMiss = this.isMiss();
             GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} dealing ${damage} damage.`, Color.orange);
             if (!isMiss) {
-                if (skill.statusEffectData) {
-                    this.applyStatusEffect(skill, targets);
-                }
                 if (isCritical) {
                     GameUI.get().log('It was a critical hit!', Color.blue, 1);
                 }
                 for (let target of targets) {
                     target.takeDamage(damage);
+                    if (skill.statusEffectData) {
+                        this.applyStatusEffect(skill, target);
+                    }
                 }
             }
             else {
@@ -123,14 +123,14 @@ export class Character {
             const isMiss = this.isMiss();
             GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} dealing ${damage} damage.`, Color.orange);
             if (!isMiss) {
-                if (skill.statusEffectData) {
-                    this.applyStatusEffect(skill, targets);
-                }
                 if (isCritical) {
                     GameUI.get().log('It was a critical hit!', Color.blue, 1);
                 }
                 for (let target of targets) {
                     target.takeDamage(damage);
+                    if (skill.statusEffectData) {
+                        this.applyStatusEffect(skill, target);
+                    }
                 }
             }
             else {
@@ -140,13 +140,13 @@ export class Character {
         this.deductAp(skill.cost);
         GameUI.get().log('&nbsp;', null, 1);
     }
-    applyStatusEffect(skill, targets) {
+    applyStatusEffect(skill, target) {
         const data = skill.statusEffectData;
         const effect = DataService.get().getStatusEffect(data.name, data.amount, data.turns);
-        for (let target of targets) {
-            if (!target.statusEffects.some(x => x.name == effect.name)) {
-                target.statusEffects.push(effect);
-            }
+        if (!target.statusEffects.some(x => x.name == effect.name) && !target.isDead) {
+            target.statusEffects.push(effect);
+            const symbol = effect.isBuff ? "⇧" : "⇩";
+            GameUI.get().log(`${symbol} ${effect.name} was applied to ${target.getNameAndNumber()}.`);
         }
     }
     checkStatusEffects() {
