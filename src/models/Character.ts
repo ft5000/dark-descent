@@ -186,8 +186,9 @@ export class Character implements ICharacter {
         const effect = DataService.get().getStatusEffect(data.name, data.amount, data.turns);
         if (!target.statusEffects.some(x => x.name == effect.name) && !target.isDead) {
             target.statusEffects.push(effect);
-            const symbol = effect.isBuff ? "⇧" : "⇩";
-            GameUI.get().log(`${symbol} ${effect.name} was applied to ${target.getNameAndNumber()}.`);
+            const color = effect.isBuff ? Color.green : Color.red;
+            const symbol = effect.isBuff ? "▲" : "▼";
+            GameUI.get().log(`${symbol} ${effect.name} was applied to ${target.getNameAndNumber()}.`, color);
         }
     }
 

@@ -8,6 +8,10 @@
         "isBuff": false
     },
     {
+        "name": "Burn",
+        "isBuff": false
+    },
+    {
         "name": "Blessing",
         "isBuff": true
     }

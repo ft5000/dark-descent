@@ -18,10 +18,10 @@ export class StatusEffect {
     }
     getText(character) {
         if (this.isBuff) {
-            return `⇧ ${character.getNameAndNumber()} is effected by ${this.name}.`;
+            return `▲ ${character.getNameAndNumber()} is effected by ${this.name}.`;
         }
         else {
-            return `⇩ ${character.getNameAndNumber()} is afflicted by ${this.name}.`;
+            return `▼ ${character.getNameAndNumber()} is afflicted by ${this.name}.`;
         }
     }
 }

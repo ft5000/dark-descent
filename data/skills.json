@@ -46,11 +46,16 @@
     },
     {
         "name": "Fire Rain",
-        "damage": 14,
+        "damage": 12,
         "heal": 0,
         "cost": 8,
         "damageType": 2,
-        "aoe": true
+        "aoe": true,
+        "statusEffect": {
+            "name": "Burn",
+            "amount": 10,
+            "turns": 5
+        }
     },
     {
         "name": "Basic Heal",

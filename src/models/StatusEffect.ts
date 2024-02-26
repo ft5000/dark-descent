@@ -27,10 +27,10 @@ export class StatusEffect {
 
     public getText(character: Character): string {
         if (this.isBuff) {
-            return `⇧ ${character.getNameAndNumber()} is effected by ${this.name}.`
+            return `▲ ${character.getNameAndNumber()} is effected by ${this.name}.`
         }
         else {
-            return `⇩ ${character.getNameAndNumber()} is afflicted by ${this.name}.`
+            return `▼ ${character.getNameAndNumber()} is afflicted by ${this.name}.`
         }
     }
 }
