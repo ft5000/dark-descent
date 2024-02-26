@@ -1,131 +1,149 @@
 [
-    {
-        "name": "Skeleton Wizard",
-        "hp": 60,
-        "physDmg": 6,
-        "magDmg": 12,
-        "critDmg": 1.5,
-        "critChance": 10,
-        "isEnemy": true,
-        "type": 1,
-        "skills": [
-            {
-                "name": "Basic Attack"
-            },
-            {
-                "name": "Ice Bolt"
-            },
-            {
-                "name": "Fire Rain"
-            }
-        ]
-    },
-    {
-        "name": "Skeleton Rogue",
-        "hp": 60,
-        "physDmg": 14,
-        "magDmg": 0,
-        "critDmg": 2,
-        "critChance": 10,
-        "isEnemy": true,
-        "type": 1,
-        "skills": [
-            {
-                "name": "Basic Attack"
-            },
-            {
-                "name": "Sneak Attack"
-            }
-        ]
-    },
-    {
-        "name": "Skeleton Archer",
-        "hp": 80,
-        "physDmg": 14,
-        "magDmg": 0,
-        "critDmg": 2,
-        "critChance": 10,
-        "isEnemy": true,
-        "type": 1,
-        "skills": [
-            {
-                "name": "Basic Attack"
-            },
-            {
-                "name": "Sharp Shot"
-            }
-        ]
-    },
-    {
-        "name": "Demonic Ooze",
-        "hp": 80,
-        "physDmg": 10,
-        "magDmg": 12,
-        "critDmg": 1.5,
-        "critChance": 10,
-        "isEnemy": true,
-        "type": 1,
-        "skills": [
-            {
-                "name": "Basic Attack"
-            },
-            {
-                "name": "Boil Blood"
-            },
-            {
-                "name": "Curse"
-            }
-        ]
-    },
-    {
-        "name": "Giant Rat",
-        "hp": 60,
-        "physDmg": 12,
-        "magDmg": 0,
-        "critDmg": 1.5,
-        "critChance": 10,
-        "isEnemy": true,
-        "type": 1,
-        "skills": [
-            {
-                "name": "Bite"
-            }
-        ]
-    },
-    {
-        "name": "Troll",
-        "hp": 160,
-        "physDmg": 18,
-        "magDmg": 0,
-        "critDmg": 2,
-        "critChance": 0.5,
-        "isEnemy": true,
-        "type": 1,
-        "skills": [
-            {
-                "name": "Bash"
-            },
-            {
-                "name": "Smash"
-            }
-        ]
-    },
-    {
-        "name": "Bloated Corpse",
-        "hp": 60,
-        "physDmg": 14,
-        "magDmg": 0,
-        "critDmg": 1.5,
-        "critChance": 10,
-        "isEnemy": true,
-        "type": 1,
-        "skills": [
-            {
-                "name": "Basic Attack"
-            },
-            {
-                "name": "Bite"
-            }
-        ]
-    }
+	{
+		"name": "Skeleton Wizard",
+		"hp": 60,
+		"physDmg": 6,
+		"magDmg": 12,
+		"critDmg": 1.5,
+		"critChance": 10,
+		"isEnemy": true,
+		"type": 1,
+		"skills": [
+			{
+				"name": "Basic Attack"
+			},
+			{
+				"name": "Ice Bolt"
+			},
+			{
+				"name": "Fire Rain"
+			}
+		]
+	},
+	{
+		"name": "Skeleton Rogue",
+		"hp": 60,
+		"physDmg": 14,
+		"magDmg": 0,
+		"critDmg": 2,
+		"critChance": 10,
+		"isEnemy": true,
+		"type": 1,
+		"skills": [
+			{
+				"name": "Basic Attack"
+			},
+			{
+				"name": "Sneak Attack"
+			}
+		]
+	},
+	{
+		"name": "Skeleton Archer",
+		"hp": 80,
+		"physDmg": 14,
+		"magDmg": 0,
+		"critDmg": 2,
+		"critChance": 10,
+		"isEnemy": true,
+		"type": 1,
+		"skills": [
+			{
+				"name": "Basic Attack"
+			},
+			{
+				"name": "Sharp Shot"
+			}
+		]
+	},
+	{
+		"name": "Demonic Ooze",
+		"hp": 80,
+		"physDmg": 10,
+		"magDmg": 12,
+		"critDmg": 1.5,
+		"critChance": 10,
+		"isEnemy": true,
+		"type": 1,
+		"skills": [
+			{
+				"name": "Basic Attack"
+			},
+			{
+				"name": "Boil Blood"
+			},
+			{
+				"name": "Curse"
+			}
+		]
+	},
+	{
+		"name": "Giant Rat",
+		"hp": 60,
+		"physDmg": 12,
+		"magDmg": 0,
+		"critDmg": 1.5,
+		"critChance": 10,
+		"isEnemy": true,
+		"type": 1,
+		"skills": [
+			{
+				"name": "Bite"
+			}
+		]
+	},
+	{
+		"name": "Troll",
+		"hp": 160,
+		"physDmg": 18,
+		"magDmg": 0,
+		"critDmg": 2,
+		"critChance": 0.5,
+		"isEnemy": true,
+		"type": 1,
+		"skills": [
+			{
+				"name": "Bash"
+			},
+			{
+				"name": "Smash"
+			}
+		]
+	},
+	{
+		"name": "Bloated Corpse",
+		"hp": 60,
+		"physDmg": 14,
+		"magDmg": 0,
+		"critDmg": 1.5,
+		"critChance": 10,
+		"isEnemy": true,
+		"type": 1,
+		"skills": [
+			{
+				"name": "Basic Attack"
+			},
+			{
+				"name": "Bite"
+			}
+		]
+	},
+	{
+		"name": "Abyssal Imp",
+		"hp": 60,
+		"physDmg": 14,
+		"magDmg": 0,
+		"critDmg": 1.5,
+		"critChance": 10,
+		"isEnemy": true,
+		"type": 1,
+		"skills": [
+			{
+				"name": "Basic Attack"
+			},
+			{
+				"name": "Lacerating Slash"
+			}
+		]
+	}
 ]

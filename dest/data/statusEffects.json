@@ -12,6 +12,10 @@
         "isBuff": false
     },
     {
+        "name": "Poison",
+        "isBuff": false
+    },
+    {
         "name": "Blessing",
         "isBuff": true
     }

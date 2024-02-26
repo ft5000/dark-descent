@@ -127,5 +127,23 @@
                 "name": "Bite"
             }
         ]
+    },
+    {
+        "name": "Abyssal Imp",
+        "hp": 60,
+        "physDmg": 14,
+        "magDmg": 0,
+        "critDmg": 1.5,
+        "critChance": 10,
+        "isEnemy": true,
+        "type": 1,
+        "skills": [
+            {
+                "name": "Basic Attack"
+            },
+            {
+                "name": "Lacerating Slash"
+            }
+        ]
     }
 ]

@@ -8,6 +8,20 @@
         "aoe": false
     },
     {
+        "name": "Lacerating Slash",
+        "damage": 6,
+        "heal": 0,
+        "cost": 8,
+        "damageType": 1,
+        "aoe": false,
+        "statusEffect": {
+            "name": "Bleed",
+            "amount": 12,
+            "turns": 3,
+            "chance": 0.9
+        }
+    },
+    {
         "name": "Whirlwind",
         "damage": 12,
         "heal": 0,
@@ -133,7 +147,13 @@
         "heal": 0,
         "cost": 2,
         "damageType": 1,
-        "aoe": false
+        "aoe": false,
+        "statusEffect": {
+            "name": "Poison",
+            "amount": 6,
+            "turns": 5,
+            "chance": 0.5
+        }
     },
     {
         "name": "Bash",

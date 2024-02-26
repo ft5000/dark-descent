@@ -4,13 +4,12 @@
         "encounters": [
             {
                 "enemies": [
-                    "Skeleton Archer",
-                    "Skeleton Archer",
-                    "Skeleton Archer"
+                    "Abyssal Imp",
+                    "Abyssal Imp"
                 ],
                 "text": [
-                    "You can hear the sound of rattling bones.",
-                    "Hollow sockets gleam with malevolence."
+                    "Their emaciated limbs terminate in elongated, claw-like fingers.",
+                    "Pulsating veins beneath their ashen skin, carrying the corrupted life force that courses through their fiendish bodies."
                 ]
             },
             {
