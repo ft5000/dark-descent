@@ -32,7 +32,7 @@
         "aoe": false,
         "statusEffect": {
             "name": "Bleed",
-            "amount": 100,
+            "amount": 6,
             "turns": 3,
             "chance": 0.6
         }
@@ -54,7 +54,7 @@
         "aoe": true,
         "statusEffect": {
             "name": "Burn",
-            "amount": 100,
+            "amount": 8,
             "turns": 3,
             "chance": 0.9
         }
