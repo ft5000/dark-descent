@@ -161,7 +161,7 @@ export class Character {
         if (buffs.length > 0) {
             for (let buff of buffs) {
                 if (!this.isDead) {
-                    GameUI.get().log(buff.getText(this), Color.blue);
+                    GameUI.get().log(buff.getText(this), Color.blue, 1);
                     this.heal(buff.amount);
                     const isDepleted = buff.decreaseTurns();
                     if (isDepleted) {
@@ -170,12 +170,12 @@ export class Character {
                     }
                 }
             }
-            GameUI.get().log('&nbsp;', null, 1);
+            GameUI.get().log('&nbsp;');
         }
         if (debuffs.length > 0) {
             for (let debuff of debuffs) {
                 if (!this.isDead) {
-                    GameUI.get().log(debuff.getText(this), Color.red);
+                    GameUI.get().log(debuff.getText(this), Color.red, 1);
                     this.takeDamage(debuff.amount);
                     const isDepleted = debuff.decreaseTurns();
                     if (isDepleted) {
@@ -184,7 +184,7 @@ export class Character {
                     }
                 }
             }
-            GameUI.get().log('&nbsp;', null, 1);
+            GameUI.get().log('&nbsp;');
         }
     }
     calculateDamage(skillDamage, type) {
