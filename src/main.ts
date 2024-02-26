@@ -78,9 +78,9 @@ export class DataService {
         return this.names;
     }
 
-    public getStatusEffect(name: string, amount: number, turns: number) {
+    public getStatusEffect(name: string, amount: number, turns: number, chance: number) {
         var effect = new StatusEffect(this.statusEffects.find(x => x.name == name))
-        effect.setSpecifics(amount, turns)
+        effect.setSpecifics(amount, turns, chance)
         return effect;
     }
 

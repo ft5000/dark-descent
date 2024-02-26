@@ -183,12 +183,14 @@ export class Character implements ICharacter {
 
     private applyStatusEffect(skill: Skill, target: Character) {
         const data = skill.statusEffectData;
-        const effect = DataService.get().getStatusEffect(data.name, data.amount, data.turns);
-        if (!target.statusEffects.some(x => x.name == effect.name) && !target.isDead) {
-            target.statusEffects.push(effect);
-            const color = effect.isBuff ? Color.green : Color.red;
-            const symbol = effect.isBuff ? "▲" : "▼";
-            GameUI.get().log(`${symbol} ${effect.name} was applied to ${target.getNameAndNumber()}.`, color);
+        const effect = DataService.get().getStatusEffect(data.name, data.amount, data.turns, data.chance);
+        if (!this.resistStatusEffect(effect)) {
+            if (!target.statusEffects.some(x => x.name == effect.name) && !target.isDead) {
+                target.statusEffects.push(effect);
+                const color = effect.isBuff ? Color.green : Color.red;
+                const symbol = effect.isBuff ? "▲" : "▼";
+                GameUI.get().log(`${symbol} ${effect.name} was applied to ${target.getNameAndNumber()}.`, color);
+            }
         }
     }
 
@@ -231,6 +233,11 @@ export class Character implements ICharacter {
     private isCriticalHit(): boolean {
         const roll = Math.random() * 100;
         return roll <= this.critChance ? true : false;
+    }
+
+    private resistStatusEffect(effect: StatusEffect): boolean {
+        const roll = Math.random();
+        return roll > effect.chance ? true : false;
     }
 
     private isMiss(): boolean {

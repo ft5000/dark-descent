@@ -3,14 +3,16 @@ export class StatusEffect {
         this.amount = 0;
         this.turnsLeft = 0;
         this.turns = 0;
+        this.chance = 1;
         this.data = data;
         this.name = data.name;
         this.isBuff = data.isBuff;
     }
-    setSpecifics(amount, turns) {
+    setSpecifics(amount, turns, chance) {
         this.amount = amount;
         this.turns = turns;
         this.turnsLeft = turns;
+        this.chance = chance;
     }
     decreaseTurns() {
         this.turnsLeft -= this.turnsLeft > 0 ? 1 : 0;

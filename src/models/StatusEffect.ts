@@ -5,6 +5,7 @@ export class StatusEffect {
     amount: number = 0;
     turnsLeft: number = 0;
     turns: number = 0;
+    chance: number = 1;
     isBuff: boolean;
     data: any;
 
@@ -14,10 +15,11 @@ export class StatusEffect {
         this.isBuff = data.isBuff;
     }
 
-    public setSpecifics(amount: number, turns: number) {
+    public setSpecifics(amount: number, turns: number, chance: number) {
         this.amount = amount;
         this.turns = turns;
         this.turnsLeft = turns;
+        this.chance = chance;
     }
 
     public decreaseTurns(): boolean {

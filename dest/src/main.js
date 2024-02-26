@@ -63,9 +63,9 @@ export class DataService {
     getNames() {
         return this.names;
     }
-    getStatusEffect(name, amount, turns) {
+    getStatusEffect(name, amount, turns, chance) {
         var effect = new StatusEffect(this.statusEffects.find(x => x.name == name));
-        effect.setSpecifics(amount, turns);
+        effect.setSpecifics(amount, turns, chance);
         return effect;
     }
     getHero(type) {
