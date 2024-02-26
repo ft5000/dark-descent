@@ -43,7 +43,7 @@ export class GameUI {
             for (let item of this.messLog) {
                 this.drawText(item);
                 // item.delay
-                yield this.sleep(item.delay);
+                yield this.sleep(0);
             }
             this.messLog = [];
             this.updateCharacterInfo();

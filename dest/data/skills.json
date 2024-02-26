@@ -33,7 +33,7 @@
         "statusEffect": {
             "name": "Bleed",
             "amount": 8,
-            "turns": 5,
+            "turns": 3,
             "chance": 0.6
         }
     },
@@ -77,7 +77,7 @@
     },
     {
         "name": "Song of Healing",
-        "damage": 0,
+        "damage": 8,
         "heal": 0,
         "cost": 8,
         "damageType": 0,

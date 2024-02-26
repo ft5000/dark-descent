@@ -120,7 +120,7 @@ export class Character implements ICharacter {
             GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} healing for ${skill.heal}hp.`, Color.orange)
             targets.forEach(target => {
                 target.heal(skill.heal)
-                if (skill.statusEffectData) {
+                if (skill.statusEffectData && !target.isDead) {
                     this.applyStatusEffect(skill, target);
                 }
             })
@@ -142,7 +142,7 @@ export class Character implements ICharacter {
 
                 for (let target of targets) {
                     target.takeDamage(damage)
-                    if (skill.statusEffectData) {
+                    if (skill.statusEffectData && !target.isDead) {
                         this.applyStatusEffect(skill, target);
                     }
                 }
@@ -168,7 +168,7 @@ export class Character implements ICharacter {
 
                 for (let target of targets) {
                     target.takeDamage(damage)
-                    if (skill.statusEffectData) {
+                    if (skill.statusEffectData && !target.isDead) {
                         this.applyStatusEffect(skill, target);
                     }
                 }
@@ -191,6 +191,9 @@ export class Character implements ICharacter {
                 const symbol = effect.isBuff ? "▲" : "▼";
                 GameUI.get().log(`${symbol} ${effect.name} was applied to ${target.getNameAndNumber()}.`, color);
             }
+        }
+        else {
+            GameUI.get().log(`${target.getNameAndNumber()} resisted ${effect.name}.`, Color.gray);
         }
     }
 
