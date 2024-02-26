@@ -160,24 +160,28 @@ export class Character {
         const debuffs = this.statusEffects.filter(x => !x.isBuff);
         if (buffs.length > 0) {
             for (let buff of buffs) {
-                GameUI.get().log(buff.getText(this), Color.blue);
-                this.heal(buff.amount);
-                const isDepleted = buff.decreaseTurns();
-                if (isDepleted && !this.isDead) {
-                    this.statusEffects = this.statusEffects.filter(x => x.name == buff.name);
-                    GameUI.get().log(`The effects of ${buff.name} has worn off.`, Color.gray, 1);
+                if (!this.isDead) {
+                    GameUI.get().log(buff.getText(this), Color.blue);
+                    this.heal(buff.amount);
+                    const isDepleted = buff.decreaseTurns();
+                    if (isDepleted) {
+                        this.statusEffects = this.statusEffects.filter(x => x.name == buff.name);
+                        GameUI.get().log(`The effects of ${buff.name} has worn off.`, Color.gray, 1);
+                    }
                 }
             }
             GameUI.get().log('&nbsp;', null, 1);
         }
         if (debuffs.length > 0) {
             for (let debuff of debuffs) {
-                GameUI.get().log(debuff.getText(this), Color.red);
-                this.takeDamage(debuff.amount);
-                const isDepleted = debuff.decreaseTurns();
-                if (isDepleted && !this.isDead) {
-                    this.statusEffects = this.statusEffects.filter(x => x.name == debuff.name);
-                    GameUI.get().log(`${this.getNameAndNumber()} is no longer effected by ${debuff.name}.`, Color.gray, 1);
+                if (!this.isDead) {
+                    GameUI.get().log(debuff.getText(this), Color.red);
+                    this.takeDamage(debuff.amount);
+                    const isDepleted = debuff.decreaseTurns();
+                    if (isDepleted) {
+                        this.statusEffects = this.statusEffects.filter(x => x.name == debuff.name);
+                        GameUI.get().log(`${this.getNameAndNumber()} is no longer effected by ${debuff.name}.`, Color.gray, 1);
+                    }
                 }
             }
             GameUI.get().log('&nbsp;', null, 1);

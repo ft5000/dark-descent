@@ -14,7 +14,7 @@ export class GameRunner {
         this.partyIsDead = false;
         this.enemiesAreDead = true;
         this.levels = [];
-        this.isnextEncounter = true;
+        this.isNextEncounter = true;
         this.gameOver = true;
         this.newInstance = true;
     }
@@ -31,7 +31,7 @@ export class GameRunner {
         this.enemiesAreDead = true;
         this.levels = [];
         this.level = null;
-        this.isnextEncounter = true;
+        this.isNextEncounter = true;
         GameUI.get().removeCharacterInfo();
         this.newParty();
         this.initLevels();
@@ -64,23 +64,24 @@ export class GameRunner {
         this.runEncounter();
     }
     nextEncounter() {
-        this.isnextEncounter = true;
+        this.isNextEncounter = true;
         this.enemies = [];
         const i = this.currentLevel - 1;
         this.level = this.levels[i];
         this.enemies = this.level.getCurrentEnemies();
+        this.enemiesAreDead = false;
         GameUI.get().log('&nbsp');
     }
     runEncounter() {
         if (this.isNewLevel()) {
             this.newLevel();
         }
-        if (this.isnextEncounter) {
+        if (this.isNextEncounter) {
             this.level.getEncounterText().forEach(x => {
                 GameUI.get().log(x, null, 1);
             });
             GameUI.get().log('&nbsp;');
-            this.isnextEncounter = false;
+            this.isNextEncounter = false;
         }
         this.checkIfEnemiesAreDead();
         this.checkIfPartyIsDead();
@@ -107,6 +108,13 @@ export class GameRunner {
             const enemies = this.enemies.filter(x => !x.isDead);
             for (let enemy of enemies) {
                 this.enemyTurn(enemy);
+            }
+            if (this.checkIfEnemiesAreDead()) {
+                GameUI.get().log('Enemies have been defeated.');
+                GameUI.get().log('&nbsp;');
+                if (!this.level.nextEncounter()) {
+                    this.currentLevel++;
+                }
             }
         }
         if (this.enemiesAreDead && this.currentLevel <= AppInfo.numOfLevels) {
@@ -180,10 +188,10 @@ export class GameRunner {
         return targets[i];
     }
     checkIfEnemiesAreDead() {
-        return this.enemiesAreDead = !this.enemies.some(x => !x.isDead);
+        return this.enemiesAreDead = this.enemies.filter(x => !x.isDead).length == 0;
     }
     checkIfPartyIsDead() {
-        return this.partyIsDead = !this.party.some(x => !x.isDead);
+        return this.partyIsDead = this.party.filter(x => !x.isDead).length == 0;
     }
     isGameOver() {
         return this.gameOver;

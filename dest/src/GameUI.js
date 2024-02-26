@@ -43,7 +43,7 @@ export class GameUI {
             for (let item of this.messLog) {
                 this.drawText(item);
                 // item.delay
-                yield this.sleep(0);
+                yield this.sleep(item.delay);
             }
             this.messLog = [];
             this.updateCharacterInfo();
@@ -209,17 +209,15 @@ export class GameUI {
         const party = GameRunner.get().party;
         for (let hero of party) {
             const element = document.getElementById(hero.name);
-            if (!hero.isDead) {
-                const hp = element.children.namedItem('hp');
-                hp.style.color = hero.hp > (hero.hpMax / 2) ? Color.green : Color.red;
-                if (hero.hp > (hero.hpMax / 2) && hero.hp < (hero.hpMax / 1.5)) {
-                    hp.style.color = Color.orange;
-                }
-                hp.innerHTML = `Health:&nbsp;${hero.hp}/${hero.hpMax}`;
-                const ap = element.children.namedItem('ap');
-                ap.innerHTML = `Action Points:&nbsp;${hero.ap}/${hero.apMax}`;
+            const hp = element.children.namedItem('hp');
+            hp.style.color = hero.hp > (hero.hpMax / 2) ? Color.green : Color.red;
+            if (hero.hp > (hero.hpMax / 2) && hero.hp < (hero.hpMax / 1.5)) {
+                hp.style.color = Color.orange;
             }
-            else {
+            hp.innerHTML = `Health:&nbsp;${hero.hp}/${hero.hpMax}`;
+            const ap = element.children.namedItem('ap');
+            ap.innerHTML = `Action Points:&nbsp;${hero.ap}/${hero.apMax}`;
+            if (hero.isDead) {
                 for (let child of element.children) {
                     if (child.id) {
                         const stat = element.children.namedItem(child.id);
