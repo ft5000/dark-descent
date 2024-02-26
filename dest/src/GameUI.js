@@ -63,9 +63,6 @@ export class GameUI {
         element.innerHTML = `<span>${item.mess}</span>`;
         element.style.color = item.color;
         this.textbox.append(element);
-        // if (this.isOverflown()) {
-        //     this.textbox.removeChild(this.textbox.firstChild);
-        // }
         if (this.textbox.childElementCount > 100) {
             this.textbox.removeChild(this.textbox.firstChild);
         }
@@ -156,12 +153,26 @@ export class GameUI {
             for (let character of characters) {
                 this.log(`${character.getNameAndNumber()}`);
                 this.log(`Health: ${character.hp}/${character.hpMax}`);
-                this.log(`Action Ponts: ${character.ap}/${character.apMax}`);
+                this.log(`Action Points: ${character.ap}/${character.apMax}`);
                 this.log("Skills:");
                 const trait = character.trait;
                 trait.skills.forEach(skill => {
                     this.log(`&nbsp;• ${skill.name}`);
                 });
+                this.log("Status Effects:");
+                if (character.statusEffects.length == 0) {
+                    this.log(`&nbsp;• None`);
+                }
+                else {
+                    for (let effect of character.statusEffects) {
+                        if (effect.isBuff) {
+                            this.log(`&nbsp;▲ ${effect.name}, +${effect.amount}hp for ${effect.turnsLeft}/${effect.turns} turns.`, Color.green);
+                        }
+                        else {
+                            this.log(`&nbsp;▼ ${effect.name}, -${effect.amount}hp for ${effect.turnsLeft}/${effect.turns} turns.`, Color.red);
+                        }
+                    }
+                }
                 this.log("&nbsp;");
             }
         }
