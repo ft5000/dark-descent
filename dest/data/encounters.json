@@ -3,24 +3,60 @@
         "level": 1,
         "encounters": [
             {
-                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Archer"],
-                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
+                "enemies": [
+                    "Skeleton Archer",
+                    "Skeleton Archer",
+                    "Skeleton Archer"
+                ],
+                "text": [
+                    "You can hear the sound of rattling bones.",
+                    "Hollow sockets gleam with malevolence."
+                ]
             },
             {
-                "enemies": ["Bloated Corpse", "Bloated Corpse", "Giant Rat"],
-                "text": ["The air is thick with the sickly sweet odor of decomposition.", "A nauseating presence lingers."]
+                "enemies": [
+                    "Bloated Corpse",
+                    "Bloated Corpse",
+                    "Giant Rat"
+                ],
+                "text": [
+                    "The air is thick with the sickly sweet odor of decomposition.",
+                    "A nauseating presence lingers."
+                ]
             },
             {
-                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat", "Giant Rat"],
-                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+                "enemies": [
+                    "Giant Rat",
+                    "Giant Rat",
+                    "Giant Rat",
+                    "Giant Rat"
+                ],
+                "text": [
+                    "The scent of decay hangs heavy.",
+                    "A horde of giant rats emerges from the shadows."
+                ]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Archer"],
-                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
+                "enemies": [
+                    "Skeleton Rogue",
+                    "Skeleton Rogue",
+                    "Skeleton Archer"
+                ],
+                "text": [
+                    "You can hear the sound of rattling bones.",
+                    "Hollow sockets gleam with malevolence."
+                ]
             },
             {
-                "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
-                "text": ["An ominous presence materializes.", "You encounter a skeleton wizard and his minions."]
+                "enemies": [
+                    "Demonic Ooze",
+                    "Demonic Ooze",
+                    "Skeleton Wizard"
+                ],
+                "text": [
+                    "An ominous presence materializes.",
+                    "You encounter a skeleton wizard and his minions."
+                ]
             }
         ]
     },
@@ -28,24 +64,61 @@
         "level": 2,
         "encounters": [
             {
-                "enemies": ["Skeleton Archer", "Skeleton Archer", "Skeleton Archer"],
-                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
+                "enemies": [
+                    "Skeleton Archer",
+                    "Skeleton Archer",
+                    "Skeleton Archer"
+                ],
+                "text": [
+                    "You can hear the sound of rattling bones.",
+                    "Hollow sockets gleam with malevolence."
+                ]
             },
             {
-                "enemies": ["Bloated Corpse", "Bloated Corpse", "Bloated Corpse", "Giant Rat"],
-                "text": ["The air is thick with the sickly sweet odor of decomposition.", "A nauseating presence lingers."]
+                "enemies": [
+                    "Bloated Corpse",
+                    "Bloated Corpse",
+                    "Bloated Corpse",
+                    "Giant Rat"
+                ],
+                "text": [
+                    "The air is thick with the sickly sweet odor of decomposition.",
+                    "A nauseating presence lingers."
+                ]
             },
             {
-                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat", "Giant Rat"],
-                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+                "enemies": [
+                    "Giant Rat",
+                    "Giant Rat",
+                    "Giant Rat",
+                    "Giant Rat"
+                ],
+                "text": [
+                    "The scent of decay hangs heavy.",
+                    "A horde of giant rats emerges from the shadows."
+                ]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Archer"],
-                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
+                "enemies": [
+                    "Skeleton Rogue",
+                    "Skeleton Rogue",
+                    "Skeleton Archer"
+                ],
+                "text": [
+                    "You can hear the sound of rattling bones.",
+                    "Hollow sockets gleam with malevolence."
+                ]
             },
             {
-                "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
-                "text": ["An ominous presence materializes.", "You encounter a skeleton wizard and his minions."]
+                "enemies": [
+                    "Demonic Ooze",
+                    "Demonic Ooze",
+                    "Skeleton Wizard"
+                ],
+                "text": [
+                    "An ominous presence materializes.",
+                    "You encounter a skeleton wizard and his minions."
+                ]
             }
         ]
     },
@@ -53,24 +126,58 @@
         "level": 3,
         "encounters": [
             {
-                "enemies": ["Troll"],
-                "text": ["The ground beneath you shakes.", "A behemoth guards the passage ahead."]
+                "enemies": [
+                    "Troll"
+                ],
+                "text": [
+                    "The ground beneath you shakes.",
+                    "A behemoth guards the passage ahead."
+                ]
             },
             {
-                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat"],
-                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+                "enemies": [
+                    "Giant Rat",
+                    "Giant Rat",
+                    "Giant Rat"
+                ],
+                "text": [
+                    "The scent of decay hangs heavy.",
+                    "A horde of giant rats emerges from the shadows."
+                ]
             },
             {
-                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat", "Giant Rat"],
-                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+                "enemies": [
+                    "Giant Rat",
+                    "Giant Rat",
+                    "Giant Rat",
+                    "Giant Rat"
+                ],
+                "text": [
+                    "The scent of decay hangs heavy.",
+                    "A horde of giant rats emerges from the shadows."
+                ]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Archer"],
-                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
+                "enemies": [
+                    "Skeleton Rogue",
+                    "Skeleton Rogue",
+                    "Skeleton Archer"
+                ],
+                "text": [
+                    "You can hear the sound of rattling bones.",
+                    "Hollow sockets gleam with malevolence."
+                ]
             },
             {
-                "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
-                "text": ["An ominous presence materializes.", "You encounter a skeleton wizard and his minions."]
+                "enemies": [
+                    "Demonic Ooze",
+                    "Demonic Ooze",
+                    "Skeleton Wizard"
+                ],
+                "text": [
+                    "An ominous presence materializes.",
+                    "You encounter a skeleton wizard and his minions."
+                ]
             }
         ]
     },
@@ -78,24 +185,56 @@
         "level": 4,
         "encounters": [
             {
-                "enemies": ["Troll"],
-                "text": ["The ground beneath you shakes.", "A behemoth guards the passage ahead."]
+                "enemies": [
+                    "Troll"
+                ],
+                "text": [
+                    "The ground beneath you shakes.",
+                    "A behemoth guards the passage ahead."
+                ]
             },
             {
-                "enemies": ["Troll"],
-                "text": ["The ground beneath you shakes.", "A behemoth guards the passage ahead."]
+                "enemies": [
+                    "Troll"
+                ],
+                "text": [
+                    "The ground beneath you shakes.",
+                    "A behemoth guards the passage ahead."
+                ]
             },
             {
-                "enemies": ["Giant Rat", "Giant Rat", "Giant Rat", "Giant Rat"],
-                "text": ["The scent of decay hangs heavy.", "A horde of giant rats emerges from the shadows."]
+                "enemies": [
+                    "Giant Rat",
+                    "Giant Rat",
+                    "Giant Rat",
+                    "Giant Rat"
+                ],
+                "text": [
+                    "The scent of decay hangs heavy.",
+                    "A horde of giant rats emerges from the shadows."
+                ]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Archer"],
-                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
+                "enemies": [
+                    "Skeleton Rogue",
+                    "Skeleton Rogue",
+                    "Skeleton Archer"
+                ],
+                "text": [
+                    "You can hear the sound of rattling bones.",
+                    "Hollow sockets gleam with malevolence."
+                ]
             },
             {
-                "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
-                "text": ["An ominous presence materializes.", "You encounter a skeleton wizard and his minions."]
+                "enemies": [
+                    "Demonic Ooze",
+                    "Demonic Ooze",
+                    "Skeleton Wizard"
+                ],
+                "text": [
+                    "An ominous presence materializes.",
+                    "You encounter a skeleton wizard and his minions."
+                ]
             }
         ]
     },
@@ -103,24 +242,54 @@
         "level": 5,
         "encounters": [
             {
-                "enemies": ["Troll", "Troll"],
-                "text": ["The ground beneath you shakes.", "A behemoth guards the passage ahead."]
+                "enemies": [
+                    "Troll",
+                    "Troll"
+                ],
+                "text": [
+                    "The ground beneath you shakes.",
+                    "A behemoth guards the passage ahead."
+                ]
             },
             {
-                "enemies": ["Troll"],
-                "text": ["The ground beneath you shakes.", "A behemoth guards the passage ahead."]
+                "enemies": [
+                    "Troll"
+                ],
+                "text": [
+                    "The ground beneath you shakes.",
+                    "A behemoth guards the passage ahead."
+                ]
             },
             {
-                "enemies": ["Troll"],
-                "text": ["The ground beneath you shakes.", "A behemoth guards the passage ahead."]
+                "enemies": [
+                    "Troll"
+                ],
+                "text": [
+                    "The ground beneath you shakes.",
+                    "A behemoth guards the passage ahead."
+                ]
             },
             {
-                "enemies": ["Skeleton Rogue", "Skeleton Rogue", "Skeleton Archer"],
-                "text": ["You can hear the sound of rattling bones.", "Hollow sockets gleam with malevolence."]
+                "enemies": [
+                    "Skeleton Rogue",
+                    "Skeleton Rogue",
+                    "Skeleton Archer"
+                ],
+                "text": [
+                    "You can hear the sound of rattling bones.",
+                    "Hollow sockets gleam with malevolence."
+                ]
             },
             {
-                "enemies": ["Demonic Ooze", "Demonic Ooze", "Skeleton Wizard"],
-                "text": ["An ominous presence materializes.", "You encounter a skeleton wizard and his minions."]
+                "enemies": [
+                    "Demonic Ooze",
+                    "Demonic Ooze",
+                    "Skeleton Wizard"
+                ],
+                "text": [
+                    "An ominous presence materializes.",
+                    "You encounter a skeleton wizard and his minions."
+                ]
             }
         ]
     }
