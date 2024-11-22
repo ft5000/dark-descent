@@ -76,12 +76,27 @@ export class GameUI {
         this.textbox.scrollTo(0, this.textbox.scrollHeight);
     }
 
+    public printGameStats() {
+        if (GameRunner.get().party.length == 0) {
+            this.log("Type 'new game' to start a new game.", null, 0);
+            this.log("&nbsp;", null, 0);
+            this.printLog();
+            return;
+        }
+        this.log('Current game', null, 0);
+        this.log(`• Level: ${GameRunner.get().currentLevel}`, null, 0);
+        this.log(`• Enemies slain: ${GameRunner.get().enemiesSlain}`, null, 0);
+        this.log("&nbsp;", null, 0);
+        this.printLog();
+    }
+
     public listCommands() {
         this.log("List of commands: ", null, 0);
         this.log("• new game - Start new game or reset previous.", null, 0);
         this.log("• play - Run next encounter.", null, 0);
         this.log("• party stats - View stats and skills of your party.", null, 0);
         this.log("• enemy stats - View stats and skills of your enemies.", null, 0);
+        this.log("• game stats - View information about your current game.", null, 0);
         this.log("• theme 'theme' - Set color palette.", null, 0);
         this.log("&nbsp;&nbsp;&nbsp;Available themes:", null, 0);
         this.log("&nbsp;&nbsp;&nbsp;• dark", null, 0);
@@ -157,8 +172,15 @@ export class GameUI {
     }
 
     public stats(party: boolean) {
+        if (GameRunner.get().party.length == 0) {
+            this.log("Type 'new game' to start a new game.", null, 0);
+            this.log("&nbsp;", null, 0);
+            this.printLog();
+            return;
+        }
 
         const characters: Character[] = party ? GameRunner.get().party.filter(x => x) :  GameRunner.get().enemies.filter(x => x);
+
         if (!characters.some(x => !x.isDead)) {
             if (party) {
                 this.log("Your party is dead.");

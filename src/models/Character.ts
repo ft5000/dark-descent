@@ -102,6 +102,7 @@ export class Character implements ICharacter {
         this.isDead = this.hp > 0 ? false : true;
         GameUI.get().log(`⚔ ${this.getNameAndNumber()} recieved ${dmg} damage and now has ${this.hp}hp remaining.`)
         if(this.isDead) {
+            GameRunner.get().enemiesSlain++;
             GameUI.get().log(`🕱 ${this.getNameAndNumber()} has perished.`, 'red')
         }
     }

@@ -161,6 +161,10 @@ export class GameInput {
                 GameUI.get().listCommands();
                 valid = true;
             }
+            if (this.input == Command.gameStats) {
+                GameUI.get().printGameStats();
+                valid = true;
+            }
         }
         if (valid) {
             this.removeInputField();

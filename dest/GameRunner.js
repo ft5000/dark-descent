@@ -18,6 +18,7 @@ export class GameRunner {
     isNextEncounter = true;
     gameOver = true;
     newInstance = true;
+    enemiesSlain = 0;
     constructor() {
     }
     init() {

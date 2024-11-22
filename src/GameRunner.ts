@@ -21,6 +21,7 @@ export class GameRunner {
     isNextEncounter: boolean = true;
     gameOver: boolean = true;
     newInstance: boolean = true;
+    enemiesSlain: number = 0;
 
     constructor() {
     }

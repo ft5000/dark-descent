@@ -8,4 +8,5 @@ export enum Command {
     enemyStats = "enemy stats",
     clear = "clear",
     help = "help",
+    gameStats = "game stats",
 }

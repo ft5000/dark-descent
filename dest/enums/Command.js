@@ -9,4 +9,5 @@ export var Command;
     Command["enemyStats"] = "enemy stats";
     Command["clear"] = "clear";
     Command["help"] = "help";
+    Command["gameStats"] = "game stats";
 })(Command || (Command = {}));
