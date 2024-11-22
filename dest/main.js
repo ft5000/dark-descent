@@ -1,11 +1,19 @@
 import { Trait } from "./models/Trait.js";
 import { Skill } from "./models/Skill.js";
-const namesJson = await import('../data/names.json');
-const racesJson = await import('../data/races.json');
-const skillsJson = await import('../data/skills.json');
-const enemyTraitsJson = await import('../data/enemyTraits.json');
-const heroTraitsJson = await import('../data/heroTraits.json');
-const encountersJson = await import('../data/encounters.json');
+let namesJson;
+let racesJson;
+let skillsJson;
+let enemyTraitsJson;
+let heroTraitsJson;
+let encountersJson;
+async function loadJsonData() {
+    namesJson = await fetch('./data/names.json').then(response => response.json());
+    racesJson = await fetch('./data/races.json').then(response => response.json());
+    skillsJson = await fetch('./data/skills.json').then(response => response.json());
+    enemyTraitsJson = await fetch('./data/enemyTraits.json').then(response => response.json());
+    heroTraitsJson = await fetch('./data/heroTraits.json').then(response => response.json());
+    encountersJson = await fetch('./data/encounters.json').then(response => response.json());
+}
 import { Enemy } from "./models/Enemy.js";
 import { GameRunner } from "./GameRunner.js";
 import { GameInput } from "./GameInput.js";
@@ -98,6 +106,8 @@ export class DataService {
         return this._instance;
     }
 }
+await loadJsonData();
+DataService.get().loadJson();
 export class App {
     app = this;
     loading = false;
