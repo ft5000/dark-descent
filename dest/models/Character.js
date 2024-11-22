@@ -18,6 +18,7 @@ export class Character {
     isEnemy;
     number = null;
     race = "Undefined";
+    statusEffects = [];
     data;
     constructor(data) {
         this.data = data;
@@ -100,6 +101,9 @@ export class Character {
             GameUI.get().log(`${this.getNameAndNumber()} performed ${skill.name} healing for ${skill.heal}hp.`, Color.orange);
             targets.forEach(target => {
                 target.heal(skill.heal);
+                if (skill.statusEffectData && !target.isDead) {
+                    this.applyStatusEffect(skill, target);
+                }
             });
         }
         if (skill.damageType == DamageType.physical) {
@@ -115,6 +119,9 @@ export class Character {
                 }
                 for (let target of targets) {
                     target.takeDamage(damage);
+                    if (skill.statusEffectData && !target.isDead) {
+                        this.applyStatusEffect(skill, target);
+                    }
                 }
             }
             else {
@@ -134,6 +141,9 @@ export class Character {
                 }
                 for (let target of targets) {
                     target.takeDamage(damage);
+                    if (skill.statusEffectData && !target.isDead) {
+                        this.applyStatusEffect(skill, target);
+                    }
                 }
             }
             else {
@@ -143,6 +153,53 @@ export class Character {
         this.deductAp(skill.cost);
         GameUI.get().log('&nbsp;', null, 1);
     }
+    applyStatusEffect(skill, target) {
+        const data = skill.statusEffectData;
+        const effect = DataService.get().getStatusEffect(data.name, data.amount, data.turns, data.chance);
+        if (!this.resistStatusEffect(effect)) {
+            if (!target.statusEffects.some(x => x.name == effect.name) && !target.isDead) {
+                target.statusEffects.push(effect);
+                const color = effect.isBuff ? Color.green : Color.red;
+                const symbol = effect.isBuff ? "▲" : "▼";
+                GameUI.get().log(`${symbol} ${effect.name} was applied to ${target.getNameAndNumber()}.`, color);
+            }
+        }
+        else {
+            GameUI.get().log(`${target.getNameAndNumber()} resisted ${effect.name}.`, Color.gray);
+        }
+    }
+    checkStatusEffects() {
+        const buffs = this.statusEffects.filter(x => x.isBuff);
+        const debuffs = this.statusEffects.filter(x => !x.isBuff);
+        if (buffs.length > 0) {
+            for (let buff of buffs) {
+                if (!this.isDead) {
+                    GameUI.get().log(buff.getText(this), Color.blue);
+                    this.heal(buff.amount);
+                    const isDepleted = buff.decreaseTurns();
+                    if (isDepleted) {
+                        this.statusEffects = this.statusEffects.filter(x => x.name == buff.name);
+                        GameUI.get().log(`The effects of ${buff.name} has worn off.`, Color.gray);
+                    }
+                }
+            }
+            GameUI.get().log('&nbsp;');
+        }
+        if (debuffs.length > 0) {
+            for (let debuff of debuffs) {
+                if (!this.isDead) {
+                    GameUI.get().log(debuff.getText(this), Color.red);
+                    this.takeDamage(debuff.amount);
+                    const isDepleted = debuff.decreaseTurns();
+                    if (isDepleted) {
+                        this.statusEffects = this.statusEffects.filter(x => x.name == debuff.name);
+                        GameUI.get().log(`${this.getNameAndNumber()} is no longer effected by ${debuff.name}.`, Color.gray);
+                    }
+                }
+            }
+            GameUI.get().log('&nbsp;');
+        }
+    }
     calculateDamage(skillDamage, type) {
         const damageOutput = type == DamageType.physical ? skillDamage * (this.physDmg * 0.1) : skillDamage * (this.magDmg * 0.1);
         return Math.round(damageOutput);
@@ -150,6 +207,10 @@ export class Character {
     isCriticalHit() {
         const roll = Math.random() * 100;
         return roll <= this.critChance ? true : false;
+    }
+    resistStatusEffect(effect) {
+        const roll = Math.random();
+        return roll > effect.chance ? true : false;
     }
     isMiss() {
         const roll = Math.random() * 100;

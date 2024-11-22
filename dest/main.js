@@ -6,6 +6,7 @@ let skillsJson;
 let enemyTraitsJson;
 let heroTraitsJson;
 let encountersJson;
+let statusEffects;
 async function loadJsonData() {
     namesJson = await fetch('./data/names.json').then(response => response.json());
     racesJson = await fetch('./data/races.json').then(response => response.json());
@@ -13,16 +14,19 @@ async function loadJsonData() {
     enemyTraitsJson = await fetch('./data/enemyTraits.json').then(response => response.json());
     heroTraitsJson = await fetch('./data/heroTraits.json').then(response => response.json());
     encountersJson = await fetch('./data/encounters.json').then(response => response.json());
+    statusEffects = await fetch('./data/statusEffects.json').then(response => response.json());
 }
 import { Enemy } from "./models/Enemy.js";
 import { GameRunner } from "./GameRunner.js";
 import { GameInput } from "./GameInput.js";
 import { Encounter } from "./models/Encounter.js";
 import { Hero } from "./models/Hero.js";
+import { StatusEffect } from "./models/StatusEffect.js";
 export class DataService {
     static _instance;
     names = [];
     races = [];
+    statusEffects = [];
     skills = [];
     enemyTraits = [];
     heroTraits = [];
@@ -35,6 +39,10 @@ export class DataService {
         racesJson.forEach((data) => {
             this.races.push(data);
             console.log("loading races...");
+        });
+        statusEffects.forEach((data) => {
+            this.statusEffects.push(new StatusEffect(data));
+            console.log("loading status effects...");
         });
         skillsJson.forEach((data) => {
             this.skills.push(new Skill(data));
@@ -62,6 +70,11 @@ export class DataService {
     }
     getNames() {
         return this.names;
+    }
+    getStatusEffect(name, amount, turns, chance) {
+        var effect = new StatusEffect(this.statusEffects.find(x => x.name == name));
+        effect.setSpecifics(amount, turns, chance);
+        return effect;
     }
     getHero(type) {
         const heroes = this.heroTraits.filter(x => x.type == type);

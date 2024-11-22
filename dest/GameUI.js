@@ -54,9 +54,6 @@ export class GameUI {
         element.innerHTML = `<span>${item.mess}</span>`;
         element.style.color = item.color;
         this.textbox.append(element);
-        // if (this.isOverflown()) {
-        //     this.textbox.removeChild(this.textbox.firstChild);
-        // }
         if (this.textbox.childElementCount > 100) {
             this.textbox.removeChild(this.textbox.firstChild);
         }
@@ -147,12 +144,26 @@ export class GameUI {
             for (let character of characters) {
                 this.log(`${character.getNameAndNumber()}`);
                 this.log(`Health: ${character.hp}/${character.hpMax}`);
-                this.log(`Action Ponts: ${character.ap}/${character.apMax}`);
+                this.log(`Action Points: ${character.ap}/${character.apMax}`);
                 this.log("Skills:");
                 const trait = character.trait;
                 trait.skills.forEach(skill => {
                     this.log(`&nbsp;• ${skill.name}`);
                 });
+                this.log("Status Effects:");
+                if (character.statusEffects.length == 0) {
+                    this.log(`&nbsp;• None`);
+                }
+                else {
+                    for (let effect of character.statusEffects) {
+                        if (effect.isBuff) {
+                            this.log(`&nbsp;▲ ${effect.name}, +${effect.amount}hp for ${effect.turnsLeft}/${effect.turns} turns.`, Color.green);
+                        }
+                        else {
+                            this.log(`&nbsp;▼ ${effect.name}, -${effect.amount}hp for ${effect.turnsLeft}/${effect.turns} turns.`, Color.red);
+                        }
+                    }
+                }
                 this.log("&nbsp;");
             }
         }
@@ -187,17 +198,15 @@ export class GameUI {
         const party = GameRunner.get().party;
         for (let hero of party) {
             const element = document.getElementById(hero.name);
-            if (!hero.isDead) {
-                const hp = element.children.namedItem('hp');
-                hp.style.color = hero.hp > (hero.hpMax / 2) ? Color.green : Color.red;
-                if (hero.hp > (hero.hpMax / 2) && hero.hp < (hero.hpMax / 1.5)) {
-                    hp.style.color = Color.orange;
-                }
-                hp.innerHTML = `Health:&nbsp;${hero.hp}/${hero.hpMax}`;
-                const ap = element.children.namedItem('ap');
-                ap.innerHTML = `Action Points:&nbsp;${hero.ap}/${hero.apMax}`;
+            const hp = element.children.namedItem('hp');
+            hp.style.color = hero.hp > (hero.hpMax / 2) ? Color.green : Color.red;
+            if (hero.hp > (hero.hpMax / 2) && hero.hp < (hero.hpMax / 1.5)) {
+                hp.style.color = Color.orange;
             }
-            else {
+            hp.innerHTML = `Health:&nbsp;${hero.hp}/${hero.hpMax}`;
+            const ap = element.children.namedItem('ap');
+            ap.innerHTML = `Action Points:&nbsp;${hero.ap}/${hero.apMax}`;
+            if (hero.isDead) {
                 for (let child of element.children) {
                     if (child.id) {
                         const stat = element.children.namedItem(child.id);
