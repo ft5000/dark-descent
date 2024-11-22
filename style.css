@@ -74,6 +74,18 @@ hr {
     height: fit-content;
 }
 
+.error-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    p {
+        text-align: center;
+        margin: 0;
+    }
+}
+
 #console {
     width: 100%;
     height: 100%;

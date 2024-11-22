@@ -23,6 +23,10 @@ export class GameInput {
                 readInput();
             }
         })
+
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            window.location.href = "mobile.html";
+        }
     }
 
     public appendInputField(text?: string) {

@@ -20,6 +20,9 @@ export class GameInput {
                 readInput();
             }
         });
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            window.location.href = "mobile.html";
+        }
     }
     appendInputField(text) {
         const inputField = document.createElement('span');
