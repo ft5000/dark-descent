@@ -1,26 +1,32 @@
 import { Trait } from "./models/Trait.js";
 import { Skill } from "./models/Skill.js";
-import namesJson from '../data/names.json' assert { type: 'json' };
-import racesJson from '../data/races.json' assert { type: 'json' };
-import skillsJson from '../data/skills.json' assert { type: 'json' };
-import enemyTraitsJson from '../data/enemyTraits.json' assert { type: 'json' };
-import heroTraitsJson from '../data/heroTraits.json' assert { type: 'json' };
-import encountersJson from '../data/encounters.json' assert { type: 'json' };
+let namesJson;
+let racesJson;
+let skillsJson;
+let enemyTraitsJson;
+let heroTraitsJson;
+let encountersJson;
+async function loadJsonData() {
+    namesJson = await fetch('./data/names.json').then(response => response.json());
+    racesJson = await fetch('./data/races.json').then(response => response.json());
+    skillsJson = await fetch('./data/skills.json').then(response => response.json());
+    enemyTraitsJson = await fetch('./data/enemyTraits.json').then(response => response.json());
+    heroTraitsJson = await fetch('./data/heroTraits.json').then(response => response.json());
+    encountersJson = await fetch('./data/encounters.json').then(response => response.json());
+}
 import { Enemy } from "./models/Enemy.js";
 import { GameRunner } from "./GameRunner.js";
 import { GameInput } from "./GameInput.js";
 import { Encounter } from "./models/Encounter.js";
 import { Hero } from "./models/Hero.js";
-import { StatusEffect } from "./models/StatusEffect.js";
 export class DataService {
-    constructor() {
-        this.names = [];
-        this.races = [];
-        this.skills = [];
-        this.enemyTraits = [];
-        this.heroTraits = [];
-        this.encounters = [];
-    }
+    static _instance;
+    names = [];
+    races = [];
+    skills = [];
+    enemyTraits = [];
+    heroTraits = [];
+    encounters = [];
     loadJson() {
         namesJson.forEach((data) => {
             this.names.push(data);
@@ -29,10 +35,6 @@ export class DataService {
         racesJson.forEach((data) => {
             this.races.push(data);
             console.log("loading races...");
-        });
-        statusEffects.forEach((data) => {
-            this.statusEffects.push(new StatusEffect(data));
-            console.log("loading status effects...");
         });
         skillsJson.forEach((data) => {
             this.skills.push(new Skill(data));
@@ -60,11 +62,6 @@ export class DataService {
     }
     getNames() {
         return this.names;
-    }
-    getStatusEffect(name, amount, turns, chance) {
-        var effect = new StatusEffect(this.statusEffects.find(x => x.name == name));
-        effect.setSpecifics(amount, turns, chance);
-        return effect;
     }
     getHero(type) {
         const heroes = this.heroTraits.filter(x => x.type == type);
@@ -109,6 +106,8 @@ export class DataService {
         return this._instance;
     }
 }
+await loadJsonData();
+DataService.get().loadJson();
 export class App {
     app = this;
     loading = false;

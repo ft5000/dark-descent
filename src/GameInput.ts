@@ -112,7 +112,7 @@ export class GameInput {
         else {
             if (this.input == Command.newGame && GameRunner.get().newInstance) {
                 GameRunner.get().newGame()
-                if (AppInfo.skipIntro != 1) {
+                if (Number(AppInfo.skipIntro) != 1) {
                     GameUI.get().intro();
                     GameUI.get().title();
                 }
@@ -125,7 +125,7 @@ export class GameInput {
                 GameUI.get().printLog(this.helpText);
                 var onConfirm = function onConfirm() {
                     GameRunner.get().newGame()
-                    if (AppInfo.skipIntro != 1) {
+                    if (Number(AppInfo.skipIntro) != 1) {
                         GameUI.get().intro();
                         GameUI.get().title();
                     }
