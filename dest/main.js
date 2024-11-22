@@ -120,7 +120,6 @@ export class DataService {
     }
 }
 await loadJsonData();
-DataService.get().loadJson();
 export class App {
     app = this;
     loading = false;

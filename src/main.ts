@@ -148,7 +148,6 @@ export class DataService {
 }
 
 await loadJsonData();
-DataService.get().loadJson();
 
 export class App {
     public app: App = this;
