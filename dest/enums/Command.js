@@ -5,6 +5,7 @@ export var Command;
     Command["about"] = "about";
     Command["dosTheme"] = "theme msdos";
     Command["darkTheme"] = "theme dark";
+    Command["matrixTheme"] = "theme matrix";
     Command["partyStats"] = "party stats";
     Command["enemyStats"] = "enemy stats";
     Command["clear"] = "clear";

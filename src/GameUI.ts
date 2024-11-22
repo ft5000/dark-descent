@@ -101,6 +101,7 @@ export class GameUI {
         this.log("&nbsp;&nbsp;&nbsp;Available themes:", null, 0);
         this.log("&nbsp;&nbsp;&nbsp;• dark", null, 0);
         this.log("&nbsp;&nbsp;&nbsp;• msdos", null, 0);
+        this.log("&nbsp;&nbsp;&nbsp;• matrix", null, 0);
         this.log("• clear - Clear all log items.", null, 0);
         this.log("• help - List valid commands.", null, 0);
         this.log("• about - App information.", null, 0);
@@ -237,6 +238,16 @@ export class GameUI {
         this.log("Setting dark theme.", null, 0);
         this.printLog();
     }
+
+    public setMatrixTheme() {
+        const root = document.documentElement;
+        root.style.setProperty('--black', 'black');
+        root.style.setProperty('--white', 'limegreen');
+
+        this.log("Setting matrix theme.", null, 0);
+        this.printLog();
+    }
+
 
     public async clearLog() {
         this.log("Clearing log...", null, 0);

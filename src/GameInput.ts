@@ -164,6 +164,10 @@ export class GameInput {
                 GameUI.get().setDarkTheme();
                 valid = true;
             }
+            if (this.input == Command.matrixTheme) {
+                GameUI.get().setMatrixTheme();
+                valid = true;
+            }
             if (this.input == Command.clear) {
                 GameUI.get().clearLog();
                 valid = true;
