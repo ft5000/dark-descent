@@ -102,11 +102,11 @@ export class GameUI {
         this.printLog();
     }
     intro() {
-        GameUI.get().log("The dungeon door groans open, revealing an abyss of oppressive darkness.", null, 3);
-        GameUI.get().log("A stale, damp odor hangs in the air, a foreboding reminder of the many who have met their doom within these lightless catacombs.", null, 3);
-        GameUI.get().log("As you breach the threshold, a weighty shadow encases your senses, wrapping you in a stifling embrace.", null, 3);
-        GameUI.get().log("You begin your descent into the darkness.", null, 3);
-        GameUI.get().log("&nbsp;");
+        GameUI.get().log("The dungeon door groans open, revealing an abyss of oppressive darkness.");
+        GameUI.get().log("A stale, damp odor hangs in the air, a foreboding reminder of the many who have met their doom within these lightless catacombs.");
+        GameUI.get().log("As you breach the threshold, a weighty shadow encases your senses, wrapping you in a stifling embrace.");
+        GameUI.get().log("You begin your descent into the darkness.");
+        GameUI.get().log("&nbsp;", null, 4);
     }
     title() {
         this.log("<pre> ▄▀▀█▄▄   ▄▀▀█▄   ▄▀▀▄▀▀▀▄  ▄▀▀▄ █      ▄▀▀█▄▄   ▄▀▀█▄▄▄▄  ▄▀▀▀▀▄  ▄▀▄▄▄▄   ▄▀▀█▄▄▄▄  ▄▀▀▄ ▀▄  ▄▀▀▀█▀▀▄ </pre>");
@@ -116,7 +116,7 @@ export class GameUI {
         this.log("<pre> ▄▀▄▄▄▄▀ █   ▄▀  █     █   ▄▀   █       ▄▀▄▄▄▄▀  ▄▀▄▄▄▄    █▀▀▀    ▄▀▄▄▄▄▀  ▄▀▄▄▄▄   ▄▀   █    ▄▀       </pre>");
         this.log("<pre>█     ▐  ▐   ▐   ▐     ▐   █    ▐      █     ▐   █    ▐    ▐      █     ▐   █    ▐   █    ▐   █         </pre>");
         this.log("<pre>▐                          ▐           ▐         ▐                ▐         ▐        ▐        ▐         </pre>");
-        this.log("&nbsp;", null, 3);
+        this.log("&nbsp;", null, 2);
     }
     setCharacterInfo(hero) {
         document.getElementById('characters').style.display = 'flex';
