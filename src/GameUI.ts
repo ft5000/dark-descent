@@ -102,6 +102,7 @@ export class GameUI {
         this.log("&nbsp;&nbsp;&nbsp;• dark", null, 0);
         this.log("&nbsp;&nbsp;&nbsp;• msdos", null, 0);
         this.log("&nbsp;&nbsp;&nbsp;• matrix", null, 0);
+        this.log("&nbsp;&nbsp;&nbsp;• blood", null, 0);
         this.log("• clear - Clear all log items.", null, 0);
         this.log("• help - List valid commands.", null, 0);
         this.log("• about - App information.", null, 0);
@@ -222,6 +223,7 @@ export class GameUI {
     }
 
     public setMSDosTheme() {
+        this.setDefaultStyle();
         const root = document.documentElement;
         root.style.setProperty('--black', 'blue');
         root.style.setProperty('--white', 'white');
@@ -231,6 +233,7 @@ export class GameUI {
     }
 
     public setDarkTheme() {
+        this.setDefaultStyle();
         const root = document.documentElement;
         root.style.setProperty('--black', 'black');
         root.style.setProperty('--white', 'white');
@@ -242,10 +245,40 @@ export class GameUI {
     public setMatrixTheme() {
         const root = document.documentElement;
         root.style.setProperty('--black', 'black');
-        root.style.setProperty('--white', 'limegreen');
+        root.style.setProperty('--white', 'lime');
+        root.style.setProperty('--green', 'lime');
+        root.style.setProperty('--blue', 'lime');
+        root.style.setProperty('--red', 'lime');
+        root.style.setProperty('--orange', 'lime');
+        root.style.setProperty('--gray', 'green');
 
         this.log("Setting matrix theme.", null, 0);
         this.printLog();
+    }
+
+    public setBloodTheme() {
+        const root = document.documentElement;
+        root.style.setProperty('--black', 'black');
+        root.style.setProperty('--white', 'red');
+        root.style.setProperty('--green', 'red');
+        root.style.setProperty('--blue', 'red');
+        root.style.setProperty('--red', 'red');
+        root.style.setProperty('--orange', 'red');
+        root.style.setProperty('--gray', 'maroon');
+
+        this.log("Setting blood theme.", null, 0);
+        this.printLog();
+    }
+
+    public setDefaultStyle() {
+        const root = document.documentElement;
+        root.style.setProperty('--black', 'black');
+        root.style.setProperty('--white', 'white');
+        root.style.setProperty('--green', 'limegreen');
+        root.style.setProperty('--blue', 'skyblue');
+        root.style.setProperty('--red', 'red');
+        root.style.setProperty('--orange', 'orange');
+        root.style.setProperty('--gray', 'dimgray');
     }
 
 

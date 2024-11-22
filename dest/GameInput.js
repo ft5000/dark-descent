@@ -153,6 +153,10 @@ export class GameInput {
                 GameUI.get().setMatrixTheme();
                 valid = true;
             }
+            if (this.input == Command.bloodTheme) {
+                GameUI.get().setBloodTheme();
+                valid = true;
+            }
             if (this.input == Command.clear) {
                 GameUI.get().clearLog();
                 valid = true;
