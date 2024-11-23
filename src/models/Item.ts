@@ -29,17 +29,17 @@ export class Item {
         }
     }
 
-    public heal(hero: Hero): void {
+    private heal(hero: Hero): void {
         hero.hp += this.amount;
     }
 
-    public healAll(): void {
+    private healAll(): void {
         GameRunner.get().party.forEach((hero: Hero) => {
         this.heal(hero);
         });
     }
 
-    public cure(hero: Hero): void {
+    private cure(hero: Hero): void {
         for (let effect of hero.statusEffects) {
             if (!effect.isBuff) {
                 hero.statusEffects.splice(hero.statusEffects.indexOf(effect), 1);
@@ -47,7 +47,7 @@ export class Item {
         }
     }
 
-    public cureAll(): void {
+    private cureAll(): void {
         GameRunner.get().party.forEach((hero: Hero) => {
             this.cure(hero);
         });
