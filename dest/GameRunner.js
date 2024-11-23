@@ -152,7 +152,7 @@ export class GameRunner {
         return this.currentLevel > this.prevLevel;
     }
     gameIsOver() {
-        GameUI.get().log('Your party is dead.', 'darkgrey');
+        GameUI.get().log('Your party is dead.', Color.gray);
         this.gameOver = true;
     }
     partyTurn(hero) {

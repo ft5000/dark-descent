@@ -174,7 +174,7 @@ export class GameRunner {
     }
 
     private gameIsOver() {
-        GameUI.get().log('Your party is dead.', 'darkgrey')
+        GameUI.get().log('Your party is dead.', Color.gray)
         this.gameOver = true;
     }
 
