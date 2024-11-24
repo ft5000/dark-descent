@@ -5,6 +5,7 @@ import { Color } from "./enums/Color.js";
 import { Character } from "./models/Character.js";
 import { Enemy } from "./models/Enemy.js";
 import { Hero } from "./models/Hero.js";
+import { Item } from "./models/Item.js";
 
 export class LogItem {
     mess: string;
@@ -45,8 +46,8 @@ export class GameUI {
         this._isPrinting = true;
         for (let item of this.messLog) {
             this.drawText(item);
-            // item.delay
-            await this.sleep(item.delay);
+            var delay = Number(AppInfo.noDelay) == 1 ? 0 : item.delay;
+            await this.sleep(delay);
         }
         this.messLog = [];
         this.updateCharacterInfo();
@@ -135,6 +136,28 @@ export class GameUI {
         this.log("<pre>█     ▐  ▐   ▐   ▐     ▐   █    ▐      █     ▐   █    ▐    ▐      █     ▐   █    ▐   █    ▐   █         </pre>")
         this.log("<pre>▐                          ▐           ▐         ▐                ▐         ▐        ▐        ▐         </pre>")
         this.log("&nbsp;", null, 2)
+    }
+
+    public inventory() {
+        if (GameRunner.get().inventory.length == 0) {
+            this.log("You have no items in your inventory.", null, 0);
+            this.log("&nbsp;", null, 0);
+            this.printLog();
+            return;
+        }
+        this.log("Your Inventory:", null, 0);
+        var printedItems: string[] = [];
+        GameRunner.get().inventory.forEach((item: Item) => {
+            if (printedItems.includes(item.name)) {
+                return;
+            }
+            let num = GameRunner.get().inventory.filter(i => i.name == item.name).length;
+            this.log(`• ${item.name} - ${item.description} ${num}x`, null, 0);
+            printedItems.push(item.name);
+        })
+        this.log("Type 'use [item name]' to use an item.", Color.gray, 0);
+        this.log("&nbsp;", null, 0);
+        this.printLog();
     }
 
     public setCharacterInfo(hero: Hero)  {

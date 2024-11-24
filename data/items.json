@@ -1,0 +1,39 @@
+[
+    {
+        "name": "Heal",
+        "amount": 50,
+        "description": "Restores 50 HP to single target.",
+        "attribute": "Heal",
+        "rate": 0.25
+    },
+    {
+        "name": "Great Heal",
+        "amount": 100,
+        "description": "Restores 100 HP to single target.",
+        "attribute": "Heal",
+        "rate": 0.20
+
+    },
+    {
+        "name": "Heal All",
+        "amount": 50,
+        "description": "Restores 50 HP to entire party.",
+        "attribute": "HealAll",
+        "rate": 0.15
+
+    },
+    {
+        "name": "Cure",
+        "amount": 0,
+        "description": "Cures all status ailments to single target.",
+        "attribute": "Cure",
+        "rate": 0.25
+    },
+    {
+        "name": "Great Cure",
+        "amount": 0,
+        "description": "Cures all status ailments of entire party.",
+        "attribute": "CureAll",
+        "rate": 0.10
+    }
+]

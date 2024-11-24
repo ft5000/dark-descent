@@ -4,6 +4,7 @@ import { AppInfo } from "./enums/AppInfo.js";
 import { Color } from "./enums/Color.js";
 import { HeroType } from "./enums/HeroType.js";
 import { DataService } from "./main.js";
+import { Item } from "./models/Item.js";
 import { Level } from "./models/Level.js";
 export class GameRunner {
     static _instance;
@@ -19,6 +20,7 @@ export class GameRunner {
     gameOver = true;
     newInstance = true;
     enemiesSlain = 0;
+    inventory = [];
     constructor() {
     }
     init() {
@@ -35,6 +37,9 @@ export class GameRunner {
         this.levels = [];
         this.level = null;
         this.isNextEncounter = true;
+        DataService.get().getItems().forEach((item) => {
+            this.inventory.push(new Item(item.data));
+        });
         GameUI.get().removeCharacterInfo();
         this.newParty();
         this.initLevels();
@@ -100,6 +105,7 @@ export class GameRunner {
             if (this.checkIfEnemiesAreDead()) {
                 GameUI.get().log('Enemies have been defeated.');
                 GameUI.get().log('&nbsp;');
+                this.rollForLoot();
                 if (!this.level.nextEncounter()) {
                     this.currentLevel++;
                 }
@@ -115,6 +121,7 @@ export class GameRunner {
             if (this.checkIfEnemiesAreDead()) {
                 GameUI.get().log('Enemies have been defeated.');
                 GameUI.get().log('&nbsp;');
+                this.rollForLoot();
                 if (!this.level.nextEncounter()) {
                     this.currentLevel++;
                 }
@@ -153,6 +160,7 @@ export class GameRunner {
     }
     gameIsOver() {
         GameUI.get().log('Your party is dead.', Color.gray);
+        this.inventory = [];
         this.gameOver = true;
     }
     partyTurn(hero) {
@@ -201,5 +209,32 @@ export class GameRunner {
     }
     getRandomIndex(items) {
         return Math.floor(Math.random() * items.length);
+    }
+    rollForLoot() {
+        var loot = [];
+        DataService.get().getItems().forEach((item) => {
+            let roll = Math.random();
+            if (item.rate >= roll) {
+                loot.push(item);
+            }
+        });
+        if (loot.length > 0) {
+            GameUI.get().log('Enemies have dropped items:', null, 1);
+            loot.forEach((item) => {
+                GameUI.get().log(`• You recieve ${item.name}`, Color.green, 0);
+                this.inventory.push(new Item(item.data));
+            });
+            GameUI.get().log("Type 'inventory' to access your consumables.", Color.gray, 0);
+            GameUI.get().log('&nbsp;', null, 1);
+        }
+    }
+    uniqueItems() {
+        var items = [];
+        this.inventory.forEach((item) => {
+            if (items.includes(item) == false) {
+                items.push(item);
+            }
+        });
+        return items;
     }
 }

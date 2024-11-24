@@ -11,4 +11,6 @@ export enum Command {
     clear = "clear",
     help = "help",
     gameStats = "game stats",
+    inventory = "inventory",
+    use = "use",
 }

@@ -1,4 +1,6 @@
 export enum Attribute {
-    Healing = 'Healing',
-    Cure = 'Cure'
+    Heal = 'Heal',
+    HealAll = 'HealAll',
+    Cure = 'Cure',
+    CureAll = 'CureAll'
 }

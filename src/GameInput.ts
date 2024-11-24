@@ -1,8 +1,10 @@
 import { GameRunner } from "./GameRunner.js";
 import { GameUI } from "./GameUI.js";
 import { AppInfo } from "./enums/AppInfo.js";
+import { Attribute } from "./enums/Attribute.js";
 import { Color } from "./enums/Color.js";
 import { Command } from "./enums/Command.js";
+import { Hero } from "./models/Hero.js";
 
 export class GameInput {
     private static _instance: GameInput;
@@ -11,11 +13,17 @@ export class GameInput {
     private onKeydownHandler: Function;
     private infoText: HTMLElement;
     private confirmMode: boolean = false;
+    private selectHero: boolean = false;
+    private onSelect: Function;
     private onConfirm: Function;
     private helpText: string;
 
     public init() {
         this.input = "";
+
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            window.location.href = "mobile.html";
+        }
 
         const readInput = this.readInputCommand.bind(this);
         document.addEventListener('keyup', function(event: KeyboardEvent) { 
@@ -23,10 +31,6 @@ export class GameInput {
                 readInput();
             }
         })
-
-        if (/Mobi|Android/i.test(navigator.userAgent)) {
-            window.location.href = "mobile.html";
-        }
     }
 
     public appendInputField(text?: string) {
@@ -113,6 +117,22 @@ export class GameInput {
                 valid = true;
             }
         }
+        else if (this.selectHero) {
+            var heroName = this.input.split(" ").join(" ");
+            if (GameRunner.get().party.some(h => h.name.toLocaleLowerCase() == heroName))  {
+                var hero = GameRunner.get().party.find(h => h.name.toLocaleLowerCase() == heroName)
+                GameUI.get().log('&nbsp;', null, 0);
+                this.onSelect(hero);
+            }
+            else {
+                GameUI.get().log('Hero not found.', Color.gray, 0);
+                GameUI.get().log('&nbsp;', null, 0);
+
+            }
+            GameUI.get().printLog();
+            this.selectHero = false;
+            valid = true;
+        }
         else {
             if (this.input == Command.newGame && GameRunner.get().newInstance) {
                 GameRunner.get().newGame()
@@ -186,6 +206,51 @@ export class GameInput {
             }
             if (this.input == Command.gameStats) {
                 GameUI.get().printGameStats();
+                valid = true;
+            }
+            if (this.input == Command.inventory) {
+                GameUI.get().inventory();
+                valid = true;
+            }
+            if (this.input.startsWith(Command.use + " ")) {
+                var itemName = this.input.split(" ").slice(1).join(" ").toLocaleLowerCase();
+                var item = GameRunner.get().inventory.find(i => i.name.toLocaleLowerCase() == itemName);
+                if (item) {
+                    if (item.attribute == Attribute.HealAll || item.attribute == Attribute.CureAll) {
+                        switch (item.attribute) {
+                            case Attribute.HealAll:
+                                item.healAll();
+                                break;
+                            case Attribute.CureAll:
+                                item.cureAll();
+                                break;
+                        }
+                        GameUI.get().log(`Used ${itemName}.`);
+                        var index = GameRunner.get().inventory.findIndex(i => i.name.toLocaleLowerCase() == itemName)
+                        GameRunner.get().inventory.splice(index, 1);
+                    }
+                    else if (item.attribute == Attribute.Heal || item.attribute == Attribute.Cure) {
+                        GameUI.get().log(`Select target:`, null, 0.1);
+                        this.helpText = "Enter hero name";
+                        this.selectHero = true;
+                        var onSelect = function onSelect(hero: Hero) {
+                            if (item.attribute == Attribute.Heal) {
+                                item.heal(hero);
+                            }
+                            if (item.attribute == Attribute.Cure) {
+                                item.cure(hero);
+                            }
+                            GameUI.get().log(`Used ${itemName} on ${hero.name}.`);
+                            var index = GameRunner.get().inventory.findIndex(i => i.name.toLocaleLowerCase() == itemName)
+                            GameRunner.get().inventory.splice(index, 1);
+                        }
+                        this.onSelect = onSelect.bind(this);
+                        valid = true;
+                    }
+                } else {
+                    GameUI.get().log('Item not found.', null, 0.1);
+                }
+                GameUI.get().printLog();
                 valid = true;
             }
         }

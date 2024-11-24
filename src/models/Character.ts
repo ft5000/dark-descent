@@ -113,6 +113,7 @@ export class Character implements ICharacter {
         
         if (skill == null) {
             GameUI.get().log(`${this.getNameAndNumber()} has insufficient action points.`)
+            GameUI.get().log('&nbsp;', null, 1)
             return;
         }
 

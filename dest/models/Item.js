@@ -1,16 +1,12 @@
-import { Attribute } from "../enums/Attribute.js";
 import { GameRunner } from "../GameRunner.js";
-import { Hero } from "./Hero.js";
-
 export class Item {
-    name: string;
-    amount: number;
-    description: string;
-    attribute: Attribute;
-    rate: number;
-    data: any;
-
-    constructor(data: any) {
+    name;
+    amount;
+    description;
+    attribute;
+    rate;
+    data;
+    constructor(data) {
         this.name = data.name;
         this.amount = data.amount;
         this.description = data.description;
@@ -18,27 +14,23 @@ export class Item {
         this.rate = data.rate;
         this.data = data;
     }
-
-    public heal(hero: Hero): void {
+    heal(hero) {
         hero.heal(this.amount);
     }
-
-    public healAll(): void {
-        GameRunner.get().party.forEach((hero: Hero) => {
+    healAll() {
+        GameRunner.get().party.forEach((hero) => {
             this.heal(hero);
         });
     }
-
-    public cure(hero: Hero): void {
+    cure(hero) {
         for (let effect of hero.statusEffects) {
             if (!effect.isBuff) {
                 hero.statusEffects.splice(hero.statusEffects.indexOf(effect), 1);
             }
         }
     }
-
-    public cureAll(): void {
-        GameRunner.get().party.forEach((hero: Hero) => {
+    cureAll() {
+        GameRunner.get().party.forEach((hero) => {
             this.cure(hero);
         });
     }

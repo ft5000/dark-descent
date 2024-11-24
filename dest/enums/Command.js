@@ -12,4 +12,6 @@ export var Command;
     Command["clear"] = "clear";
     Command["help"] = "help";
     Command["gameStats"] = "game stats";
+    Command["inventory"] = "inventory";
+    Command["use"] = "use";
 })(Command || (Command = {}));

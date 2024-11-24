@@ -8,6 +8,7 @@ let enemyTraitsJson: any;
 let heroTraitsJson: any;
 let encountersJson: any;
 let statusEffects: any;
+let items: any;
 
 async function loadJsonData() {
     namesJson = await fetch('./data/names.json').then(response => response.json());
@@ -17,6 +18,7 @@ async function loadJsonData() {
     heroTraitsJson = await fetch('./data/heroTraits.json').then(response => response.json());
     encountersJson = await fetch('./data/encounters.json').then(response => response.json());
     statusEffects = await fetch('./data/statusEffects.json').then(response => response.json());
+    items = await fetch('./data/items.json').then(response => response.json());
 }
 
 import { Enemy } from "./models/Enemy.js";
@@ -26,6 +28,7 @@ import { Encounter } from "./models/Encounter.js";
 import { Hero } from "./models/Hero.js";
 import { HeroType } from "./enums/HeroType.js";
 import { StatusEffect } from "./models/StatusEffect.js";
+import { Item } from "./models/Item.js";
 
 export class DataService {
     private static _instance: DataService;
@@ -36,6 +39,7 @@ export class DataService {
     private enemyTraits: Trait[] = [];
     private heroTraits: Trait[] = [];
     private encounters: Encounter[] = [];
+    private items: Item[] = [];
 
     public loadJson() {
         namesJson.forEach((data: string) => {
@@ -73,11 +77,19 @@ export class DataService {
             data.encounters.forEach((encounter: any) => {
                 this.encounters.push(new Encounter(encounter, level))
             })
-
             console.log("loading encounters...")
         });
 
+        items.forEach((data: any) => {
+            this.items.push(new Item(data))
+            console.log("loading items...")
+        })
+
         return false;
+    }
+
+    public getItems(): Item[] {
+        return this.items;
     }
 
     public getRaces(): string[] {
