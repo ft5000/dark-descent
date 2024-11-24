@@ -1,36 +1,41 @@
 [
     {
-        "name": "Heal",
+        "name": "Bandage",
+        "amount": 25,
+        "description": "Restores 25 HP to single target.",
+        "attribute": "Heal",
+        "rate": 0.35
+    },
+    {
+        "name": "Elixir of Vitality",
         "amount": 50,
         "description": "Restores 50 HP to single target.",
         "attribute": "Heal",
-        "rate": 0.25
+        "rate": 0.35
     },
     {
-        "name": "Great Heal",
+        "name": "Potion of Grand Healing",
         "amount": 100,
         "description": "Restores 100 HP to single target.",
         "attribute": "Heal",
-        "rate": 0.20
-
+        "rate": 0.15
     },
     {
-        "name": "Heal All",
+        "name": "Elixir of Unity",
         "amount": 50,
         "description": "Restores 50 HP to entire party.",
         "attribute": "HealAll",
-        "rate": 0.15
-
+        "rate": 0.10
     },
     {
-        "name": "Cure",
+        "name": "Antidote of Purity",
         "amount": 0,
         "description": "Cures all status ailments to single target.",
         "attribute": "Cure",
         "rate": 0.25
     },
     {
-        "name": "Great Cure",
+        "name": "Elixir of Cleansing",
         "amount": 0,
         "description": "Cures all status ailments of entire party.",
         "attribute": "CureAll",

@@ -1,4 +1,6 @@
+import { Color } from "../enums/Color.js";
 import { GameRunner } from "../GameRunner.js";
+import { GameUI } from "../GameUI.js";
 export class Item {
     name;
     amount;
@@ -28,6 +30,7 @@ export class Item {
                 hero.statusEffects.splice(hero.statusEffects.indexOf(effect), 1);
             }
         }
+        GameUI.get().log(`☻ ${hero.name} has been cured!`, Color.green);
     }
     cureAll() {
         GameRunner.get().party.forEach((hero) => {

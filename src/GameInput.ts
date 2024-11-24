@@ -225,13 +225,15 @@ export class GameInput {
                                 item.cureAll();
                                 break;
                         }
-                        GameUI.get().log(`Used ${itemName}.`);
+                        GameUI.get().log('&nbsp;');
+                        GameUI.get().log(`Used ${item.name}.`);
+                        GameUI.get().log('Item has been removed from inventory.');
+                        GameUI.get().log('&nbsp;');
                         var index = GameRunner.get().inventory.findIndex(i => i.name.toLocaleLowerCase() == itemName)
                         GameRunner.get().inventory.splice(index, 1);
                     }
                     else if (item.attribute == Attribute.Heal || item.attribute == Attribute.Cure) {
-                        GameUI.get().log(`Select target:`, null, 0.1);
-                        this.helpText = "Enter hero name";
+                        GameUI.get().log(`Select target:`, null, 0);
                         this.selectHero = true;
                         var onSelect = function onSelect(hero: Hero) {
                             if (item.attribute == Attribute.Heal) {
@@ -240,7 +242,10 @@ export class GameInput {
                             if (item.attribute == Attribute.Cure) {
                                 item.cure(hero);
                             }
-                            GameUI.get().log(`Used ${itemName} on ${hero.name}.`);
+                            GameUI.get().log('&nbsp;');
+                            GameUI.get().log(`Used ${item.name}.`);
+                            GameUI.get().log('Item has been removed from inventory.');
+                            GameUI.get().log('&nbsp;');
                             var index = GameRunner.get().inventory.findIndex(i => i.name.toLocaleLowerCase() == itemName)
                             GameRunner.get().inventory.splice(index, 1);
                         }
@@ -248,7 +253,8 @@ export class GameInput {
                         valid = true;
                     }
                 } else {
-                    GameUI.get().log('Item not found.', null, 0.1);
+                    GameUI.get().log('Item not found.', null, 0);
+                    GameUI.get().log('&nbsp;');
                 }
                 GameUI.get().printLog();
                 valid = true;
@@ -259,8 +265,8 @@ export class GameInput {
             this.removeInputField();
         }
         else {
-            GameUI.get().log(this.input, null, 0.1);
-            GameUI.get().log('Invalid command.', null, 0.1);
+            GameUI.get().log(this.input, null, 0);
+            GameUI.get().log('Invalid command.', null, 0);
             this.removeInputField();
             GameUI.get().printLog(this.helpText);
         }

@@ -43,13 +43,14 @@ export class GameRunner {
         this.levels = [];
         this.level = null;
         this.isNextEncounter = true;
-        DataService.get().getItems().forEach((item: Item) => {
-            this.inventory.push(new Item(item.data));
-        })
         GameUI.get().removeCharacterInfo();
         this.newParty();
         this.initLevels();
         this.nextEncounter();
+        for (var i = 0; i < this.party.length; i++) {
+            var data = DataService.get().getItems().find(x => x.name == 'Bandage').data;
+            this.inventory.push(new Item(data));
+        }
     }
 
     public newParty() {

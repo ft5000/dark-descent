@@ -81,12 +81,16 @@ export class GameUI {
         this.log("• play - Run next encounter.", null, 0);
         this.log("• party stats - View stats and skills of your party.", null, 0);
         this.log("• enemy stats - View stats and skills of your enemies.", null, 0);
+        this.log("• inventory - View your inventory.", null, 0);
+        this.log("Type 'use [item name]' to use an item.", Color.gray, 0);
         this.log("• game stats - View information about your current game.", null, 0);
-        this.log("• theme 'theme' - Set color palette.", null, 0);
+        this.log("• theme - Set color palette.", null, 0);
+        this.log("Type 'theme [theme name]' to set color palette.", Color.gray, 0);
         this.log("&nbsp;&nbsp;&nbsp;Available themes:", null, 0);
         this.log("&nbsp;&nbsp;&nbsp;• dark", null, 0);
         this.log("&nbsp;&nbsp;&nbsp;• msdos", null, 0);
         this.log("&nbsp;&nbsp;&nbsp;• matrix", null, 0);
+        this.log("&nbsp;&nbsp;&nbsp;• blood", null, 0);
         this.log("&nbsp;&nbsp;&nbsp;• blood", null, 0);
         this.log("• clear - Clear all log items.", null, 0);
         this.log("• help - List valid commands.", null, 0);
