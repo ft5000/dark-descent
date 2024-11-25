@@ -41,10 +41,10 @@ export class GameRunner {
         this.newParty();
         this.initLevels();
         this.nextEncounter();
-        for (var i = 0; i < this.party.length; i++) {
-            var data = DataService.get().getItems().find(x => x.name == 'Bandage').data;
-            this.inventory.push(new Item(data));
-        }
+        var data = DataService.get().getItems().find(x => x.name == 'Bandage').data;
+        this.inventory.push(new Item(data));
+        var data = DataService.get().getItems().find(x => x.name == 'Bandage').data;
+        this.inventory.push(new Item(data));
     }
     newParty() {
         this.party = [];

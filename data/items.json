@@ -4,14 +4,14 @@
         "amount": 25,
         "description": "Restores 25 HP to single target.",
         "attribute": "Heal",
-        "rate": 0.35
+        "rate": 0.25
     },
     {
         "name": "Elixir of Vitality",
         "amount": 50,
         "description": "Restores 50 HP to single target.",
         "attribute": "Heal",
-        "rate": 0.35
+        "rate": 0.25
     },
     {
         "name": "Potion of Grand Healing",

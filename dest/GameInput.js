@@ -216,6 +216,7 @@ export class GameInput {
                         GameRunner.get().inventory.splice(index, 1);
                     }
                     else if (item.attribute == Attribute.Heal || item.attribute == Attribute.Cure) {
+                        GameUI.get().log(`Using ${item.name} - ${item.description}`);
                         GameUI.get().log(`Select target:`, null, 0);
                         this.selectHero = true;
                         var onSelect = function onSelect(hero) {
