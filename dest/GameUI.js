@@ -91,7 +91,6 @@ export class GameUI {
         this.log("&nbsp;&nbsp;&nbsp;• msdos", null, 0);
         this.log("&nbsp;&nbsp;&nbsp;• matrix", null, 0);
         this.log("&nbsp;&nbsp;&nbsp;• blood", null, 0);
-        this.log("&nbsp;&nbsp;&nbsp;• blood", null, 0);
         this.log("• clear - Clear all log items.", null, 0);
         this.log("• help - List valid commands.", null, 0);
         this.log("• about - App information.", null, 0);
