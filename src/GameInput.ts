@@ -6,6 +6,15 @@ import { Color } from "./enums/Color.js";
 import { Command } from "./enums/Command.js";
 import { Hero } from "./models/Hero.js";
 
+export class ListItem<T> {
+    public id: number;
+    public value: T;
+    constructor(id: number, value: T) {
+        this.id = id;
+        this.value = value;
+    }
+}
+
 export class GameInput {
     private static _instance: GameInput;
     public input: string = "";
@@ -17,6 +26,8 @@ export class GameInput {
     private onSelect: Function;
     private onConfirm: Function;
     private helpText: string;
+    private list: ListItem<any>[] = [];
+    private select: boolean = false;
 
     public init() {
         this.input = "";
@@ -117,21 +128,19 @@ export class GameInput {
                 valid = true;
             }
         }
-        else if (this.selectHero) {
-            var heroName = this.input.split(" ").join(" ");
-            if (GameRunner.get().party.some(h => h.name.toLocaleLowerCase() == heroName))  {
-                var hero = GameRunner.get().party.find(h => h.name.toLocaleLowerCase() == heroName)
-                GameUI.get().log('&nbsp;', null, 0);
-                this.onSelect(hero);
+        else if (this.select) {
+            console.log('selecting')
+            var selected = this.list.find(l => l.id + 1 == Number(this.input));
+            if (selected == null) {
+                GameUI.get().log('Invalid selection.', null, 0);
             }
             else {
-                GameUI.get().log('Hero not found.', Color.gray, 0);
-                GameUI.get().log('&nbsp;', null, 0);
-
+                console.log('selected', selected)
+                this.onSelect(selected.value);
             }
             GameUI.get().printLog();
-            this.selectHero = false;
             valid = true;
+            this.select = false
         }
         else {
             if (this.input == Command.newGame && GameRunner.get().newInstance) {
@@ -235,8 +244,10 @@ export class GameInput {
                     else if (item.attribute == Attribute.Heal || item.attribute == Attribute.Cure) {
                         GameUI.get().log(`Using ${item.name} - ${item.description}`);
                         GameUI.get().log(`Select target:`, null, 0);
-                        this.selectHero = true;
-                        var onSelect = function onSelect(hero: Hero) {
+                        this.list = this.createList(GameRunner.get().party.map(h => h.name));
+                        this.printList(this.list);
+                        var onSelect = function onSelect(name: string) {
+                            var hero = GameRunner.get().party.find(h => h.name == name);
                             if (item.attribute == Attribute.Heal) {
                                 item.heal(hero);
                             }
@@ -251,6 +262,7 @@ export class GameInput {
                             GameRunner.get().inventory.splice(index, 1);
                         }
                         this.onSelect = onSelect.bind(this);
+                        this.select = true;
                         valid = true;
                     }
                 } else {
@@ -280,5 +292,20 @@ export class GameInput {
 
         this._instance = new GameInput();
         return this._instance;
+    }
+
+    private createList<T>(array: T[]): ListItem<T>[] {
+        var list: ListItem<T>[] = [];
+        for (let i = 0; i < array.length; i++) {
+            list.push(new ListItem(i, array[i]));
+        }
+        return list;
+    }
+
+    private printList<T>(list: ListItem<T>[]) {
+        for (let i = 0; i < list.length; i++) {
+            GameUI.get().log(`${list[i].id + 1}. ${list[i].value}`);
+        }
+        GameUI.get().log('&nbsp;');
     }
 }
