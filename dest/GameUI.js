@@ -98,6 +98,7 @@ export class GameUI {
         this.printLog();
     }
     about() {
+        this.skull();
         this.log("Dark Descent", null, 0.1);
         this.log(`Version ${AppInfo.version}`, null, 0.1);
         this.log("Made By Fabian Tjernström", null, 0.1);
@@ -120,6 +121,16 @@ export class GameUI {
         this.log("<pre>█     ▐  ▐   ▐   ▐     ▐   █    ▐      █     ▐   █    ▐    ▐      █     ▐   █    ▐   █    ▐   █         </pre>");
         this.log("<pre>▐                          ▐           ▐         ▐                ▐         ▐        ▐        ▐         </pre>");
         this.log("&nbsp;", null, 2);
+    }
+    skull() {
+        this.log("<pre>     _.--,_         </pre>");
+        this.log("<pre>  .-'      '-.      </pre>");
+        this.log("<pre> /            \\    </pre>");
+        this.log("<pre>'          _.  '    </pre>");
+        this.log('<pre>\\      "" /  ~(    </pre>');
+        this.log("<pre> '=,,_ =\\__ `  &   </pre>");
+        this.log(`<pre>       "  "'; \\\\\\</pre>`);
+        this.log("&nbsp;");
     }
     logInventory(help = false) {
         if (GameRunner.get().inventory.length == 0) {

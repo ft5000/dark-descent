@@ -31,7 +31,7 @@ body {
 
 ::selection {
     color: var(--black);
-    background: white;
+    background: var(--white);
 }
 
 hr {
