@@ -76,25 +76,25 @@ export class GameUI {
         this.printLog();
     }
     listCommands() {
-        this.log("List of commands: ", null, 0);
-        this.log("• new game - Start new game or reset previous.", null, 0);
-        this.log("• play - Run next encounter.", null, 0);
-        this.log("• party stats - View stats and skills of your party.", null, 0);
-        this.log("• enemy stats - View stats and skills of your enemies.", null, 0);
-        this.log("• inventory - View your inventory.", null, 0);
-        this.log("Type 'use [item name]' to use an item.", Color.gray, 0);
-        this.log("• game stats - View information about your current game.", null, 0);
-        this.log("• theme - Set color palette.", null, 0);
-        this.log("Type 'theme [theme name]' to set color palette.", Color.gray, 0);
-        this.log("&nbsp;&nbsp;&nbsp;Available themes:", null, 0);
-        this.log("&nbsp;&nbsp;&nbsp;• dark", null, 0);
-        this.log("&nbsp;&nbsp;&nbsp;• msdos", null, 0);
-        this.log("&nbsp;&nbsp;&nbsp;• matrix", null, 0);
-        this.log("&nbsp;&nbsp;&nbsp;• blood", null, 0);
-        this.log("• clear - Clear all log items.", null, 0);
-        this.log("• help - List valid commands.", null, 0);
-        this.log("• about - App information.", null, 0);
-        this.log("&nbsp;", null, 0);
+        this.log("List of commands: ");
+        this.log("• new game - Start new game or reset previous.");
+        this.log("• play - Run next encounter.");
+        this.log("• party stats - View stats and skills of your party.");
+        this.log("• enemy stats - View stats and skills of your enemies.");
+        this.log("• inventory - View your inventory.");
+        this.log("Type 'use' to use an item.", Color.gray);
+        this.log("• game stats - View information about your current game.");
+        this.log("• theme - Set color palette.");
+        this.log("Type 'theme [theme name]' to set color palette.", Color.gray);
+        this.log("&nbsp;&nbsp;&nbsp;Available themes:");
+        this.log("&nbsp;&nbsp;&nbsp;• dark");
+        this.log("&nbsp;&nbsp;&nbsp;• msdos");
+        this.log("&nbsp;&nbsp;&nbsp;• matrix");
+        this.log("&nbsp;&nbsp;&nbsp;• blood");
+        this.log("• clear - Clear all log items.");
+        this.log("• help - List valid commands.");
+        this.log("• about - App information.");
+        this.log("&nbsp;");
         this.printLog();
     }
     about() {
@@ -121,26 +121,25 @@ export class GameUI {
         this.log("<pre>▐                          ▐           ▐         ▐                ▐         ▐        ▐        ▐         </pre>");
         this.log("&nbsp;", null, 2);
     }
-    inventory() {
+    logInventory(help = false) {
         if (GameRunner.get().inventory.length == 0) {
-            this.log("You have no items in your inventory.", null, 0);
-            this.log("&nbsp;", null, 0);
-            this.printLog();
+            this.log("You have no items in your inventory.");
+            this.log("&nbsp;");
             return;
         }
-        this.log("Your Inventory:", null, 0);
-        var printedItems = [];
-        GameRunner.get().inventory.forEach((item) => {
-            if (printedItems.includes(item.name)) {
-                return;
-            }
+        if (help) {
+            this.log("Your Inventory:");
+        }
+        var i = 0;
+        GameRunner.get().uniqueItems.forEach((item) => {
             let num = GameRunner.get().inventory.filter(i => i.name == item.name).length;
-            this.log(`• ${item.name} - ${item.description} ${num}x`, null, 0);
-            printedItems.push(item.name);
+            this.log(`${i + 1}. ${item.name} - ${item.description} ${num}x`);
+            i++;
         });
-        this.log("Type 'use [item name]' to use an item.", Color.gray, 0);
-        this.log("&nbsp;", null, 0);
-        this.printLog();
+        if (help) {
+            this.log("Type 'use' to use an item.", Color.gray);
+        }
+        this.log("&nbsp;");
     }
     setCharacterInfo(hero) {
         document.getElementById('characters').style.display = 'flex';

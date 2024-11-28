@@ -25,6 +25,7 @@ export class GameInput {
     helpText;
     list = [];
     select = false;
+    previous;
     init() {
         this.input = "";
         if (/Mobi|Android/i.test(navigator.userAgent)) {
@@ -112,18 +113,16 @@ export class GameInput {
             }
         }
         else if (this.select) {
-            console.log('selecting');
-            var selected = this.list.find(l => l.id + 1 == Number(this.input));
+            var selected = this.list.find(l => l.id == Number(this.input) - 1);
             if (selected == null) {
                 GameUI.get().log('Invalid selection.', null, 0);
+                GameUI.get().printLog();
+                this.setSelectMode(false);
             }
             else {
-                console.log('selected', selected);
                 this.onSelect(selected.value);
             }
-            GameUI.get().printLog();
             valid = true;
-            this.select = false;
         }
         else {
             if (this.input == Command.newGame && GameRunner.get().newInstance) {
@@ -201,60 +200,25 @@ export class GameInput {
                 valid = true;
             }
             if (this.input == Command.inventory) {
-                GameUI.get().inventory();
-                valid = true;
-            }
-            if (this.input.startsWith(Command.use + " ")) {
-                var itemName = this.input.split(" ").slice(1).join(" ").toLocaleLowerCase();
-                var item = GameRunner.get().inventory.find(i => i.name.toLocaleLowerCase() == itemName);
-                if (item) {
-                    if (item.attribute == Attribute.HealAll || item.attribute == Attribute.CureAll) {
-                        switch (item.attribute) {
-                            case Attribute.HealAll:
-                                item.healAll();
-                                break;
-                            case Attribute.CureAll:
-                                item.cureAll();
-                                break;
-                        }
-                        GameUI.get().log('&nbsp;');
-                        GameUI.get().log(`Used ${item.name}.`);
-                        GameUI.get().log('Item has been removed from inventory.');
-                        GameUI.get().log('&nbsp;');
-                        var index = GameRunner.get().inventory.findIndex(i => i.name.toLocaleLowerCase() == itemName);
-                        GameRunner.get().inventory.splice(index, 1);
-                    }
-                    else if (item.attribute == Attribute.Heal || item.attribute == Attribute.Cure) {
-                        GameUI.get().log(`Using ${item.name} - ${item.description}`);
-                        GameUI.get().log(`Select target:`, null, 0);
-                        this.list = this.createList(GameRunner.get().party.map(h => h.name));
-                        this.printList(this.list);
-                        var onSelect = function onSelect(name) {
-                            var hero = GameRunner.get().party.find(h => h.name == name);
-                            if (item.attribute == Attribute.Heal) {
-                                item.heal(hero);
-                            }
-                            if (item.attribute == Attribute.Cure) {
-                                item.cure(hero);
-                            }
-                            GameUI.get().log('&nbsp;');
-                            GameUI.get().log(`Used ${item.name}.`);
-                            GameUI.get().log('Item has been removed from inventory.');
-                            GameUI.get().log('&nbsp;');
-                            var index = GameRunner.get().inventory.findIndex(i => i.name.toLocaleLowerCase() == itemName);
-                            GameRunner.get().inventory.splice(index, 1);
-                        };
-                        this.onSelect = onSelect.bind(this);
-                        this.select = true;
-                        valid = true;
-                    }
-                }
-                else {
-                    GameUI.get().log('Item not found.', null, 0);
-                    GameUI.get().log('&nbsp;');
-                }
+                GameUI.get().logInventory(true);
                 GameUI.get().printLog();
                 valid = true;
+            }
+            if (this.input == Command.use) {
+                if (GameRunner.get().inventory.length == 0) {
+                    GameUI.get().log("You have no items in your inventory.");
+                    GameUI.get().log("&nbsp;");
+                    GameUI.get().printLog();
+                    valid = true;
+                }
+                else {
+                    GameUI.get().log('Please specify an item.', null, 0);
+                    this.list = this.createList(GameRunner.get().uniqueItems);
+                    this.logList(this.list, GameUI.get().logInventory.bind(GameUI.get()));
+                    this.onSelect = this.onUseItem.bind(this);
+                    GameUI.get().printLog(this.setSelectMode());
+                    valid = true;
+                }
             }
         }
         if (valid) {
@@ -281,10 +245,67 @@ export class GameInput {
         }
         return list;
     }
-    printList(list) {
+    logList(list, logFn) {
+        if (logFn) {
+            logFn();
+            return;
+        }
         for (let i = 0; i < list.length; i++) {
             GameUI.get().log(`${list[i].id + 1}. ${list[i].value}`);
         }
         GameUI.get().log('&nbsp;');
+    }
+    onUseItem(item) {
+        if (item) {
+            if (item.attribute == Attribute.HealAll || item.attribute == Attribute.CureAll) {
+                switch (item.attribute) {
+                    case Attribute.HealAll:
+                        item.healAll();
+                        break;
+                    case Attribute.CureAll:
+                        item.cureAll();
+                        break;
+                }
+                GameUI.get().log('&nbsp;');
+                GameUI.get().log(`Used ${item.name}.`);
+                GameUI.get().log('Item has been removed from inventory.');
+                GameUI.get().log('&nbsp;');
+                var index = GameRunner.get().inventory.findIndex(i => i.name == item.name);
+                GameRunner.get().inventory.splice(index, 1);
+                this.setSelectMode(false);
+                GameUI.get().printLog();
+            }
+            else if (item.attribute == Attribute.Heal || item.attribute == Attribute.Cure) {
+                GameUI.get().log(`Using ${item.name} - ${item.description}`);
+                GameUI.get().log(`Select target:`, null, 0);
+                this.list = this.createList(GameRunner.get().party.map(h => h.name));
+                this.logList(this.list);
+                this.previous = item;
+                this.onSelect = this.onUseItemHeroSelect.bind(this);
+                GameUI.get().printLog(this.setSelectMode());
+            }
+        }
+    }
+    onUseItemHeroSelect(name) {
+        var item = this.previous;
+        var hero = GameRunner.get().party.find(h => h.name == name);
+        if (item.attribute == Attribute.Heal) {
+            item.heal(hero);
+        }
+        if (item.attribute == Attribute.Cure) {
+            item.cure(hero);
+        }
+        GameUI.get().log('&nbsp;');
+        GameUI.get().log(`Used ${item.name}.`);
+        GameUI.get().log('Item has been removed from inventory.');
+        GameUI.get().log('&nbsp;');
+        var index = GameRunner.get().inventory.findIndex(i => i.name.toLocaleLowerCase() == item.name);
+        GameRunner.get().inventory.splice(index, 1);
+        this.setSelectMode(false);
+        GameUI.get().printLog();
+    }
+    setSelectMode(value = true) {
+        this.select = value;
+        return value == true ? `Please select an option [1-${this.list?.length}]` : 'Select mode disabled.';
     }
 }

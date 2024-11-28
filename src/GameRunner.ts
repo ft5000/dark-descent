@@ -51,6 +51,8 @@ export class GameRunner {
         this.inventory.push(new Item(data));
         var data = DataService.get().getItems().find(x => x.name == 'Bandage').data;
         this.inventory.push(new Item(data));
+        var data = DataService.get().getItems().find(x => x.name == 'Elixir of Cleansing').data;
+        this.inventory.push(new Item(data));
     }
 
     public newParty() {
@@ -264,13 +266,20 @@ export class GameRunner {
 
     }
 
-    public uniqueItems(): Item[] {
-        var items: Item[] = [];
+    public get uniqueItems(): Item[] {
+        // var items: Item[] = [];
+        // this.inventory.forEach((item: Item) => {
+        //     if (items.includes(item) == false) {
+        //         items.push(item);
+        //     }
+        // });
+        // return items;
+        const uniqueItemsMap = new Map<string, Item>();
         this.inventory.forEach((item: Item) => {
-            if (items.includes(item) == false) {
-                items.push(item);
+            if (!uniqueItemsMap.has(item.name)) {
+                uniqueItemsMap.set(item.name, item);
             }
         });
-        return items;
+        return Array.from(uniqueItemsMap.values());
     }
 }
