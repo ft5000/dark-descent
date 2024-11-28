@@ -44,6 +44,8 @@ export class GameRunner {
         var data = DataService.get().getItems().find(x => x.name == 'Bandage').data;
         this.inventory.push(new Item(data));
         this.inventory.push(new Item(data));
+        var status = DataService.get().getStatusEffect('Bleed', 20, 3, 1);
+        this.party[0].statusEffects.push(status);
     }
     newParty() {
         this.party = [];

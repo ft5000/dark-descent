@@ -202,6 +202,7 @@ export class Character implements ICharacter {
     public checkStatusEffects() {
         const buffs: StatusEffect[] = this.statusEffects.filter(x => x.isBuff)
         const debuffs: StatusEffect[] = this.statusEffects.filter(x => !x.isBuff)
+        
 
         if (buffs.length > 0) {
             for (let buff of buffs) {
@@ -210,7 +211,7 @@ export class Character implements ICharacter {
                 this.heal(buff.amount);
                 const isDepleted = buff.decreaseTurns();
                 if (isDepleted) {
-                    this.statusEffects = this.statusEffects.filter(x => x.name == buff.name);
+                    this.statusEffects = this.statusEffects.filter(x => x.name != buff.name);
                     GameUI.get().log(`The effects of ${buff.name} has worn off.`, Color.gray);
                 }
                 }
@@ -225,7 +226,7 @@ export class Character implements ICharacter {
                     this.takeDamage(debuff.amount);
                     const isDepleted = debuff.decreaseTurns();
                     if (isDepleted) {
-                        this.statusEffects = this.statusEffects.filter(x => x.name == debuff.name);
+                        this.statusEffects = this.statusEffects.filter(x => x.name != debuff.name);
                         GameUI.get().log(`${this.getNameAndNumber()} is no longer effected by ${debuff.name}.`, Color.gray);
                     }
                 }

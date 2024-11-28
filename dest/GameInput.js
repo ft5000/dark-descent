@@ -214,7 +214,6 @@ export class GameInput {
                     this.list = this.createList(GameRunner.get().uniqueItems);
                     this.logList(this.list, GameUI.get().logInventory.bind(GameUI.get()));
                     this.onSelect = this.onUseItem.bind(this);
-                    console.log(this.onSelect);
                     GameUI.get().printLog(this.setSelectMode());
                     valid = true;
                 }
