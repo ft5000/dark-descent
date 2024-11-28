@@ -167,20 +167,18 @@ export class GameInput {
                 GameUI.get().stats(true);
                 valid = true;
             }
-            if (this.input == Command.dosTheme) {
-                GameUI.get().setMSDosTheme();
-                valid = true;
-            }
-            if (this.input == Command.darkTheme) {
-                GameUI.get().setDarkTheme();
-                valid = true;
-            }
-            if (this.input == Command.matrixTheme) {
-                GameUI.get().setMatrixTheme();
-                valid = true;
-            }
-            if (this.input == Command.bloodTheme) {
-                GameUI.get().setBloodTheme();
+            if (this.input == Command.theme) {
+                GameUI.get().log('Select theme:');
+                const themes = [
+                    Command.dosTheme,
+                    Command.darkTheme,
+                    Command.matrixTheme,
+                    Command.bloodTheme
+                ];
+                this.list = this.createList(themes);
+                this.logList(this.list);
+                this.onSelect = this.onSelectTheme.bind(this);
+                GameUI.get().printLog(this.setSelectMode());
                 valid = true;
             }
             if (this.input == Command.clear) {
@@ -216,6 +214,7 @@ export class GameInput {
                     this.list = this.createList(GameRunner.get().uniqueItems);
                     this.logList(this.list, GameUI.get().logInventory.bind(GameUI.get()));
                     this.onSelect = this.onUseItem.bind(this);
+                    console.log(this.onSelect);
                     GameUI.get().printLog(this.setSelectMode());
                     valid = true;
                 }
@@ -301,6 +300,24 @@ export class GameInput {
         GameUI.get().log('&nbsp;');
         var index = GameRunner.get().inventory.findIndex(i => i.name.toLocaleLowerCase() == item.name);
         GameRunner.get().inventory.splice(index, 1);
+        this.setSelectMode(false);
+        GameUI.get().printLog();
+    }
+    onSelectTheme(theme) {
+        switch (theme) {
+            case Command.dosTheme:
+                GameUI.get().setMSDosTheme();
+                break;
+            case Command.darkTheme:
+                GameUI.get().setDarkTheme();
+                break;
+            case Command.matrixTheme:
+                GameUI.get().setMatrixTheme();
+                break;
+            case Command.bloodTheme:
+                GameUI.get().setBloodTheme();
+                break;
+        }
         this.setSelectMode(false);
         GameUI.get().printLog();
     }

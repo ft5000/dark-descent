@@ -101,12 +101,12 @@ export class GameUI {
         this.log("Type 'use' to use an item.", Color.gray);
         this.log("• game stats - View information about your current game.");
         this.log("• theme - Set color palette.");
-        this.log("Type 'theme [theme name]' to set color palette.", Color.gray);
-        this.log("&nbsp;&nbsp;&nbsp;Available themes:");
-        this.log("&nbsp;&nbsp;&nbsp;• dark");
-        this.log("&nbsp;&nbsp;&nbsp;• msdos");
-        this.log("&nbsp;&nbsp;&nbsp;• matrix");
-        this.log("&nbsp;&nbsp;&nbsp;• blood");
+        this.log("Type 'theme' to choose color palette.", Color.gray);
+        this.log("&nbsp;Available themes:");
+        this.log("&nbsp;• dark");
+        this.log("&nbsp;• msdos");
+        this.log("&nbsp;• matrix");
+        this.log("&nbsp;• blood");
         this.log("• clear - Clear all log items.");
         this.log("• help - List valid commands.");
         this.log("• about - App information.");
@@ -258,7 +258,7 @@ export class GameUI {
         root.style.setProperty('--white', 'white');
 
         this.log("Setting msdos theme.", null, 0);
-        this.printLog();
+        this.log("&nbsp;")
     }
 
     public setDarkTheme() {
@@ -268,7 +268,7 @@ export class GameUI {
         root.style.setProperty('--white', 'white');
 
         this.log("Setting dark theme.", null, 0);
-        this.printLog();
+        this.log("&nbsp;")
     }
 
     public setMatrixTheme() {
@@ -282,7 +282,7 @@ export class GameUI {
         root.style.setProperty('--gray', 'green');
 
         this.log("Setting matrix theme.", null, 0);
-        this.printLog();
+        this.log("&nbsp;")
     }
 
     public setBloodTheme() {
@@ -296,7 +296,7 @@ export class GameUI {
         root.style.setProperty('--gray', 'maroon');
 
         this.log("Setting blood theme.", null, 0);
-        this.printLog();
+        this.log("&nbsp;")
     }
 
     public setDefaultStyle() {
