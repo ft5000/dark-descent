@@ -5,12 +5,18 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "tsc --watch"
+    "start": "tsc --watch",
+    "build": "tsc && rollup -c -watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^5.3.3"
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-typescript": "^12.1.1",
+    "rollup": "^4.28.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "typescript": "^5.3.3",
+    "tslib": "^2.5.0"
   }
 }

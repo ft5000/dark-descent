@@ -1,13 +1,13 @@
-import { GameInput } from "./GameInput.js";
-import { GameUI } from "./GameUI.js";
-import { AppInfo } from "./enums/AppInfo.js";
-import { Color } from "./enums/Color.js";
-import { HeroType } from "./enums/HeroType.js";
-import { DataService } from "./main.js";
-import { Enemy } from "./models/Enemy.js";
-import { Hero } from "./models/Hero.js";
-import { Item } from "./models/Item.js";
-import { Level } from "./models/Level.js";
+import { GameInput } from "./GameInput";
+import { GameUI } from "./GameUI";
+import { AppInfo } from "./enums/AppInfo";
+import { Color } from "./enums/Color";
+import { HeroType } from "./enums/HeroType";
+import { DataService } from "./main";
+import { Enemy } from "./models/Enemy";
+import { Hero } from "./models/Hero";
+import { Item } from "./models/Item";
+import { Level } from "./models/Level";
 
 export class GameRunner {
     private static _instance: GameRunner;

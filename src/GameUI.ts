@@ -1,11 +1,11 @@
-import { GameInput } from "./GameInput.js";
-import { GameRunner } from "./GameRunner.js";
-import { AppInfo } from "./enums/AppInfo.js";
-import { Color } from "./enums/Color.js";
-import { Character } from "./models/Character.js";
-import { Enemy } from "./models/Enemy.js";
-import { Hero } from "./models/Hero.js";
-import { Item } from "./models/Item.js";
+import { GameInput } from "./GameInput";
+import { GameRunner } from "./GameRunner";
+import { AppInfo } from "./enums/AppInfo";
+import { Color } from "./enums/Color";
+import { Character } from "./models/Character";
+import { Enemy } from "./models/Enemy";
+import { Hero } from "./models/Hero";
+import { Item } from "./models/Item";
 
 export class LogItem {
     mess: string;

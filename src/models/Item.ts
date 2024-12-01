@@ -1,8 +1,8 @@
-import { Attribute } from "../enums/Attribute.js";
-import { Color } from "../enums/Color.js";
-import { GameRunner } from "../GameRunner.js";
-import { GameUI } from "../GameUI.js";
-import { Hero } from "./Hero.js";
+import { Attribute } from "../enums/Attribute";
+import { Color } from "../enums/Color";
+import { GameRunner } from "../GameRunner";
+import { GameUI } from "../GameUI";
+import { Hero } from "./Hero";
 
 export class Item {
     name: string;

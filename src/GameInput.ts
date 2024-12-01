@@ -1,11 +1,11 @@
-import { GameRunner } from "./GameRunner.js";
-import { GameUI } from "./GameUI.js";
-import { AppInfo } from "./enums/AppInfo.js";
-import { Attribute } from "./enums/Attribute.js";
-import { Color } from "./enums/Color.js";
-import { Command } from "./enums/Command.js";
-import { Hero } from "./models/Hero.js";
-import { Item } from "./models/Item.js";
+import { GameRunner } from "./GameRunner";
+import { GameUI } from "./GameUI";
+import { AppInfo } from "./enums/AppInfo";
+import { Attribute } from "./enums/Attribute";
+import { Color } from "./enums/Color";
+import { Command } from "./enums/Command";
+import { Hero } from "./models/Hero";
+import { Item } from "./models/Item";
 
 export class ListItem<T> {
     public id: number;

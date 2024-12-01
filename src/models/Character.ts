@@ -1,12 +1,12 @@
-import { GameRunner } from "../GameRunner.js";
-import { DamageType } from "../enums/DamageType.js";
-import { ICharacter } from "./ICharacter.js";
-import { Skill } from "./Skill.js";
-import { GameUI } from "../GameUI.js";
-import { Trait } from "./Trait.js";
-import { DataService } from "../main.js";
-import { Color } from "../enums/Color.js";
-import { StatusEffect } from "./StatusEffect.js";
+import { GameRunner } from "../GameRunner";
+import { DamageType } from "../enums/DamageType";
+import { ICharacter } from "./ICharacter";
+import { Skill } from "./Skill";
+import { GameUI } from "../GameUI";
+import { Trait } from "./Trait";
+import { DataService } from "../main";
+import { Color } from "../enums/Color";
+import { StatusEffect } from "./StatusEffect";
 
 export class Character implements ICharacter {
     name: string;

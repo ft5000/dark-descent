@@ -1,7 +1,7 @@
-import { GameRunner } from "../GameRunner.js";
-import { LogItem } from "../GameUI.js";
-import { DataService } from "../main.js";
-import { Enemy } from "./Enemy.js";
+import { GameRunner } from "../GameRunner";
+import { LogItem } from "../GameUI";
+import { DataService } from "../main";
+import { Enemy } from "./Enemy";
 
 export class Encounter {
     level: number;

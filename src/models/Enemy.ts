@@ -1,5 +1,5 @@
-import { ICharacter } from "./ICharacter.js";
-import { Character } from "./Character.js";
+import { ICharacter } from "./ICharacter";
+import { Character } from "./Character";
 
 export class Enemy extends Character implements ICharacter {
     isEnemy: boolean = true;

@@ -1,4 +1,4 @@
-import { Skill } from "./Skill.js";
+import { Skill } from "./Skill";
 
 export class Trait {
     name: string = "";
