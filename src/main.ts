@@ -1,5 +1,5 @@
-import { Trait } from "./models/Trait";
-import { Skill } from "./models/Skill";
+import { Trait } from "./models/Trait.js";
+import { Skill } from "./models/Skill.js";
 
 let namesJson: any;
 let racesJson: any;
@@ -21,14 +21,14 @@ async function loadJsonData() {
     items = await fetch('./data/items.json').then(response => response.json());
 }
 
-import { Enemy } from "./models/Enemy";
-import { GameRunner } from "./GameRunner";
-import { GameInput } from "./GameInput";
-import { Encounter } from "./models/Encounter";
-import { Hero } from "./models/Hero";
-import { HeroType } from "./enums/HeroType";
-import { StatusEffect } from "./models/StatusEffect";
-import { Item } from "./models/Item";
+import { Enemy } from "./models/Enemy.js";
+import { GameRunner } from "./GameRunner.js";
+import { GameInput } from "./GameInput.js";
+import { Encounter } from "./models/Encounter.js";
+import { Hero } from "./models/Hero.js";
+import { HeroType } from "./enums/HeroType.js";
+import { StatusEffect } from "./models/StatusEffect.js";
+import { Item } from "./models/Item.js";
 
 export class DataService {
     private static _instance: DataService;

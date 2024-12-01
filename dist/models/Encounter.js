@@ -1,13 +1,10 @@
 import { DataService } from "../main.js";
-import { Enemy } from "./Enemy.js";
-
 export class Encounter {
-    level: number;
-    text: string[];
-    enemies: Enemy[] = [];
-    data: any;
-
-    constructor(data: any, level: number) {
+    level;
+    text;
+    enemies = [];
+    data;
+    constructor(data, level) {
         this.data = data;
         this.level = level;
         this.text = data.text;
@@ -17,19 +14,17 @@ export class Encounter {
         this.setEnemyId();
         this.numberEnemies();
     }
-
-    private setEnemyId() {
+    setEnemyId() {
         for (var i = 0; i < this.enemies.length; i++) {
             this.enemies[i].setId(i);
         }
     }
-
-    private numberEnemies() {
+    numberEnemies() {
         // Number type enemies.
-        const enemyTypes: string[] = [];
+        const enemyTypes = [];
         for (let enemy of this.enemies) {
             if (!enemyTypes.some(x => x == enemy.name)) {
-                enemyTypes.push(enemy.name)
+                enemyTypes.push(enemy.name);
             }
         }
         for (let type of enemyTypes) {
@@ -38,7 +33,7 @@ export class Encounter {
             if (enemiesOfType.length > 1) {
                 let count = 1;
                 for (let enemy of enemiesOfType) {
-                    this.enemies.find(x => x.id == enemy.id).setNumber(count)
+                    this.enemies.find(x => x.id == enemy.id).setNumber(count);
                     count++;
                 }
             }

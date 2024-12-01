@@ -1,6 +1,6 @@
-import { GameRunner } from "../GameRunner";
-import { DataService } from "../main";
-import { Character } from "./Character";
+import { GameRunner } from "../GameRunner.js";
+import { DataService } from "../main.js";
+import { Character } from "./Character.js";
 
 export class Hero extends Character  {
     isEnemy: boolean = false;

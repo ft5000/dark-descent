@@ -4,69 +4,57 @@ import { AppInfo } from "./enums/AppInfo.js";
 import { Attribute } from "./enums/Attribute.js";
 import { Color } from "./enums/Color.js";
 import { Command } from "./enums/Command.js";
-import { Hero } from "./models/Hero.js";
-import { Item } from "./models/Item.js";
-
-export class ListItem<T> {
-    public id: number;
-    public value: T;
-    constructor(id: number, value: T) {
+export class ListItem {
+    id;
+    value;
+    constructor(id, value) {
         this.id = id;
         this.value = value;
     }
 }
-
 export class GameInput {
-    private static _instance: GameInput;
-    public input: string = "";
-    private inputField: HTMLElement;
-    private onKeydownHandler: Function;
-    private infoText: HTMLElement;
-    private confirmMode: boolean = false;
-    private selectHero: boolean = false;
-    private onSelect: Function;
-    private onConfirm: Function;
-    private helpText: string;
-
-    private list: ListItem<any>[] = [];
-    private select: boolean = false;
-    private previous: any;
-
-    public init() {
+    static _instance;
+    input = "";
+    inputField;
+    onKeydownHandler;
+    infoText;
+    confirmMode = false;
+    selectHero = false;
+    onSelect;
+    onConfirm;
+    helpText;
+    list = [];
+    select = false;
+    previous;
+    init() {
         this.input = "";
-
         if (/Mobi|Android/i.test(navigator.userAgent)) {
             window.location.href = "mobile.html";
         }
-
         const readInput = this.readInputCommand.bind(this);
-        document.addEventListener('keyup', function(event: KeyboardEvent) { 
+        document.addEventListener('keyup', function (event) {
             if (event.key == "Enter" && !GameUI.get().isPrinting()) {
                 readInput();
             }
-        })
+        });
     }
-
-    public appendInputField(text?: string) {
+    appendInputField(text) {
         const inputField = document.createElement('span');
         inputField.id = 'input-field';
-        const textbox: HTMLElement = document.getElementById('console');
-
+        const textbox = document.getElementById('console');
         // Check if event listener is added.
         if (!this.onKeydownHandler) {
             const getkey = this.getKey.bind(this);
-            const func = function onKeydown(e: KeyboardEvent) {
+            const func = function onKeydown(e) {
                 if (!GameUI.get().isPrinting()) {
-                    getkey(e) 
+                    getkey(e);
                 }
-            }
-            document.addEventListener('keydown', func)
+            };
+            document.addEventListener('keydown', func);
             this.onKeydownHandler = func;
         }
-
         this.inputField = inputField;
         textbox.append(inputField);
-
         const infoText = document.createElement('span');
         if (text != null) {
             infoText.innerHTML = text;
@@ -78,27 +66,22 @@ export class GameInput {
         infoText.style.userSelect = 'none';
         this.infoText = infoText;
         textbox.append(infoText);
-
         GameUI.get().scrollToBottom();
     }
-
-    public removeInputField() {
+    removeInputField() {
         this.inputField.remove();
         this.inputField = null;
         this.input = "";
-
         this.infoText.remove();
         this.infoText = null;
     }
-
-    private updateInput() {
-        if (this.inputField){
+    updateInput() {
+        if (this.inputField) {
             this.inputField.innerHTML = this.input;
         }
     }
-
-    private getKey(event: KeyboardEvent) {
-        if (event.keyCode <=  90 && event.keyCode >=  48) {
+    getKey(event) {
+        if (event.keyCode <= 90 && event.keyCode >= 48) {
             this.input += event.key.toLowerCase();
         }
         if (event.key == " ") {
@@ -109,21 +92,19 @@ export class GameInput {
         }
         this.updateInput();
     }
-
-    private readInputCommand() {
+    readInputCommand() {
         var valid = false;
-
         if (this.confirmMode) {
             if ((this.input == "yes" || this.input == "y") && this.onConfirm != null) {
-                GameUI.get().log(this.input)
+                GameUI.get().log(this.input);
                 this.onConfirm();
                 this.onConfirm = null;
                 this.helpText = null;
                 this.confirmMode = false;
                 valid = true;
             }
-            if ((this.input == "no" || this.input == "n")&& this.onConfirm != null) {
-                GameUI.get().log(this.input)
+            if ((this.input == "no" || this.input == "n") && this.onConfirm != null) {
+                GameUI.get().log(this.input);
                 GameUI.get().printLog();
                 this.onConfirm = null;
                 this.helpText = null;
@@ -145,33 +126,33 @@ export class GameInput {
         }
         else {
             if (this.input == Command.newGame && GameRunner.get().newInstance) {
-                GameRunner.get().newGame()
+                GameRunner.get().newGame();
                 if (Number(AppInfo.skipIntro) != 1) {
                     GameUI.get().intro();
                     GameUI.get().title();
                 }
-                GameRunner.get().play()
+                GameRunner.get().play();
                 valid = true;
             }
             else if (this.input == Command.newGame && !GameRunner.get().newInstance) {
-                this.helpText = "Please confirm: y/n"
+                this.helpText = "Please confirm: y/n";
                 GameUI.get().log("Are you sure?");
                 GameUI.get().printLog(this.helpText);
                 var onConfirm = function onConfirm() {
-                    GameRunner.get().newGame()
+                    GameRunner.get().newGame();
                     if (Number(AppInfo.skipIntro) != 1) {
                         GameUI.get().intro();
                         GameUI.get().title();
                     }
-                    GameRunner.get().play()
-                }
-                this.onConfirm = onConfirm.bind(this)
+                    GameRunner.get().play();
+                };
+                this.onConfirm = onConfirm.bind(this);
                 this.confirmMode = true;
                 valid = true;
             }
             if (this.input == Command.play) {
                 if (!GameRunner.get().isGameOver()) {
-                    GameRunner.get().play()
+                    GameRunner.get().play();
                     valid = true;
                 }
                 else {
@@ -188,16 +169,14 @@ export class GameInput {
             }
             if (this.input == Command.theme) {
                 GameUI.get().log('Select theme:');
-
-                const themes: string[] = [
-                    Command.dosTheme, 
-                    Command.darkTheme, 
-                    Command.matrixTheme, 
+                const themes = [
+                    Command.dosTheme,
+                    Command.darkTheme,
+                    Command.matrixTheme,
                     Command.bloodTheme
-                ]
+                ];
                 this.list = this.createList(themes);
                 this.logList(this.list);
-
                 this.onSelect = this.onSelectTheme.bind(this);
                 GameUI.get().printLog(this.setSelectMode());
                 valid = true;
@@ -224,7 +203,7 @@ export class GameInput {
                 valid = true;
             }
             if (this.input == Command.use) {
-                if (GameRunner.get().inventory.length == 0) { 
+                if (GameRunner.get().inventory.length == 0) {
                     GameUI.get().log("You have no items in your inventory.");
                     GameUI.get().log("&nbsp;");
                     GameUI.get().printLog();
@@ -234,15 +213,12 @@ export class GameInput {
                     GameUI.get().log('Please specify an item.', null, 0);
                     this.list = this.createList(GameRunner.get().uniqueItems);
                     this.logList(this.list, GameUI.get().logInventory.bind(GameUI.get()));
-
                     this.onSelect = this.onUseItem.bind(this);
                     GameUI.get().printLog(this.setSelectMode());
-
                     valid = true;
                 }
             }
         }
-
         if (valid) {
             this.removeInputField();
         }
@@ -253,7 +229,6 @@ export class GameInput {
             GameUI.get().printLog(this.helpText);
         }
     }
-
     static get() {
         if (this._instance) {
             return this._instance;
@@ -261,16 +236,14 @@ export class GameInput {
         this._instance = new GameInput();
         return this._instance;
     }
-
-    private createList<T>(array: T[]): ListItem<T>[] {
-        var list: ListItem<T>[] = [];
+    createList(array) {
+        var list = [];
         for (let i = 0; i < array.length; i++) {
             list.push(new ListItem(i, array[i]));
         }
         return list;
     }
-
-    private logList<T>(list: ListItem<T>[], logFn?: Function) {
+    logList(list, logFn) {
         if (logFn) {
             logFn();
             return;
@@ -280,8 +253,7 @@ export class GameInput {
         }
         GameUI.get().log('&nbsp;');
     }
-    
-    private onUseItem(item: Item) {
+    onUseItem(item) {
         if (item) {
             if (item.attribute == Attribute.HealAll || item.attribute == Attribute.CureAll) {
                 switch (item.attribute) {
@@ -292,35 +264,28 @@ export class GameInput {
                         item.cureAll();
                         break;
                 }
-
                 GameUI.get().log('&nbsp;');
                 GameUI.get().log(`Used ${item.name}.`);
                 GameUI.get().log('Item has been removed from inventory.');
                 GameUI.get().log('&nbsp;');
-
-                var index = GameRunner.get().inventory.findIndex(i => i.name == item.name)
+                var index = GameRunner.get().inventory.findIndex(i => i.name == item.name);
                 GameRunner.get().inventory.splice(index, 1);
-
                 this.setSelectMode(false);
                 GameUI.get().printLog();
             }
             else if (item.attribute == Attribute.Heal || item.attribute == Attribute.Cure) {
                 GameUI.get().log(`Using ${item.name} - ${item.description}`);
                 GameUI.get().log(`Select target:`, null, 0);
-
                 this.list = this.createList(GameRunner.get().party.map(h => h.name));
                 this.logList(this.list);
-
                 this.previous = item;
                 this.onSelect = this.onUseItemHeroSelect.bind(this);
                 GameUI.get().printLog(this.setSelectMode());
             }
         }
     }
-
-    private onUseItemHeroSelect(name: string) {
+    onUseItemHeroSelect(name) {
         var item = this.previous;
-
         var hero = GameRunner.get().party.find(h => h.name == name);
         if (item.attribute == Attribute.Heal) {
             item.heal(hero);
@@ -328,20 +293,16 @@ export class GameInput {
         if (item.attribute == Attribute.Cure) {
             item.cure(hero);
         }
-
         GameUI.get().log('&nbsp;');
         GameUI.get().log(`Used ${item.name}.`);
         GameUI.get().log('Item has been removed from inventory.');
         GameUI.get().log('&nbsp;');
-
-        var index = GameRunner.get().inventory.findIndex(i => i.name.toLocaleLowerCase() == item.name)
+        var index = GameRunner.get().inventory.findIndex(i => i.name.toLocaleLowerCase() == item.name);
         GameRunner.get().inventory.splice(index, 1);
-
-        this.setSelectMode(false)
+        this.setSelectMode(false);
         GameUI.get().printLog();
     }
-
-    private onSelectTheme(theme: string) {
+    onSelectTheme(theme) {
         switch (theme) {
             case Command.dosTheme:
                 GameUI.get().setMSDosTheme();
@@ -359,8 +320,7 @@ export class GameInput {
         this.setSelectMode(false);
         GameUI.get().printLog();
     }
-
-    private setSelectMode(value: boolean = true): string {
+    setSelectMode(value = true) {
         this.select = value;
         return value == true ? `Please select an option [1-${this.list?.length}]` : 'Select mode disabled.';
     }
